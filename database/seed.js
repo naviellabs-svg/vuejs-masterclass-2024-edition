@@ -1,6 +1,9 @@
-import {faker} from '@faker-js/faker';
+/* eslint-env node */
 
-const personName = faker.person.fullName();
-const personBio = faker.person.bio();
+import { faker } from '@faker-js/faker'
+import { createClient } from '@supabase/supabase-js'
 
-console.log('Hi my name is ', personName, '. I am a ', personBio);
+// Create a single supabase client for interacting with your database
+const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
+
+console.log(supabase)
