@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import SidebarLinks from './SidebarLinks.vue';
-import { Button } from '@/components/ui/button';
+import SidebarLinks from './SidebarLinks.vue'
+import { Button } from '@/components/ui/button'
 
 const links = [
   {
@@ -55,11 +55,11 @@ const accountLinks = [
 
     <nav class="flex flex-col gap-2 justify-between h-full relative">
       <div>
-        <SidebarLinks :links="links"/>
+        <SidebarLinks :links="links" />
       </div>
 
       <div class="border-y text-center bg-background py-3">
-        <SidebarLinks :links="accountLinks"/>
+        <SidebarLinks :links="accountLinks" />
       </div>
     </nav>
   </aside>
