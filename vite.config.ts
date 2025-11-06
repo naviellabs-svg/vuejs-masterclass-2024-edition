@@ -1,5 +1,6 @@
 import path from 'node:path'
 import VueRouter from 'unplugin-vue-router/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 import tailwindcss from '@tailwindcss/vite'
 
 import { defineConfig } from 'vite'
@@ -9,15 +10,34 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [VueRouter(),
+  plugins: [
+    VueRouter(),
+    AutoImport({
+      include: [
+    /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+    /\.vue$/,
+    /\.vue\?vue/, // .vue
+    /\.vue\.[tj]sx?\?vue/, // .vue (vue-loader with experimentalInlineMatchResource enabled)
+    /\.md$/, // .md
+  ],
+  imports: [
+    'vue',
+    'vue-router'
+  ],
+  dts: true,
+  viteOptimizeDeps: true,
+    }),
     vue({
       template: {
         compilerOptions: {
           isCustomElement: (element) => element.startsWith('iconify-icon')
         }
       }
-    }
-  ), vueDevTools(), tailwindcss(), tsconfigPaths()],
+    }),
+    vueDevTools(),
+    tailwindcss(),
+    tsconfigPaths(),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
