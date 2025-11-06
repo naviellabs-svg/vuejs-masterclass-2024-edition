@@ -6,9 +6,10 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.d.ts",
-    "./typed-router.d.ts",
+    "typed-router.d.ts",
     "database/types.ts",
-    "auto-imports.d.ts"
+    "auto-imports.d.ts",
+    "components.d.ts"
   ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {

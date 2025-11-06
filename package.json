@@ -59,6 +59,7 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.2",
     "unplugin-auto-import": "^20.2.0",
+    "unplugin-vue-components": "^30.0.0",
     "unplugin-vue-router": "^0.16.1",
     "vite": "^7.1.11",
     "vite-plugin-vue-devtools": "^8.0.3",
