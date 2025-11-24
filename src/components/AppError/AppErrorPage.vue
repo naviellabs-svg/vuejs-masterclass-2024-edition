@@ -35,15 +35,21 @@ router.afterEach(() => {
 <template>
   <section class="error">
     <AppErrorDevSection :message :customCode :details :code :hint :statusCode />
+    <AppErrorProdSection
+      :message
+      :customCode
+      :details
+      :code
+      :hint
+      :statusCode
+      :isCustomError="errorStore.isCustomError"
+    />
   </section>
 </template>
 
 <style scoped>
 @reference "@/assets/index.css"
 
-.error {
-  @apply mx-auto flex justify-center items-center flex-1 p-10 text-center -mt-20 min-h-[90vh];
-}
 .error {
   @apply mx-auto flex justify-center items-center flex-1 p-10 text-center -mt-20 min-h-[90vh];
 }
