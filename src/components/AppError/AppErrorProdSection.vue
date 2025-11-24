@@ -2,10 +2,7 @@
 const props = defineProps<{
   message: string
   customCode: number
-  code: string
   statusCode: number
-  hint: string | null
-  details: string
   isCustomError: boolean
 }>()
 
@@ -19,9 +16,9 @@ if (props.isCustomError) {
   error.value.msg = props.message
 }
 
-if(props.statusCode === 406) {
+if (props.statusCode === 406) {
   error.value.code = 404
-  error.value.msg = "Sorry, we couldnt find this page."
+  error.value.msg = 'Sorry, we couldnt find this page.'
 }
 </script>
 
