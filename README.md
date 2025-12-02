@@ -3,7 +3,7 @@
 This repository contains my implementation of the Vue.js Masterclass, focused on mastering real-world Vue 3 development with the Composition API and clean component architecture.
 It is a work in progress, updated as I complete more chapters, and demonstrates how I structure, organize, and build modern Vue applications.
 
-##🔧 What This Project Demonstrates
+## 🔧 What This Project Demonstrates
 Core Vue Skills
 - Vue 3 Composition API
 - Reusable components & props patterns
