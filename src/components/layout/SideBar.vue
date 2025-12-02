@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const links = [
   {
     title: 'Dashboard',
@@ -34,9 +35,10 @@ const accountLinks = [
   }
 ]
 
-const executeAction = (linkTitle: string) => {
-  if(linkTitle === 'Sign out') {
-    // Handle sign out logic here
+const executeAction = async (linkTitle: string) => {
+  if (linkTitle === 'Sign out') {
+    const { logout } = await import('@/utils/supaAuth')
+    await logout()
   }
 }
 </script>
@@ -61,7 +63,7 @@ const executeAction = (linkTitle: string) => {
       </div>
 
       <div class="border-y text-center bg-background py-3">
-        <SidebarLinks :links="accountLinks" @actionClicked="executeAction"/>
+        <SidebarLinks :links="accountLinks" @actionClicked="executeAction" />
       </div>
     </nav>
   </aside>
