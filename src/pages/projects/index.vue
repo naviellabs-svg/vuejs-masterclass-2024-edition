@@ -8,6 +8,14 @@ const { projects } = storeToRefs(projectsLoader)
 const { getProjects } = projectsLoader
 
 await getProjects()
+
+const { getProfilesByIds } = useCollabs()
+
+const test = projects.value[0] ? await getProfilesByIds(projects.value[0].collaborators) : null
+
+console.log('TEST :: ', test)
+
+//getGroupedCollabs(projects.value)
 </script>
 <template>
   <DataTable v-if="projects" :columns="columns" :data="projects" />
