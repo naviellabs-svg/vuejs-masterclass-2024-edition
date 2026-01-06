@@ -1,0 +1,3758 @@
+phase_name,phase,step,location,Task,Note,FALSE
+"Ready, Set, Code!",1,3,Terminal,Install node.js,,TRUE
+"Ready, Set, Code!",1,3,Terminal,node -v,Check version in terminal,TRUE
+"Ready, Set, Code!",1,3,Chrome,make Chrome default browser,,TRUE
+"Ready, Set, Code!",1,3,Chrome,Add vue.js dev tools extension to chrome,,TRUE
+"Ready, Set, Code!",1,4,Terminal,mkdir masterclass,iterm,TRUE
+"Ready, Set, Code!",1,4,Terminal,cd masterclass,iterm,TRUE
+"Ready, Set, Code!",1,4,Terminal,npm create vue@latest,https://vuejs.org/guide/quick-start.html,TRUE
+"Ready, Set, Code!",1,4,Terminal,Project name,,TRUE
+"Ready, Set, Code!",1,4,Terminal,TypeScript,,TRUE
+"Ready, Set, Code!",1,4,Terminal,Router,,TRUE
+"Ready, Set, Code!",1,4,Terminal,Pinia,,TRUE
+"Ready, Set, Code!",1,4,Terminal,ESLint,,TRUE
+"Ready, Set, Code!",1,4,Terminal,Prettier,,TRUE
+"Ready, Set, Code!",1,4,Terminal,cd vuejs-masterclass-2024,project dir,TRUE
+"Ready, Set, Code!",1,4,Terminal,npm install,,TRUE
+"Ready, Set, Code!",1,5,Terminal,code,iTerm,TRUE
+"Ready, Set, Code!",1,5,vscode,command+shift+P,,TRUE
+"Ready, Set, Code!",1,5,vscode,type install code and select install in path,,TRUE
+"Ready, Set, Code!",1,5,Terminal,code .,iTerm to open project,TRUE
+"Ready, Set, Code!",1,5,vscode,install vue.js Official extension ,,TRUE
+"Ready, Set, Code!",1,6,vueschool,check video on elsint and eslint 9,,TRUE
+"Ready, Set, Code!",1,6,Terminal,npm install -g npm-check-updates,,TRUE
+"Ready, Set, Code!",1,6,vscode,delete package.lock file,,TRUE
+"Ready, Set, Code!",1,6,vscode,delete node.modules,,TRUE
+"Ready, Set, Code!",1,6,terminal,npm install,,TRUE
+"Ready, Set, Code!",1,7,vscode,extension prettier,,TRUE
+"Ready, Set, Code!",1,8,Terminal,git --version,iTerm,TRUE
+"Ready, Set, Code!",1,8,Terminal,"git config --global user.name ""Chris Conradie""",iTerm,TRUE
+"Ready, Set, Code!",1,8,Terminal,"git config --global user.email ""naviel.labs@gmail.com""",iTerm,TRUE
+"Ready, Set, Code!",1,8,Terminal,git init -b main,"(in your project's root directory) - Initializes a new Git repository in your project directory and creates a new ""main"" branch.",TRUE
+"Ready, Set, Code!",1,8,Terminal,git add .,git add . - Adds all modified files in your project to the staging area.,TRUE
+"Ready, Set, Code!",1,8,Terminal,"git commit -m ""init""","Creates a commit with a descriptive message (""init"" in this example).",TRUE
+"Ready, Set, Code!",1,8,Terminal,ls -al ~/.ssh,check for ssh key,TRUE
+"Ready, Set, Code!",1,8,Terminal,"ssh-keygen -t ed25519 -C ""naviel.labs@gmail.com""",add key if missing,TRUE
+"Ready, Set, Code!",1,8,Terminal,pbcopy < ~/.ssh/id_ed25519.pub,"replace ""filename"" with your key's actual path and name) - Copies the generated SSH key to your clipboard.",TRUE
+"Ready, Set, Code!",1,8,Terminal,github setting craete new key name it and paste key,,TRUE
+"Ready, Set, Code!",1,8,Terminal,craete new repository,,TRUE
+"Ready, Set, Code!",1,8,Terminal,git remote add origin <URL>,sshid,TRUE
+"Ready, Set, Code!",1,8,Terminal,git push -u origin main,,TRUE
+"Ready, Set, Code!",1,8,Terminal,git add -A,Adds all modified files to the staging area.,TRUE
+"Ready, Set, Code!",1,8,Terminal,"git commit -m ""message""",Creates a commit with a descriptive message.,TRUE
+"Ready, Set, Code!",1,8,Terminal,git push origin main,"Pushes your local commits to the remote ""main"" branch",TRUE
+Project Structure and Routing,2,9,Terminal,npm run dev,,TRUE
+Project Structure and Routing,2,9,src,clear assets folder,,TRUE
+Project Structure and Routing,2,9,src,clear components folder,,TRUE
+Project Structure and Routing,2,9,src,clear pre definded routes in index.js,,TRUE
+Project Structure and Routing,2,9,src,clear import pages in index.js,,TRUE
+Project Structure and Routing,2,9,src,delet default store,,TRUE
+Project Structure and Routing,2,9,src,delete default views,,TRUE
+Project Structure and Routing,2,9,app.vue,clear up script,,TRUE
+Project Structure and Routing,2,9,app.vue,clear up template,,TRUE
+Project Structure and Routing,2,9,app.vue,add <h1>Welcome</h1>,,TRUE
+Project Structure and Routing,2,9,app.vue,delete <style>,,TRUE
+Project Structure and Routing,2,9,main.ts,delete import main.css,,TRUE
+Project Structure and Routing,2,9,Terminal,npm run dev,,TRUE
+Project Structure and Routing,2,9,Terminal,check console for any errors,,TRUE
+Project Structure and Routing,2,9,Terminal,git add -A,,TRUE
+Project Structure and Routing,2,9,Terminal,clear terminal,,TRUE
+Project Structure and Routing,2,9,Terminal,"git checkout -b ""chapter-2-lesson-9""",skryf ander naam,TRUE
+Project Structure and Routing,2,9,Terminal,"git commit -m ""boilerplate cleanup""",,TRUE
+Project Structure and Routing,2,9,Terminal,clear terminal,,TRUE
+Project Structure and Routing,2,9,Terminal,git push origin chapter-2-lesson-9,,TRUE
+Setting Up Vue Router and Navigation with Router Link,2,10,src/views,create HomeView.vue and add ,"<script setup lang=""ts"">
+</script>
+<template>
+  <div>
+    <h1>Home Page</h1>
+<a href=""/projects"">Go to projects</a> after h1
+  </div>
+</template>",
+Setting Up Vue Router and Navigation with Router Link,2,10,views,create projects.vue,"<script setup lang=""ts""></script>
+<template>
+  <div>
+    <h1>Posts Page</h1>
+    <a href=""/"">Go to home</a>
+  </div>
+</template>
+",
+Setting Up Vue Router and Navigation with Router Link,2,10,router/index.ts,create first routes,"routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+    },
+    {
+      path: '/posts',
+      name: 'posts',
+      component: PostsView,
+    },
+  ],",
+Setting Up Vue Router and Navigation with Router Link,2,10,app.vue,add RouterView,"<template>
+  <main>
+    <RouterView />
+  </main>
+</template>",
+Setting Up Vue Router and Navigation with Router Link,2,10,HomeView.vue,change a to RouterLink for faster page loads,"<RouterLink to=""/posts"">Go to posts</RouterLink>",
+Setting Up Vue Router and Navigation with Router Link,2,10,PostsView.vue,change a to RouterLink for faster page loads and href >to,"<RouterLink to=""/posts"">Go to posts</RouterLink>",
+Project Structure and Routing,2,11,router/index.ts,change project route to lazy loading,component: () => import('@/views/ProjectsView.vue'),TRUE
+Project Structure and Routing,2,11,router/index.ts,delete import at top of file,,TRUE
+Project Structure and Routing,2,11,,inspect>ntewrok to see if only project file is loaded.,,TRUE
+Project Structure and Routing,2,12,views,create SingleProjectView.vue,,TRUE
+Project Structure and Routing,2,12,router/index.ts,add new route with wildcard :id,"{
+      path: '/posts/:id',
+      name: 'single-post',
+      component: () => import('@/views/SinglePostView.vue'),
+    },",TRUE
+Project Structure and Routing,2,12,views/SingleProjectView,"Inside SingleProject view add
+",import {useRoute} from 'vue-router';,TRUE
+Project Structure and Routing,2,12,views/SingleProjectView,Add,const route = useRoute();,TRUE
+Project Structure and Routing,2,12,views/SingleProjectView,change heading to use ,<h1>Projects {{ route.params.id }}</h1> ,TRUE
+Project Structure and Routing,2,12,views/SingleProjectView,"now add ? after params so that undefiend is called when there is no param and not error
+<h1>Projects {{ route.params?.id }}</h1>",,TRUE
+Project Structure and Routing,2,13,router/index.ts,add path for undefiend pages,"{
+      path: '/:catchAll(.*)*',
+      name: 'not-found',
+      component: h('p',{style: 'color: red;'}, '404 - Not Found')
+    }",TRUE
+Project Structure and Routing,2,14,Terminal,npm install -D unplugin-vue-router,to help routing,TRUE
+Project Structure and Routing,2,14,vite.config.ts,add,import VueRouter from 'unplugin-vue-router/vite',TRUE
+Project Structure and Routing,2,14,vite.config.ts,"add VueRouter(), before vue()",,TRUE
+Project Structure and Routing,2,14,router/index.ts,change from 'vue-router' to 'vue-router/auto',"import { createRouter, createWebHistory } from 'vue-router/auto'",TRUE
+Project Structure and Routing,2,14,router/index.ts,Now delete all paths and imports to only have ,"import { createRouter, createWebHistory } from 'vue-router/auto'
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL)
+})
+
+export default router",TRUE
+Project Structure and Routing,2,14,src,rename views to pages,,TRUE
+Project Structure and Routing,2,14,router/index.ts,add ,import {routes} from 'vue-router/auto-routes',TRUE
+Project Structure and Routing,2,14,router/index.ts,now add routes to,"const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes
+})",TRUE
+Project Structure and Routing,2,14,tsconfig.app.json,"add under ""include""","""typed-router.d.ts""",TRUE
+Project Structure and Routing,2,14,tsconfig.app.json,"also add ""moduleResolution"": ""Bundler"", so that it looks like this
+","{
+  ""extends"": ""@vue/tsconfig/tsconfig.dom.json"",
+  ""include"": [""env.d.ts"", ""src/**/*"", ""src/**/*.vue"", ""typed-router.d.ts""],
+  ""exclude"": [""src/**/__tests__/*""],
+  ""compilerOptions"": {
+    ""tsBuildInfoFile"": ""./node_modules/.tmp/tsconfig.app.tsbuildinfo"",
+    ""moduleResolution"": ""Bundler"",
+    ""paths"": {
+      ""@/*"": [""./src/*""]
+    }
+  }
+}",TRUE
+Project Structure and Routing,2,14,env.d.ts,add,"/// <reference types=""unplugin-vue-router/client"" />",TRUE
+Project Structure and Routing,2,14,,comand + shift +P then relaod window to check all is sync,,TRUE
+Project Structure and Routing,2,14,,inspect console,,TRUE
+Project Structure and Routing,2,15,pages,change HomeView.vue to index.vue,,TRUE
+Project Structure and Routing,2,15,pages/projects,under pages create new folder called Projects. ,,TRUE
+Project Structure and Routing,2,15,pages/projects,move ProjectsView.vue under projects and rename to index.vue,,TRUE
+Project Structure and Routing,2,15,pages/projects,move SingleProjectView.vue to projects folder and rename [id].vue,,TRUE
+Project Structure and Routing,2,15,pages,create [...catchAll].vue and add,"<script setup lang=""ts""></script>
+
+<template>
+  <div>
+    <h1>404 Not Found</h1>
+  </div>
+</template>",TRUE
+Project Structure and Routing,2,15,pages/projects,change link to ,"<RouterLink :to=""{ name: '/projects/[id]', params: { id: 1 } }"">Go To Projects</RouterLink>",TRUE
+Bootstrap the App Backend with Supabase,3,17,supbase,sign up/in to supabase,,TRUE
+Bootstrap the App Backend with Supabase,3,17,supbase,create organization,,TRUE
+Bootstrap the App Backend with Supabase,3,17,supbase,create new project,,TRUE
+Bootstrap the App Backend with Supabase,3,17,supbase,go to js docs and copy ,npm install @supabase/supabase-js@2.43.4,TRUE
+Bootstrap the App Backend with Supabase,3,17,supbase,copy code from initialising,"import { createClient } from '@supabase/supabase-js'
+
+// Create a single supabase client for interacting with your database
+const supabase = createClient('https://xyzcompany.supabase.co', 'publishable-or-anon-key')",TRUE
+Bootstrap the App Backend with Supabase,3,17,src,craet new folder lib,,TRUE
+Bootstrap the App Backend with Supabase,3,17,src/lib,icraete new file supbaseClient.ts,,TRUE
+Bootstrap the App Backend with Supabase,3,17,supabaseClient.ts,paste code from initialising here,,TRUE
+Bootstrap the App Backend with Supabase,3,17,supabaseClient.ts,now replace with own url,,TRUE
+Bootstrap the App Backend with Supabase,3,17,supabaseClient.ts,and replace anon key,,TRUE
+Bootstrap the App Backend with Supabase,3,17,app.vue,in app.vue add ,import { supabase } from '@/lib/supabaseClient',TRUE
+Bootstrap the App Backend with Supabase,3,17,app.vue,add ,console.log(supabase),TRUE
+Bootstrap the App Backend with Supabase,3,17,Terminal,run dev,,TRUE
+Bootstrap the App Backend with Supabase,3,17,Console,inspect console,,TRUE
+Bootstrap the App Backend with Supabase,3,17,supabaseClient.ts ,add export in front off const,,TRUE
+,3,18,supabaseClient.ts ,change  craete client to,"export const supabase = createClient(
+  import.meta.env.VITE_SUPBASE_URL,
+  import.meta.env.VITE_SUPABASE_KEY",TRUE
+,3,18,route,create new file.env and add ,"VITE_SUPABASE_URL=
+VITE_SUPABASE_KEY=",TRUE
+,3,18,gitignore,add .env below tsbuildinfo,,TRUE
+,3,19,,in supbase add projects new table and uncheck RLS,,FALSE
+,3,19,,"add new column name: Text, is not nullable",,FALSE
+,3,19,,"add new column slug: text , is not nullable",,FALSE
+,3,19,,"add new column status: text, in-progress, is not nullable",,FALSE
+,3,19,,"add new column collaborators: text, [] , is not nullable",,FALSE
+,3,19,,add new row with firts project and firts-project,,FALSE
+,3,20,supbase/sql editor,run,"DROP table IF EXISTS projects;
+DROP type IF EXISTS current_status; 
+
+CREATE type current_status as enum ('in-progress', 'completed');
+
+CREATE TABLE 
+  projects (
+    id bigint primary key generated always as identity not null,
+    created_at timestamp default now() not null,
+    name text not null,
+    slug text unique not null,
+    status current_status not null,
+    collaborators text array default array[]::varchar[] not null
+  );",TRUE
+,3,21,Terminal,npm install supabase --save-dev,,TRUE
+,3,21,package.json,under scripts add ,"""supabase:init"": ""supabase init""",TRUE
+,3,21,Terminal,npm run supabase:init,,TRUE
+,3,21,package.json,under scripts add ,"""supabase:login"": ""supabase login""",TRUE
+,3,21,Terminal,npm run supabase:login,,TRUE
+,3,21,package.json,add this under scripts and replace project ref,"""supabase:link"": ""supabase link --project-ref YOUR_PROJECT_REF"",",TRUE
+,3,21,Terminal,npm run supabase:link,,TRUE
+,3,22,package.json,add under scripts ,"""db:migrate:new"": ""supabase migration new projects-schema""",TRUE
+,3,22,Terminal,npm run db:migrate:new,,TRUE
+,3,22,supbase/sql editor,copy script for projects schema,,TRUE
+,3,22,???,remove insert data ,,TRUE
+,3,22,package.json,in package.json add under scripts,"""db:reset"": ""supabase db reset --linked""",TRUE
+,3,22,Terminal,npm run db:reset,,TRUE
+,3,23,Terminal,npm install @faker-js/faker --save-dev,,TRUE
+,3,23,route,new folder called database ,,TRUE
+,3,23,route/database,craete new file seed.js,,TRUE
+,3,23,seed.js,add ,import {faker} from '@faker-js/faker';,TRUE
+,3,23,seed.js,add,const personName = faker.person.fullName();,TRUE
+,3,23,seed.js,add ,const personBio = faker.person.bio();,TRUE
+,3,23,seed.js,add ,"console.log('Hi my name is ', personName, '. I am a ', personBio);",TRUE
+,3,23,Terminal,node database/seed.js,,TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,seed.js,clean out all fake data,,TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,lib/supabaseClient.ts,copy  const into seed.js,"export const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_KEY
+)",TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,seed.js,change to,"const supabase = createClient(
+  process.env.VITE_SUPABASE_URL,
+  process.env.VITE_SUPABASE_KEY
+)",TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,supbase,copy service role key and ref as SERVICE_ROLE_KEY,"This key has the ability to bypass Row Level Security. Never share it publicly. If leaked, generate a new JWT secret immediately. Prefer using Secret API keys instead.",TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,.eslint.cjs,/* eslint-env node */ ,to tell eslint wher its run,TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,.env,add SUPABASE_SERVICE_ROLE_KEY ,,TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,Terminal,node --env-file=.env database/seed.js,,TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,package.json,add to script,"""db:seed"": ""node --env-file=.env database/seed.js""",TRUE
+Set Up Supabase JavaScript Client in Node Environment,3,24,,npm run db:seed,,TRUE
+Seeding the Supabase Remote Database with Fakerjs,3,25,,remove console.log from seed.js,,TRUE
+Seeding the Supabase Remote Database with Fakerjs,3,25,,Go to javscript docs and look for insert data on left,,TRUE
+Seeding the Supabase Remote Database with Fakerjs,3,25,seed.js,add this ,"const seedProjects = async () => {
+
+  const name = faker.lorem.words(3)
+
+  await supabase.from('projects').insert({
+    name: name,
+    slug: name.toLocaleLowerCase().replace(/ /g, '-'),
+    status: faker.helpers.arrayElement(['in-progress', 'completed']),
+    collaborators: faker.helpers.arrayElements([1,2,3])
+})
+}
+await seedProjects()",TRUE
+Seeding the Supabase Remote Database with Fakerjs,3,25,Terminal,npm run db:reset,,TRUE
+Seeding the Supabase Remote Database with Fakerjs,3,25,Supabase,check table editor,,TRUE
+Seeding the Supabase Remote Database with Fakerjs,3,25,Terminal,npm run db:seed,,TRUE
+Seeding the Supabase Remote Database with Fakerjs,3,25,Supabase,check table editor,,TRUE
+Insert Bulk Entries Into Supabase Database,3,26,seed.js,"change seed.js to 
+const seedProjects = async (numEntries) => {
+  const projects = []
+
+  for (let i = 0; i < numEntries; i++) {
+  const name = faker.lorem.words(3)
+
+    projects.push({
+      name: name,
+      slug: name.toLocaleLowerCase().replace(/ /g, '-'),
+      status: faker.helpers.arrayElement(['in-progress', 'completed']),
+      collaborators: faker.helpers.arrayElements([1, 2, 3])
+    })
+  }
+
+  await supabase.from('projects').insert(projects)
+}
+
+await seedProjects(10)","/* eslint-env node */
+
+import { fakerEN_US as faker } from '@faker-js/faker'
+import { createClient } from '@supabase/supabase-js'
+
+// Create a single supabase client for interacting with your database
+const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
+
+const seedTeams = async (numEntries) => {
+  const teams = []
+
+  for (let i = 0; i < numEntries; i++) {
+    const name = faker.lorem.words(3)
+
+    teams.push({
+      name: name,
+      slug: name.toLocaleLowerCase().replace(/ /g, '-'),
+      province: faker.helpers.arrayElement([
+        'Eastern Cape',
+        'Free State',
+        'Gauteng',
+        'KwaZulu-Natal',
+        'Limpopo',
+        'Mpumalanga',
+        'Northern Cape',
+        'North West',
+        'Western Cape',
+      ]),
+      team_managers: faker.helpers.arrayElements([1, 2, 3]),
+    })
+  }
+
+  await supabase.from('teams').insert(teams)
+}
+
+await seedTeams(10)
+",TRUE
+Insert Bulk Entries Into Supabase Database,3,26,Terminal,npm run db:seed,,TRUE
+Query Supabase from Vue.js Script Setup,3,27,Github,"copy code from github
+/* eslint-env node */
+
+import { fakerEN_US as faker } from '@faker-js/faker'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.SERVICE_ROLE_KEY)
+
+const logErrorAndExit = (tableName, error) => {
+  console.error(
+    `An error occurred in table '${tableName}' with code ${error.code}: ${error.message}`
+  )
+  process.exit(1)
+}
+
+const logStep = (stepMessage) => {
+  console.log(stepMessage)
+}
+
+const seedProjects = async (numEntries) => {
+  logStep('Seeding projects...')
+  const projects = []
+
+  for (let i = 0; i < numEntries; i++) {
+    const name = faker.lorem.words(3)
+
+    projects.push({
+      name: name,
+      slug: name.toLocaleLowerCase().replace(/ /g, '-'),
+      status: faker.helpers.arrayElement(['in-progress', 'completed']),
+      collaborators: faker.helpers.arrayElements([1, 2, 3])
+    })
+  }
+
+  const { data, error } = await supabase.from('projects').insert(projects).select('id')
+
+  if (error) return logErrorAndExit('Projects', error)
+
+  logStep('Projects seeded successfully.')
+
+  return data
+}
+
+const seedDatabase = async (numEntriesPerTable) => {
+  await seedProjects(numEntriesPerTable)
+}
+
+const numEntriesPerTable = 10
+
+seedDatabase(numEntriesPerTable)",,TRUE
+Query Supabase from Vue.js Script Setup,3,27,Terminal,npm run db:reset,,TRUE
+Query Supabase from Vue.js Script Setup,3,27,Terminal,npm run db:seed,,TRUE
+Query Supabase from Vue.js Script Setup,3,27,Supabase,go to javascript client docs and go to fetch data,,TRUE
+Query Supabase from Vue.js Script Setup,3,27,projects/index.vue,add,import {supabase} from '@/lib/supabaseClient',TRUE
+Query Supabase from Vue.js Script Setup,3,27,projects/index.vue,add,"const getProjects = async () => {
+  const { data, error} = await supabase.from('projects').select()
+
+  if (error) console.log(error)
+
+  console.log('projects: ', data)
+}",TRUE
+Query Supabase from Vue.js Script Setup,3,27,,go to vue.js docs/guide/essentials/life cycle hooks,,TRUE
+Use Immediately Invoked Function Expression in Script Setup,3,28,,"add login into new function and delete old function 
+;(async () => {
+  const { data, error } = await supabase.from('projects').select()
+
+  if (error) console.log(error)
+
+  console.log('projects: ', data)
+})()",";(async () => {
+  const { data, error } = await supabase.from('projects').select()
+
+  if (error) console.log(error)
+
+  console.log('projects: ', data)
+})()",TRUE
+Use Immediately Invoked Function Expression in Script Setup,3,28,,npm run dev,,TRUE
+Use Immediately Invoked Function Expression in Script Setup,3,28,projects/index.vue,change to,";(async () => {
+  const { data, error } = await supabase.from('projects').select()
+
+  if (error) console.log(error)
+
+  return data
+})()",TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,projects/index.vue,add add after import above function,let projects: any ,TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,projects/index.vue,"then after if add 
+",projects = data,TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,projects/index.vue,"after return data add
+console.log('projects: ', projects)","console.log('projects: ', projects)",TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,Terminal,npm run dev,,TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,seed.js,make sure seed.js is ,"/* eslint-env node */
+
+import { fakerEN_US as faker } from '@faker-js/faker'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.SERVICE_ROLE_KEY)
+
+const logErrorAndExit = (tableName, error) => {
+  console.error(
+    `An error occurred in table '${tableName}' with code ${error.code}: ${error.message}`
+  )
+  process.exit(1)
+}
+
+const logStep = (stepMessage) => {
+  console.log(stepMessage)
+}
+
+const seedProjects = async (numEntries) => {
+  logStep('Seeding projects...')
+  const projects = []
+
+  for (let i = 0; i < numEntries; i++) {
+    const name = faker.lorem.words(3)
+
+    projects.push({
+      name: name,
+      slug: name.toLocaleLowerCase().replace(/ /g, '-'),
+      status: faker.helpers.arrayElement(['in-progress', 'completed']),
+      collaborators: faker.helpers.arrayElements([1, 2, 3])
+    })
+  }
+
+  const { data, error } = await supabase.from('projects').insert(projects).select('id')
+
+  if (error) return logErrorAndExit('Projects', error)
+
+  logStep('Projects seeded successfully.')
+
+  return data
+}
+
+const seedDatabase = async (numEntriesPerTable) => {
+  await seedProjects(numEntriesPerTable)
+}
+
+const numEntriesPerTable = 10
+
+seedDatabase(numEntriesPerTable)",TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,projects/index.vue,script should look like this ,"<script setup lang=""ts"">
+import { supabase } from '@/lib/supabaseClient'
+
+let projects: any
+;(async () => {
+  const { data, error } = await supabase.from('projects').select()
+
+  if (error) console.log(error)
+
+  projects = data
+
+  console.log('projects: ', projects)
+})()
+</script>",TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,projects/index.vue,"add in template under router link
+",{{ posts }},TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,projects/index.vue,add,,TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,projects/index.vue,change let to ,let projects: any,TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,projects/index.vue,"add .value for refs so it look like this
+",,TRUE
+Introduction to Vue.js Reactivity System and Using Refs,3,29,Terminal,npm run dev and check if data is showing,,TRUE
+Provide TypeScript Type Definitions for Refs in Vue.js Script Setup,3,30,projects/index.vue,update ref ,const posts = ref<any[] | null>(null),TRUE
+Provide TypeScript Type Definitions for Refs in Vue.js Script Setup,3,30,projects/index.vue,change the call for posts,{{ posts ? posts[0] : '' }},TRUE
+Provide TypeScript Type Definitions for Refs in Vue.js Script Setup,3,30,projects/index.vue,now make it a loop for each item. ,"<ul>
+      <li v-for=""post in posts"" :key=""post.id"">
+       {{ post. }}
+      </li>
+    </ul>",TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,Supabase,got to api docs / tables,https://supabase.com/docs/guides/api/rest/generating-types,TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,package.json,add script for types,"""supabase:types"": ""npx supabase gen types typescript --project-id sxzckwgvucbknxgldqkr --schema public > database/types.ts""",TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,package.json,change database.types to database/types.ts,"""supabase:types"": ""npx supabase gen types typescript --project-id sxzckwgvucbknxgldqkr --schema public > database.types.ts""",TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,Terminal,npm run supabase:types,,TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,lib/supabaseClient.ts,add import,import type { Database } from '../../database/types',TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,lib/supabaseClient.ts,update create client for this database,export const supabase = createClient<Database>(,TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,tsconfig.app.json,add inside include array,"""database/types.ts""",TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,posts/index.vue,add import ,import type { Tables } from '../../../database/types',TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,posts/index.vue,update ref ,const posts = ref<Tables<'posts'>[] | null>(null),TRUE
+Add TypeScript Support to Supabase in Vue.js,3,31,posts/index.vue,now update the li,"<li v-for=""post in posts"" :key=""post.id"">
+        {{ post.subject }}",TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,package.json,remove posts-schema from db:migrate,,TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,Terminal,npm run db:migrate:new assigned_posts-schema,,TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,assigned_posts-schema,add sql,"-- Drop if rebuilding during development
+drop table if exists assigned_posts;
+
+create table
+  assigned_posts (
+    id bigint primary key generated always as identity not null,
+    created_at timestamptz default now() not null,
+
+    -- Foreign keys
+    user_id uuid references auth.users (id) on delete cascade not null,
+    post_id bigint references posts (id) on delete cascade not null,
+
+    -- Scheduling
+    scheduled_for timestamptz default null,
+    sent boolean default false not null,
+    sent_at timestamptz default null,
+
+    -- Stage 3 (premium / locked posts)
+    is_locked boolean default false not null
+  );",TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,Terminal,npm run db:reset,,TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,seed.js,update posts and sssigned posts,"// Posts + Assigned Posts Seed Script
+
+const logErrorAndExit = (tableName, error) => {
+  console.error(
+    `An error occurred in table '${tableName}' with code ${error.code}: ${error.message}`,
+  )
+  process.exit(1)
+}
+
+const logStep = (stepMessage) => {
+  console.log(stepMessage)
+}
+
+// Posts Table
+const seedPosts = async (numEntries) => {
+  logStep('Seeding posts...')
+  const posts = []
+
+  for (let i = 0; i < numEntries; i++) {
+    const subject = faker.lorem.sentence(5)
+    const body = faker.lorem.paragraphs(2)
+
+    posts.push({
+      subject: subject,
+      slug: subject
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-') // spaces + symbols → hyphens
+        .replace(/(^-|-$)/g, ''), // trim starting/ending hyphens
+      body: body,
+      status: faker.helpers.arrayElement(['draft', 'published']),
+      is_exclusive: faker.datatype.boolean(),
+    })
+  }
+
+  const { data, error } = await supabase.from('posts').insert(posts).select('id')
+
+  if (error) return logErrorAndExit('Posts', error)
+
+  logStep('Posts seeded successfully.')
+
+  return data
+}
+
+// Assigned Posts Table
+const seedAssignedPosts = async (numEntries, postsIds) => {
+  logStep('Seeding assigned_posts...')
+  const assignedPosts = []
+
+  for (let i = 0; i < numEntries; i++) {
+    const sent = faker.datatype.boolean()
+    const scheduledFor = faker.date.soon({ days: 30 })
+
+    assignedPosts.push({
+      // user_id left out on purpose for now
+      post_id: faker.helpers.arrayElement(postsIds),
+      scheduled_for: scheduledFor,
+      sent: sent,
+      sent_at: sent ? faker.date.soon({ days: 5, refDate: scheduledFor }) : null,
+      is_locked: faker.datatype.boolean(),
+    })
+  }
+
+  const { data, error } = await supabase.from('assigned_posts').insert(assignedPosts).select('id')
+
+  if (error) return logErrorAndExit('assigned_posts', error)
+
+  logStep('assigned_posts seeded successfully.')
+
+  return data
+}
+
+const seedDatabase = async (numEntriesPerTable) => {
+  const postsIds = (await seedPosts(numEntriesPerTable)).map((post) => post.id)
+  await seedAssignedPosts(numEntriesPerTable, postsIds)
+}
+
+const numEntriesPerTable = 10
+
+seedDatabase(numEntriesPerTable)",TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,Terminal,npm run db:reset,,TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,Terminal,npm run db:seed,,TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,pages,craete folder assignedPosts,,TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,assignedPosts,create index.vue,,TRUE
+"Create a New Page for Tasks with Database Migration, Seed and Types",3,32,assignedPosts,"copy index,vue file and [paste here","<script setup lang=""ts"">
+import { supabase } from '@/lib/supabaseClient'
+import { ref } from 'vue'
+import type { Tables } from '../../../database/types'
+
+const posts = ref<Tables<'posts'>[] | null>(null)
+;(async () => {
+  const { data, error } = await supabase.from('posts').select()
+
+  if (error) console.log(error)
+
+  posts.value = data
+
+  console.log('posts: ', posts.value)
+})()
+</script>
+<template>
+  <div>
+    <h1>Posts Page</h1>
+    <RouterLink to=""/"">Go To Home</RouterLink>
+    <ul>
+      <li v-for=""post in posts"" :key=""post.id"">
+        {{ post.subject }}
+      </li>
+    </ul>
+  </div>
+</template>",TRUE
+Getting Started with Shadcn UI and Vue.js,4,33,shandcn for vue,go to shadcn for vue,https://www.shadcn-vue.com/,TRUE
+Getting Started with Shadcn UI and Vue.js,4,33,shandcn for vue,docs/getting started/instalation/vite,,TRUE
+Getting Started with Shadcn UI and Vue.js,4,33,shandcn for vue,Go follow steps ons shadcn for tailwind 4,https://www.shadcn-vue.com/docs/installation/vite.html,TRUE
+Getting Started with Shadcn UI and Vue.js,4,33,src,move styles.css to assets and rename as index.css,,TRUE
+Getting Started with Shadcn UI and Vue.js,4,33,main.ts,import css,import '.assets/index.css',TRUE
+Prepare the Vue App Layout with TailwindCSS,4,34,index.html,in <html> add ,"class=""dark""",TRUE
+Prepare the Vue App Layout with TailwindCSS,4,34,app.vue,add <nav> before <main>,"<nav class=""h-16 border-b bg-muted/40 flex justify-between px-6 items-center"">
+    <form class=""w-full max-w-96"">
+      <input type=""text"" placeholder=""Search..."" class=""w-full bg-background pl-8"" />
+    </form>
+    <div class=""w-8 h-8 rounded-full bg-white""></div>
+  </nav>",TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,Terminal,npx shadcn-vue@latest add input,,TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,app.vue,add ,import Input from '@/components/ui/input/Input.vue',TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,shadcn,search dropdown menu and go to instalation,npx shadcn-vue@latest add dropdown-menu,TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,shadcn,copy usage from docs and add in app.vue scrpt,"import {  DropdownMenu,  DropdownMenuContent,  DropdownMenuItem,  DropdownMenuLabel,  DropdownMenuSeparator,  DropdownMenuTrigger, } from '@/components/ui/dropdown-menu'",TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,github,copy template code and add after avater div code ,"DropdownMenu>
+    <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+    <DropdownMenuContent>
+      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Billing</DropdownMenuItem>
+      <DropdownMenuItem>Team</DropdownMenuItem>
+      <DropdownMenuItem>Subscription</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>",TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,app.vue,add the rounded div inplace of the open text,"<div class=""w-8 h-8 rounded-full bg-white""></div>",TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,shadcn,search avatar and install ,npx shadcn-vue@latest add avatar,TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,shadcn,copy import,,TRUE
+Utilize Shadcn Input and Dropdown Components,4,35,shadcn,copy template add insiden <div></div>,"<Avatar>  <AvatarImage src=""https://github.com/unovue.png"" alt=""@unovue"" />  <AvatarFallback>CN</AvatarFallback>  </Avatar>",TRUE
+Use Lucide Icons with Iconify and Vue.js,4,36,iconify,go to iconify,https://icon-sets.iconify.design/,TRUE
+Iconify Icon Web Component in Vue.js,4,37,iconify,select lucide icon set,,TRUE
+Iconify Icon Web Component in Vue.js,4,37,iconify/lucide,get search icon and click on svg and copy code and add before input in form,"<svg xmlns=""http://www.w3.org/2000/svg"" width=""24"" height=""24"" viewBox=""0 0 24 24"">
+      <g
+        fill=""none""
+        stroke=""currentColor""
+        stroke-linecap=""round""
+        stroke-linejoin=""round""
+        stroke-width=""2""
+      >
+        <path d=""m21 21l-4.34-4.34"" />
+        <circle cx=""11"" cy=""11"" r=""8"" />
+      </g>
+    </svg>",TRUE
+Iconify Icon Web Component in Vue.js,4,37,iconify,in iconify go to icons on demand/vue,,TRUE
+Iconify Icon Web Component in Vue.js,4,37,iconify,go to Iconify Icon web component,,TRUE
+Iconify Icon Web Component in Vue.js,4,37,iconify,go to registering the web component and install,npm i iconify-icon,TRUE
+Iconify Icon Web Component in Vue.js,4,37,main.ts,add,"import ""iconify-icon"";",TRUE
+Iconify Icon Web Component in Vue.js,4,37,vite.config.ts,inside the vue plugin ,"{
+      template: {
+        compilerOptions: {
+          isCustomElement: (element) => element.startsWith('iconify-icon')
+        }
+      }
+    }",TRUE
+Iconify Icon Web Component in Vue.js,4,37,app.vue,replace svg ,"<iconify-icon icon=""lucide:search""></iconify-icon>",TRUE
+Iconify Icon Web Component in Vue.js,4,37,app.vue,now update css,"<nav class=""h-16 border-b bg-muted/40 flex justify-between px-6 items-center"">
+    <form class=""relative w-full h-fit max-w-96"">
+      <iconify-icon  class=""absolute top-[50%] translate-y-[-50%] left-2.5 text-muted-foreground"" icon=""lucide:search""></iconify-icon>",TRUE
+Iconify Icon Web Component in Vue.js,4,37,vscode,insall extension iconify intellisense,,TRUE
+Create a Sidebar and Organize Code with Vue Components,4,38,github,go to lesson rep and copy template/app.vue to add sidebar,"<template>
+  <aside
+    class=""flex flex-col h-screen gap-2 border-r fixed bg-muted/40 lg:w-52 w-16 transition-[width]""
+  >
+    <div class=""flex h-16 items-center border-b px-2 lg:px-4 shrink-0 gap-1 justify-between"">
+      <button variant=""outline"" size=""icon"" class=""w-8 h-8"">
+        <iconify-icon icon=""lucide:menu""></iconify-icon>
+      </button>
+
+      <button variant=""outline"" size=""icon"" class=""w-8 h-8"">
+        <iconify-icon icon=""lucide:plus""></iconify-icon>
+      </button>
+    </div>
+
+    <nav class=""flex flex-col gap-2 justify-between h-full relative"">
+      <div>
+        <RouterLink
+          to=""/""
+          class=""flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground""
+        >
+          <iconify-icon icon=""lucide:house""></iconify-icon>
+          <span class=""hidden lg:block text-nowrap"">Dashboard</span>
+        </RouterLink>
+        <RouterLink
+          to=""/projects""
+          class=""flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground""
+        >
+          <iconify-icon icon=""lucide:building-2""></iconify-icon>
+          <span class=""hidden lg:block text-nowrap"">Projects</span>
+        </RouterLink>
+        <RouterLink
+          to=""/tasks""
+          class=""flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground""
+        >
+          <iconify-icon icon=""lucide:badge-check""></iconify-icon>
+          <span class=""hidden lg:block text-nowrap"">My Tasks</span>
+        </RouterLink>
+      </div>
+
+      <div class=""border-y text-center bg-background py-3"">
+        <RouterLink
+          to=""/profile""
+          class=""flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground""
+        >
+          <iconify-icon icon=""lucide:user""></iconify-icon>
+          <span class=""hidden lg:block text-nowrap"">Profile</span>
+        </RouterLink>
+        <RouterLink
+          to=""/settings""
+          class=""flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground""
+        >
+          <iconify-icon icon=""lucide:settings""></iconify-icon>
+          <span class=""hidden lg:block text-nowrap"">Settings</span>
+        </RouterLink>
+        <RouterLink
+          to=""/signout""
+          class=""flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground""
+        >
+          <iconify-icon icon=""lucide:log-out""></iconify-icon>
+          <span class=""hidden lg:block text-nowrap"">Sign out</span>
+        </RouterLink>
+      </div>
+    </nav>
+  </aside>
+  <div class=""flex flex-col lg:ml-52 ml-16 transition-[margin]"">
+    <nav class=""h-16 border-b bg-muted/40 flex gap-2 justify-between px-6 items-center"">
+      <form class=""relative h-fit w-full max-w-96"">
+        <iconify-icon
+          class=""absolute top-[50%] translate-y-[-50%] left-2.5 text-muted-foreground""
+          icon=""lucide:search""
+        ></iconify-icon>
+        <Input class=""w-full pl-8 bg-background"" type=""text"" placeholder=""Search ..."" />
+      </form>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Avatar>
+            <AvatarImage src=""https://github.com/radix-vue.png"" alt=""@radix-vue"" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>Billing</DropdownMenuItem>
+          <DropdownMenuItem>Team</DropdownMenuItem>
+          <DropdownMenuItem>Subscription</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </nav>
+    <main>
+      <RouterView />
+    </main>
+  </div>
+</template>",TRUE
+Create a Sidebar and Organize Code with Vue Components,4,38,components,create new folder /layout/TopNavbar.vue then copy script and tem[plate from app.vie and delete nav bar and Us<TopNavBbr,"<script setup lang=""ts"">
+import Input from '@/components/ui/input/Input.vue'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+</script>
+<template>
+  <nav class=""h-16 border-b bg-muted/40 flex gap-2 justify-between px-6 items-center"">
+    <form class=""relative h-fit w-full max-w-96"">
+      <iconify-icon
+        class=""absolute top-[50%] translate-y-[-50%] left-2.5 text-muted-foreground""
+        icon=""lucide:search""
+      ></iconify-icon>
+      <Input class=""w-full pl-8 bg-background"" type=""text"" placeholder=""Search ..."" />
+    </form>
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <Avatar>
+          <AvatarImage src=""https://github.com/radix-vue.png"" alt=""@radix-vue"" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Billing</DropdownMenuItem>
+        <DropdownMenuItem>Team</DropdownMenuItem>
+        <DropdownMenuItem>Subscription</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  </nav>
+</template>
+",TRUE
+Create a Sidebar and Organize Code with Vue Components,4,38,app.vue,import,import TopNavbar from '@/components/layout/TopNavbar.vue';,TRUE
+Create a Sidebar and Organize Code with Vue Components,4,38,/layout,create new file SideBar.vue and copy aside code from app.vue,,TRUE
+Create a Sidebar and Organize Code with Vue Components,4,38,app.vue,import and use Sidebar,import SideBar from '@/components/layout/SideBar.vue',TRUE
+Extract a Reusable Vue Component for Sidebar Links,4,39,/layout,reate new file SidebarLinks.vue,,TRUE
+Extract a Reusable Vue Component for Sidebar Links,4,39,Sidebar.vue,copy router link from 1 link in Sidebar,"<RouterLink
+          to=""/""
+          class=""flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground""
+        >
+          <iconify-icon icon=""lucide:house""></iconify-icon>
+          <span class=""hidden lg:block text-nowrap"">Dashboard</span>
+        </RouterLink>",TRUE
+Extract a Reusable Vue Component for Sidebar Links,4,39,Sidebarlinks.vue,add in script ,"interface LinkProp {
+  title: string
+  to: string
+  icon: string
+}
+
+defineProps<{
+  links: LinkProp[]
+}>()",TRUE
+Extract a Reusable Vue Component for Sidebar Links,4,39,Sidebarlinks.vue,code should now look like this after v-for and bind in tempalete,"<script setup lang=""ts"">
+interface LinkProp {
+  title: string
+  to: string
+  icon: string
+}
+
+defineProps<{
+  links: LinkProp[]
+}>()
+</script>
+
+<template>
+  <RouterLink
+  v-for=""link in links""
+  :key=""link.title""
+    :to=""link.to""
+    class=""flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground""
+  >
+    <iconify-icon :icon=""link.icon""></iconify-icon>
+    <span class=""hidden lg:block text-nowrap"">{{ link.title }}</span>
+  </RouterLink>
+</template>",TRUE
+Extract a Reusable Vue Component for Sidebar Links,4,39,Sidebar.vue,cript add link array,"const links = [
+  {
+    title: 'Dashboard',
+    to: '/',
+    icon: 'lucide:house'
+  },
+  {
+    title: 'Projects',
+    to: '/projects',
+    icon: 'lucide:building-2'
+  },
+  {
+    title: 'My Tasks',
+    to: '/tasks',
+    icon: 'lucide:badge-check'
+  }
+]",TRUE
+Extract a Reusable Vue Component for Sidebar Links,4,39,Sidebar.vue,Now in template add <SidebarLinks /> and import and bind to array in place of links,"<SidebarLinks :links=""links""/>",TRUE
+Extract a Reusable Vue Component for Sidebar Links,4,39,Sidebar.vue,"Now define accountsLinks and add <SidebarLinks links=""accountsLinks"">","const accountLinks = [
+  {
+    title: 'Profile',
+    to: '/profile',
+    icon: 'lucide:user'
+  },
+  {
+    title: 'Settings',
+    to: '/settings',
+    icon: 'lucide:settings'
+  },
+  {
+    title: 'Sign out',
+    to: '/signout',
+    icon: 'lucide:log-out'
+  }
+]",TRUE
+Configure Vue Router Active Links with TailwindCSS,4,40,Sidebarlinks.vue,<router add,"exactActiveClass=""text-primary bg-muted """,TRUE
+Create Layout Vue.js Component,4,41,shadcn,search button,npx shadcn-vue@latest add button,TRUE
+Create Layout Vue.js Component,4,41,Sidebar.vue,update button to shancn Button,,TRUE
+Create Layout Vue.js Component,4,41,github,now copy from git the app.vue template,"<script setup lang=""ts"">
+import TopNavbar from '@/components/Layout/TopNavbar.vue'
+import Sidebar from '@/components/Layout/Sidebar.vue'
+</script>
+
+<template>
+  <Sidebar />
+  <div class=""flex flex-col lg:ml-52 ml-16 transition-[margin]"">
+    <TopNavbar />
+
+    <main class=""flex flex-col flex-1 gap-4 p-4 lg:gap-6 lg:p-6"">
+      <div class=""flex items-center"">
+        <h1 class=""text-lg font-semibold md:text-2xl"">Page Title</h1>
+      </div>
+      <RouterView />
+    </main>
+  </div>
+</template>",TRUE
+Create Layout Vue.js Component,4,41,layout,craete ne folder and file layout/main/authLayout.vue and copy all app.vue content,"<script setup lang=""ts"">
+import Sidebar from '@/components/Layout/Sidebar.vue'
+import TopNavbar from '@/components/Layout/TopNavbar.vue'
+</script>
+
+<template>
+  <Sidebar />
+  <div class=""flex flex-col lg:ml-52 ml-16 transition-[margin]"">
+    <TopNavbar />
+
+    <main class=""flex flex-col flex-1 gap-4 p-4 lg:gap-6 lg:p-6"">
+      <div class=""flex items-center"">
+        <h1 class=""text-lg font-semibold md:text-2xl"">Page Title</h1>
+      </div>
+      <RouterView />
+    </main>
+  </div>
+</template>",TRUE
+Create Layout Vue.js Component,4,41,AuthLayout.vue,change <RouterView /> to <slots />,,TRUE
+Create Layout Vue.js Component,4,41,app.vue,remove import statemenst and add,import AuthLayout from './components/layout/main/authLayout.vue',TRUE
+Create Layout Vue.js Component,4,41,app.vue,change template to ,"<template>
+  <AuthLayout>
+    <RouterView />
+  </AuthLayout>
+</template>",TRUE
+Create Layout Vue.js Component,4,41,,as daar code errors is gebruik,>vue: restart vue and typescrip servers,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,tanstack,tables/get started/vue/instalatiosn,https://tanstack.com/table/latest/docs/introduction,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,Terminal,copy install package,npm install @tanstack/vue-table,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,shadcn,search data tables/instalation,npx shadcn-vue@latest add table,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,shadcn,go to prerequisites copy code,"interface Payment {
+  id: string
+  amount: number
+  status: 'pending' | 'processing' | 'success' | 'failed'
+  email: string
+}
+
+export const payments: Payment[] = [
+  {
+    id: '728ed52f',
+    amount: 100,
+    status: 'pending',
+    email: 'm@example.com',
+  },
+  {
+    id: '489e1d42',
+    amount: 125,
+    status: 'processing',
+    email: 'example@gmail.com',
+  },
+  // ...
+]",TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,tasks/index.vue,pages/tasks/index.vue and paste above code underneath function to fetch tasks,,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,tasks/index.vue,remove export from function,,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,shadcn,go to basic table and copy export function,"export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: 'amount',
+    header: () => h('div', { class: 'text-right' }, 'Amount'),
+    cell: ({ row }) => {
+      const amount = Number.parseFloat(row.getValue('amount'))
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(amount)
+
+      return h('div', { class: 'text-right font-medium' }, formatted)
+    },
+  }
+]",TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,tasks/index.vue,remove export from function,,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,tasks/index.vue,import ColumnDef,import type { ColumnDef } from '@tanstack/vue-table';,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,tasks/index.vue,import h from vue,"import { h, ref } from 'vue'",TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,ui,craete ui/data-table/DataTable.vue and copy <DataTable /> code from shadcn,"<script setup lang=""ts"" generic=""TData, TValue"">
+import type { ColumnDef } from '@tanstack/vue-table'
+import {
+  FlexRender,
+  getCoreRowModel,
+  useVueTable,
+} from '@tanstack/vue-table'
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+
+const props = defineProps<{
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
+}>()
+
+const table = useVueTable({
+  get data() { return props.data },
+  get columns() { return props.columns },
+  getCoreRowModel: getCoreRowModel(),
+})
+</script>
+
+<template>
+  <div class=""border rounded-md"">
+    <Table>
+      <TableHeader>
+        <TableRow v-for=""headerGroup in table.getHeaderGroups()"" :key=""headerGroup.id"">
+          <TableHead v-for=""header in headerGroup.headers"" :key=""header.id"">
+            <FlexRender
+              v-if=""!header.isPlaceholder"" :render=""header.column.columnDef.header""
+              :props=""header.getContext()""
+            />
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <template v-if=""table.getRowModel().rows?.length"">
+          <TableRow
+            v-for=""row in table.getRowModel().rows"" :key=""row.id""
+            :data-state=""row.getIsSelected() ? 'selected' : undefined""
+          >
+            <TableCell v-for=""cell in row.getVisibleCells()"" :key=""cell.id"">
+              <FlexRender :render=""cell.column.columnDef.cell"" :props=""cell.getContext()"" />
+            </TableCell>
+          </TableRow>
+        </template>
+        <template v-else>
+          <TableRow>
+            <TableCell :colspan=""columns.length"" class=""h-24 text-center"">
+              No results.
+            </TableCell>
+          </TableRow>
+        </template>
+      </TableBody>
+    </Table>
+  </div>
+</template>",TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,shandcn,from shadcn copy render table code the add to pages/tasks/index.vue remove template stuff and add in template,"<DataTable :columns=""columns"" :data=""data"" />",TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,tasks/index.vue,import DataTable,import DataTable from '@/components/ui/data-table/DataTable.vue';,TRUE
+Build a Vue.js Data Table Component with Shadcn and TanStack,4,42,tasks/index.vue,in <DataTable change dat to payments,"<DataTable :columns=""columns"" :data=""payments"" />",TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,delete the payments interface in script,,TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,delete the payments const in script,,TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,copy <Tables<'tasks'>> and replace in payments,const columns: ColumnDef<Tables<'tasks'>>[] = [,TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,tasks/index change amount to name,,TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,tasks/index change column function to,"const columns: ColumnDef<Tables<'tasks'>>[] = [
+  {
+    accessorKey: 'name',
+    header: () => h('div', { class: 'text-right' }, 'Name'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-right font-medium' }, row.getValue('name'))
+    }
+  }
+]",TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,"then change templae to taks and ad v-if=""taks"" that only display if there is tasks","<DataTable v-if=""tasks"" :columns=""columns"" :data=""tasks"" />",TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,tasks/index cgange class text-left to display data left,,TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,add other columns,,TRUE
+Customize the Data Table Implementation for Our Vue.js App,4,43,tasks/index.vue,then change in collabortaots row. value to,JSON.stringify(row.getValue('collaborators')),FALSE
+Create a Data Table for the Projects Page,4,44,projects/index.vue,define columns,"const columns: ColumnDef<Tables<'projects'>>[] = [
+  {
+    accessorKey: 'name',
+    header: () => h('div', { class: 'text-left' }, 'Name'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-left font-medium' }, row.getValue('name'))
+    }
+  },
+  {
+    accessorKey: 'status',
+    header: () => h('div', { class: 'text-left' }, 'Status'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-left font-medium' }, row.getValue('status'))
+    }
+  },
+  {
+    accessorKey: 'name',
+    header: () => h('div', { class: 'text-left' }, 'Name'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-left font-medium' }, row.getValue('name'))
+    }
+  },
+  {
+    accessorKey: 'collaborators',
+    header: () => h('div', { class: 'text-left' }, 'Collaborators'),
+    cell: ({ row }) => {
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        JSON.stringify(row.getValue('collaborators'))
+      )
+    }
+  }
+]",TRUE
+Create a Data Table for the Projects Page,4,44,projects/index.vue,clean tempalte and add NB! make sure all imports are valid,"<DataTable v-if=""projects"" :columns=""columns"" :data=""projects"" />",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,projects/index.vue,in projects/index.vue change the div in row to RouterLink for name,"RouterLink,
+        { to: `/projects/${row.original.slug}`, class: 'text-left font-medium' },
+        () => row.getValue('name')",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,projects/index.vue,then change the projects/[id].vue to [slug].vue to match routerlink row.original.slug,,TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,projects/index.vue,add hover effect ,"{ to: `/projects/${row.original.slug}`, class: 'text-left font-medium hover:bg-muted ' }",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,projects/[slug].vue,in projects/s[slu].vue change id to slug,"<h1>Projects {{ route.params?.slug }}</h1>
+  </div>",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,vscode,command + shift +f the search projects/[id] to see if still ref somewhere and delete," <RouterLink :to=""{ name: '/projects/[id]', params: { id: 1 } }"">Go To Projects 1</RouterLink>",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,preview,click on projects and the url shoul read wit slug after projects/slug,http://localhost:5173/projects/dolorum-color-varius,TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,projects/index.vue,projects/index.vue add class tblock w- full for better user ex on clickable row,"{ to: `/projects/${row.original.slug}`, class: 'text-left font-medium hover:bg-muted block w-full ' }",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,,inspect and see where extra padding is,,TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,DataTable.vue,add style scoped ,"<style scoped>
+@reference ""@/assets/index.css"";
+
+td {
+  @apply p-0;
+}
+
+td > * {
+  @apply p-4;
+}
+</style>",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,projects/index.vue,pages/projects/index.vue copy the code for return h( router link and copy to tasks/index.vue,"return h(
+        RouterLink,
+        {
+          to: `/projects/${row.original.slug}`,
+          class: 'text-left font-medium hover:bg-muted block w-full '
+        },
+        () => row.getValue('name')
+      )",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,tasks/index.vue,change projects to tasks and .slug .id,"to: `/tasks/${row.original.id}`,",TRUE
+Make the Data Table Cells Clickable with RouterLink,4,45,tasks/[id].vue,in /tasks create new file [id].vue,"<script setup lang=""ts"">
+</script>
+
+<template>
+  <div>
+    <h1>Task</h1>
+  </div>
+</template>",TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,terminal,install auto imporst follow link sintructions,https://github.com/unplugin/unplugin-auto-import/blob/main/README.md,TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,vite.config.ts,In raedme follow vite instructions and add in vite.config.ts,import AutoImport from 'unplugin-auto-import/vite',TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,vite.config.ts,also in vite.config.ts add plugin,"AutoImport({ /* options */ }),",TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,vite.config.ts,in plugin options add ,"include: [
+    /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+    /\.vue$/,
+    /\.vue\?vue/, // .vue
+    /\.vue\.[tj]sx?\?vue/, // .vue (vue-loader with experimentalInlineMatchResource enabled)
+    /\.md$/, // .md
+  ],",TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,vite.config.ts,then add unneath include array,"imports: [
+    // presets
+    'vue',
+    'vue-router',",TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,vite.config.ts,add dts array below imports,"dts: './auto-imports.d.ts',",TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,vite.config.ts,then change to default true,"dts: true,",TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,vite.config.ts,then below dts add ,"viteOptimizeDeps: true,",TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,tsconfig.app.json,under include add,"""auto-imports.d.ts"",
+    ""components.d.ts""",TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,projects/[slug],delete import,import { useRoute } from 'vue-router',TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,projects/index.vue,"delete import {vue ,h)....",,TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,task/index.vue,"in tasks/index.vue delete omport { h, ref}",,TRUE
+Integrate unplugin-auto-import with Vue and Vite,5,47,terminal,check if still works,npm run dev,TRUE
+Configure unplugin-auto-import for unplugin-vue-router,5,48,web,go to unplugin vue router wesbite and go to introduction an look for auto imports on right ,,TRUE
+Configure unplugin-auto-import for unplugin-vue-router,5,48,vite.config.ts,copy import statement and patse inside vite.config.ts file ,import { VueRouterAutoImports } from 'unplugin-vue-router',TRUE
+Configure unplugin-auto-import for unplugin-vue-router,5,48,vite.config.ts,in vite.config.ts replace vue-roeter preset ins ide autoimports with #### but not as a string ,"VueRouterAutoImports, ",TRUE
+Configure unplugin-auto-import for unplugin-vue-router,5,48,web,in unplugin vue router go check chameglogs to see for any braeking changes,,TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,web,unplugin vue components go o link,https://github.com/unplugin/unplugin-vue-components,TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,web,get isnatlation command and install ,npm i unplugin-vue-components -D,TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,vite.config.ts,check vite setup and copy import statememnt ,import Components from 'unplugin-vue-components/vite',TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,vite.config.ts,add plugin ,Components({ /* options */ }),TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,tsconfig.app.json,in tsconfig.app.json add under include add,components.d.ts,TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,DataTable.vue,no delete imports for any component start with DataTable.vue,"import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
+",TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,sidebar.vue,delete,,TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,projects/index.vue,delete ,import DataTable from '@/components/ui/data-table/DataTable.vue',TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,tasks/index.vue,delete ,import DataTable from '@/components/ui/data-table/DataTable.vue',TRUE
+Implement Components Auto Importing Feature in Vue.js 3,5,49,app.vue,delete ,import AuthLayout from './components/layout/main/authLayout.vue',TRUE
+Use Vue.js Suspense Component to Handle Async Dependencies,5,50,,Just info on suspense,,FALSE
+Enhance Vue Router with Suspense for Async Components,5,51,app.vue ,change template to this to add suspense and Router buddies,"<template>
+  <AuthLayout>
+    <RouterView v-slot=""{ Component, route }"">
+      <Suspense v-if=""Component"">
+        <Component v-if=""Component"" :is=""Component"" :key=""route.name""></Component>
+        <template #fallback>
+          <span>Loading...</span>
+        </template>
+      </Suspense>
+    </RouterView>
+  </AuthLayout>
+</template>",TRUE
+Enhance Vue Router with Suspense for Async Components,5,51,tasks/index.vue,look like this ,"const getProjects = async () => {
+  const { data, error } = await supabase.from('projects').select()
+
+  if (error) console.log(error)
+
+  projects.value = data
+}
+
+await getProjects()",TRUE
+Enhance Vue Router with Suspense for Async Components,5,51,project/index.vue,look like this ,"const getProjects = async () => {
+  const { data, error } = await supabase.from('projects').select()
+
+  if (error) console.log(error)
+
+  projects.value = data
+}
+
+await getProjects()",TRUE
+Enhance Vue Router with Suspense for Async Components,5,51,app.vue ,"add :timeout=""0"" to show loading always","<Suspense v-if=""Component"" :timeout=""0"">",TRUE
+Enhance Vue Router with Suspense for Async Components,5,51,authLayout,go check routervview must be slot,,FALSE
+Dynamic Page Titles with Pinia,5,52,src/stores/page.ts,create store ,"import { defineStore } from 'pinia'
+
+export const usePageStore = defineStore('page-store', () => {
+  const pageData = ref({
+    title: ''
+  })
+
+  return {
+    pageData
+  }
+})",TRUE
+Dynamic Page Titles with Pinia,5,52,pinia docs,hot module replacemnet,https://pinia.vuejs.org/cookbook/hot-module-replacement.html,TRUE
+Dynamic Page Titles with Pinia,5,52,pinia docs/hot module replacement,copy this ,"if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useAuth, import.meta.hot))
+}",TRUE
+Dynamic Page Titles with Pinia,5,52,page.ts,paste inside store after store function ,"import { defineStore } from 'pinia'
+
+export const usePageStore = defineStore('page-store', () => {
+  const pageData = ref({
+    title: ''
+  })
+
+  return {
+    pageData
+  }
+})
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useAuth, import.meta.hot))
+}",TRUE
+Dynamic Page Titles with Pinia,5,52,page.ts,make sure to import acceptHMRUpdate,"import { acceptHMRUpdate, defineStore } from 'pinia'",TRUE
+Dynamic Page Titles with Pinia,5,52,page.ts,then change useAuth to usePageStore,,TRUE
+Dynamic Page Titles with Pinia,5,52,authLayout.vue,import store,import { usePageStore } from '@/stores/page',TRUE
+Dynamic Page Titles with Pinia,5,52,authLayout.vue ,add after import destruct store,const { pageData } = usePageStore();,TRUE
+Dynamic Page Titles with Pinia,5,52,authLayout.vue ,then make it reactive with ,const { pageData } = storeToRefs(usePageStore()),TRUE
+Dynamic Page Titles with Pinia,5,52,authLayout.vue ,make sure to import storeToRefs,import { storeToRefs } from 'pinia';,TRUE
+Dynamic Page Titles with Pinia,5,52,authLayout.vue ,now add dynamic heading and call title with pageData,"<h1 class=""text-lg font-semibold md:text-2xl"">{{ pageData.title }}</h1>",TRUE
+Dynamic Page Titles with Pinia,5,52,pages/index.vue ,script add,"import { usePageStore } from '@/stores/page';
+
+usePageStore().pageData.title = 'Homepage'",TRUE
+Dynamic Page Titles with Pinia,5,52,projects/index.vue,add ,usePageStore().pageData.title = 'Homepage',TRUE
+Dynamic Page Titles with Pinia,5,52,projects/index.vue,make sure to import ,import { usePageStore } from '@/stores/page',TRUE
+Dynamic Page Titles with Pinia,5,52,task/index.vue,repeat  above steps in tasks/index.vue,,TRUE
+Dynamic Page Titles with Pinia,5,52,viteconfig.ts ,update imports ,"imports: ['vue', VueRouterAutoImports,
+        {
+          pinia: ['defineStore', 'storeToRefs', 'acceptHMRUpdate']
+        }
+      ],
+      dts: true,
+      viteOptimizeDeps: true,
+      dirs: ['src/stores']
+    }),",TRUE
+Dynamic Page Titles with Pinia,5,52,multiple,delete pinia imports from page.ts and homepage. and projects and taksks authLayout,,TRUE
+Retrieve Project Details for Tasks: Querying Nested Database Tables,5,53,/tasks/index,query data from supbase in select,"const { data, error } = await supabase.from('tasks').select(`
+  *,
+  projects (
+    id,
+    name,
+    slug
+  )
+  `)",TRUE
+Retrieve Project Details for Tasks: Querying Nested Database Tables,5,53,/tasks.index.vue,colums array copy ,"return h(
+        RouterLink,
+        {
+          to: `/tasks/${row.original.id}`,
+          class: 'text-left font-medium hover:bg-muted block w-full '
+        },
+        () => row.getValue('name')
+      )",TRUE
+Retrieve Project Details for Tasks: Querying Nested Database Tables,5,53,/tasks.index.vue,then go to project id change key to ,"accessorKey: 'projects',",TRUE
+Retrieve Project Details for Tasks: Querying Nested Database Tables,5,53,/tasks.index.vue,add the copied return h,"eturn h(
+        RouterLink,
+        {
+          to: `/tasks/${row.original.id}`,
+          class: 'text-left font-medium hover:bg-muted block w-full '
+        },
+        () => row.getValue('name')
+      )",TRUE
+Retrieve Project Details for Tasks: Querying Nested Database Tables,5,53,/tasks.index.vue,change link the return function to get info and ignore typesritp error,"return h(
+        RouterLink,
+        {
+          to: `/projects/${row.original.projects.slug}`,
+          class: 'text-left font-medium hover:bg-muted block w-full '
+        },
+        () => row.getValue('projects').name
+      )",TRUE
+Handle Complex Supabase Queries,5,54,supbase docs,go checksupbase docs javscript tupescript support,https://supabase.com/docs/reference/javascript/typescript-support,TRUE
+Handle Complex Supabase Queries,5,54,/tasks/index,add a new const ,"const tasksWithProjectsQuery = supabase.from('tasks').select(`
+  *,
+  projects (
+    id,
+    name,
+    slug
+  )
+  `)",TRUE
+Handle Complex Supabase Queries,5,54,/tasks/index,set await to this var,"const tasks = ref<Tables<'tasks'>[] | null>(null)
+const getTasks = async () => {
+  const { data, error } = await tasksWithProjectsQuery",TRUE
+Handle Complex Supabase Queries,5,54,/tasks/index,add type ,"const tasksWithProjectsQuery = supabase.from('tasks').select(`
+  *,
+  projects (
+    id,
+    name,
+    slug
+  )
+  `)
+  type tasksWithProjectsQuery =QueryData<typeof tasksWithProjectsQuery>",TRUE
+Handle Complex Supabase Queries,5,54,/tasks/index,change ref to this,const tasks = ref<TasksWithProjects | null>(null),TRUE
+Handle Complex Supabase Queries,5,54,/tasks/index,and also columns ref,const columns: ColumnDef<TasksWithProjects[0]>[],TRUE
+Handle Complex Supabase Queries,5,54,/tasks/index,add if statement in column var to solve null error,"accessorKey: 'projects',
+    header: () => h('div', { class: 'text-left' }, 'Project'),
+    cell: ({ row }) => {
+      return row.original.projects ? h(
+        RouterLink,
+        {
+          to: `/projects/${row.original.projects.slug}`,
+          class: 'text-left font-medium hover:bg-muted block w-full '
+        },
+        () => row.getValue('projects').name
+      ) : "" ""
+    }",TRUE
+Handle Complex Supabase Queries,5,54,/tasks/index,change row => to , row.original.projects?.nam,TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,src/utils,in src create new folder utils ,,TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,src/utils/supaQueries.ts,then create /utils/supaQueries.ts,,TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,tasks/index.vue,then cut the const from,"const tasksWithProjectsQuery = supabase.from('tasks').select(`
+  *,
+  projects (
+    id,
+    name,
+    slug
+  )
+  `)",TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,supaQueries.ts,paste the const and also import it then and add export,,TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,tasks/index.vue,then import the new file from utils into tasks/index.vue,import { taskWithProjectsQuery } from '@/utils/supaQueries',TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,tasks/index.vue,move type alos to supaQueries.vue and add export,type TasksWithProjects = QueryData<typeof tasksWithProjectsQuery>,TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,tasks/index.vue,then import TasksWith Project into tasks/index,import type { TasksWithProjects } from '@/utils/supaQueries',TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,projects/index.vue,cut supbase querie from projects/index.vue to supaqueries.ts and add export const,export const projectsQuery = supabase.from('projects').select(),TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,projects/index.vue,add projectsquery to await,,TRUE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,projects/index.vue,add type also fro projects in supaQuerues,export type Projects = QueryData<typeof projectsQuery>,FALSE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,projects/index.vue,change ref to this,const projects = ref<Projects | null>(null),FALSE
+Cleaning Time P1: Separating Supabase Queries and Types,5,55,projects/index.vue,also change columns to,const columns: ColumnDef<Projects[0]>[] = [,FALSE
+Cleaning Time P2: Separating Column Definitions,5,56,utils/tableColumns/athleteColumns,craete utils/tableColumns/tasksColumns.ts,,TRUE
+Cleaning Time P2: Separating Column Definitions,5,56,task/index.vue,cut columns function from tasls/index to tasksColumns.ts,"const columns: ColumnDef<TasksWithProjects[0]>[] = [
+  {
+    accessorKey: 'name',
+    header: () => h('div', { class: 'text-left' }, 'Name'),
+    cell: ({ row }) => {
+      return h(
+        RouterLink,
+        {
+          to: `/tasks/${row.original.id}`,
+          class: 'text-left font-medium hover:bg-muted block w-full '
+        },
+        () => row.getValue('name')
+      )
+    }
+  },
+  {
+    accessorKey: 'status',
+    header: () => h('div', { class: 'text-left' }, 'Status'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-left font-medium' }, row.getValue('status'))
+    }
+  },
+  {
+    accessorKey: 'due_date',
+    header: () => h('div', { class: 'text-left' }, 'Due Date'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-left font-medium' }, row.getValue('due_date'))
+    }
+  },
+  {
+    accessorKey: 'projects',
+    header: () => h('div', { class: 'text-left' }, 'Project'),
+    cell: ({ row }) => {
+      return row.original.projects
+        ? h(
+            RouterLink,
+            {
+              to: `/projects/${row.original.projects.slug}`,
+              class: 'text-left font-medium hover:bg-muted block w-full '
+            },
+            () => row.original.projects?.name
+          )
+        : ' '
+    }
+  },
+  {
+    accessorKey: 'collaborators',
+    header: () => h('div', { class: 'text-left' }, 'Collaborators'),
+    cell: ({ row }) => {
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        JSON.stringify(row.getValue('collaborators'))
+      )
+    }
+  }
+]",TRUE
+Cleaning Time P2: Separating Column Definitions,5,56,,then import columns to tasks/index.vue,,TRUE
+Cleaning Time P2: Separating Column Definitions,5,56,,also for projects,,TRUE
+Fetch the Data for the Individual Project Page,5,57,git repo,copy from git reop templates single page ..,"<template>
+  <Table>
+    <TableRow>
+      <TableHead> Name </TableHead>
+      <TableCell> Lorem ipsum dolor sit amet. </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableHead> Description </TableHead>
+      <TableCell>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad iure qui tempora ex nihil, ab
+        reprehenderit dolorem sunt veritatis perferendis? Repudiandae quis velit quasi ab natus quia
+        ratione voluptas deserunt labore sed distinctio nam fuga fugit vero voluptates placeat
+        aperiam, saepe excepturi eos harum consectetur doloremque perspiciatis nesciunt! Incidunt,
+        modi.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableHead> Status </TableHead>
+      <TableCell>In progress</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableHead> Collaborators </TableHead>
+      <TableCell>
+        <div class=""flex"">
+          <Avatar
+            class=""-mr-4 border border-primary hover:scale-110 transition-transform""
+            v-for=""n in 5""
+            :key=""n""
+          >
+            <RouterLink class=""w-full h-full flex items-center justify-center"" to="""">
+              <AvatarImage src="""" alt="""" />
+              <AvatarFallback> </AvatarFallback>
+            </RouterLink>
+          </Avatar>
+        </div>
+      </TableCell>
+    </TableRow>
+  </Table>
+
+  <section class=""mt-10 flex flex-col md:flex-row gap-5 justify-between grow"">
+    <div class=""flex-1"">
+      <h2>Tasks</h2>
+      <div class=""table-container"">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead> Name </TableHead>
+              <TableHead> Status </TableHead>
+              <TableHead> Due Date </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow v-for=""n in 5"" :key=""n"">
+              <TableCell> Lorem ipsum dolor sit amet. </TableCell>
+              <TableCell> In progress </TableCell>
+              <TableCell> 22/08/2024 </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+    <div class=""flex-1"">
+      <h2>Documents</h2>
+      <div class=""table-container"">
+        <p class=""text-muted-foreground text-sm font-semibold px-4 py-3"">
+          This project doesn't have documents yet...
+        </p>
+        <!-- <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead> Name </TableHead>
+              <TableHead> Visibility </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell> Lorem ipsum dolor sit amet. </TableCell>
+              <TableCell> Private </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table> -->
+      </div>
+    </div>
+  </section>
+</template>
+
+<style>
+th {
+  @apply w-[100px];
+}
+
+h2 {
+  @apply mb-4 text-lg font-semibold w-fit;
+}
+
+.table-container {
+  @apply overflow-hidden overflow-y-auto rounded-md bg-slate-900 h-80;
+}
+</style>",FALSE
+Fetch the Data for the Individual Project Page,5,57,projects/[slug].vue,replace temp wit code copied ,,FALSE
+Fetch the Data for the Individual Project Page,5,57,projects/[slug].vue,add,const project = ref(null),FALSE
+Fetch the Data for the Individual Project Page,5,57,supaqueries.ts,ad this const into ,"export const projectQuery = (slug: string) => supabase.from('projects').select(`
+ *,
+ tasks(
+ id,
+ name,
+ status,
+ due_date
+)
+`)
+.eq('slug',slug)
+.single()",FALSE
+Fetch the Data for the Individual Project Page,5,57,supaqueries.ts,then add this ,export type Project = QueryData<ReturnType<typeof projectQuery>>,FALSE
+Fetch the Data for the Individual Project Page,5,57,projects/index.vue,copy this from ,"const getProjects = async () => {
+  const { data, error } = await projectsQuery
+
+  if (error) console.log(error)
+
+  projects.value = data
+}",FALSE
+Fetch the Data for the Individual Project Page,5,57,,Then add into const in slug ,,FALSE
+Fetch the Data for the Individual Project Page,5,57,,then change to ,"const { data, error } = await projectQuery(route.params.slug)
+
+  if (error) console.log(error)
+
+  project.value = data
+}",FALSE
+Fetch the Data for the Individual Project Page,5,57,,then tell route which route,const route = useRoute('/projects/[slug]'),FALSE
+Fetch the Data for the Individual Project Page,5,57,,tell it which type ,const project = ref<Project | null>(null),FALSE
+Fetch the Data for the Individual Project Page,5,57,,Then add await ,await getProjects(),FALSE
+Use the Vue Watch API to Update Pinia Store with the Project Name,5,58,projects/slug.vue,add store ,usePageStore().pageData.title = `Project: ${project.value?.name || ''}`,TRUE
+Use the Vue Watch API to Update Pinia Store with the Project Name,5,58,projects/slug.vue,add watch and add store insdie ,"watch(
+  () => project.value?.name,
+  () => {
+    usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
+  }
+)",TRUE
+Make the Project Page Template Dynamic,5,59,pages/project/slug,add project name ,<TableCell> {{ project.name }} </TableCell>,TRUE
+Make the Project Page Template Dynamic,5,59,pages/project/slug,add v-if to solve null error so only when a project is valid,"<Table v-if=""project"">",TRUE
+Make the Project Page Template Dynamic,5,59,supbase/migration/project schema,add column," description text,",TRUE
+Make the Project Page Template Dynamic,5,59,database/seed.js,search for seedProject and add,"description: faker.lorem.paragraph(2),",TRUE
+Make the Project Page Template Dynamic,5,59,terminal,npm run db:reset,,TRUE
+Make the Project Page Template Dynamic,5,59,termiinal,npm run db:seed,,TRUE
+Make the Project Page Template Dynamic,5,59,termiinal,npm run supabase:types,,TRUE
+Make the Project Page Template Dynamic,5,59,pages/project/slug,add in table cell,"<TableCell>
+        {{ project.description }}
+      </TableCell>",TRUE
+Make the Project Page Template Dynamic,5,59,pages/project/slug,add status,<TableHead> {{ project.status }}</TableHead>,TRUE
+Make the Project Page Template Dynamic,5,59,pages/project/slug,loop over ,"<TableCell>
+        <div class=""flex"">
+          <Avatar
+            class=""-mr-4 border border-primary hover:scale-110 transition-transform""
+            v-for=""collab in project.collaborators""
+            :key=""collab""
+          >",TRUE
+Make the Project Page Template Dynamic,5,59,pages/project/slug,add in tasks table section,"<section v-if=""project""",TRUE
+Make the Project Page Template Dynamic,5,59,pages/project/slug,loop over tasks,"<TableRow v-for=""task in project.tasks"" :key=""task.id"">",TRUE
+Make the Project Page Template Dynamic,5,59,pages/tasks/[id],define task,const task = ref(null),TRUE
+Make the Project Page Template Dynamic,5,59,pages/tasks/[id],define getTask,"const getTask = async () => {
+  //....
+}",TRUE
+Make the Project Page Template Dynamic,5,59,utils/supaQueries.ts,create query,"export const taskQuery = (id: string) => {
+  return supabase.from('tasks').select(`
+    *,
+    projects (
+    id,
+    name,
+    slug
+    )
+    `)
+    .eq('id', id)
+    .single()
+}",TRUE
+Make the Project Page Template Dynamic,5,59,utils/supaQueries.ts,create type ,export type Task = QueryData<ReturnType<typeof taskQuery>>,TRUE
+Exercise: Create Dynamic Indvidual Task Page,5,60,pages/tasks/[id],craete route,const route = useRoute('/tasks/[id]'),TRUE
+Exercise: Create Dynamic Indvidual Task Page,5,60,pages/tasks/[id],craete getTask,"const getTask = async () => {
+  const { data, error } = await taskQuery(route.params.id)
+
+  if(error) console.error(error)
+
+  task.value = data
+}",TRUE
+Exercise: Create Dynamic Indvidual Task Page,5,60,pages/tasks/[id],update ref,const task = ref<Task | null>(null),TRUE
+Exercise: Create Dynamic Indvidual Task Page,5,60,pages/tasks/[id],then trigger getAtsk,await getTask(),TRUE
+Exercise: Create Dynamic Indvidual Task Page,5,60,pages/tasks/[id],add watch and add store insdie ,"watch(
+  () => task.value?.name,
+  () => {
+    usePageStore().pageData.title = `Task: ${task.value?.name || ''}`
+  }
+)",TRUE
+Exercise: Create Dynamic Indvidual Task Page,5,60,pages/tasks/[id],update template,"<template>
+  <Table v-if=""task"">
+    <TableRow>
+      <TableHead> Name </TableHead>
+      <TableCell> {{ task.name }} </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableHead> Description </TableHead>
+      <TableCell>
+        {{ task.description }}
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableHead> Project </TableHead>
+      <TableCell>Lorem ipsum</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableHead> Project </TableHead>
+      <TableCell> {{ task.projects?.name }} </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableHead> Status </TableHead>
+      <TableCell>{{ task.status }}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableHead> Collaborators </TableHead>
+      <TableCell>
+        <div class=""flex"">
+          <Avatar
+            class=""-mr-4 border border-primary hover:scale-110 transition-transform""
+            v-for=""collab in task.collaborators""
+            :key=""collab""
+          >
+            <RouterLink class=""w-full h-full flex items-center justify-center"" to="""">
+              <AvatarImage src="""" alt="""" />
+              <AvatarFallback> </AvatarFallback>
+            </RouterLink>
+          </Avatar>
+        </div>
+      </TableCell>
+    </TableRow>
+    <TableRow class=""hover:bg-transparent"">
+      <TableHead class=""align-top pt-4""> Comments </TableHead>
+
+      <TableCell>
+        Comments cards goes in here..
+
+        <div class=""flex flex-col justify-between p-3 bg-muted my-2 rounded-md"">
+          <textarea
+            placeholder=""Add your comment..""
+            class=""w-full max-w-full overflow-y-auto prose-sm prose border rounded dark:prose-invert hover:border-muted bg-background border-muted p-3""
+          >
+          </textarea>
+          <div class=""flex justify-between mt-3"">
+            <Button> Comment </Button>
+            <div class=""flex gap-4"">
+              <button variant=""ghost"" @click.prevent>
+                <iconify-icon icon=""lucide:paperclip""></iconify-icon>
+                <span class=""sr-only"">Attach file</span>
+              </button>
+              <button variant=""ghost"" @click.prevent>
+                <iconify-icon icon=""lucide:image-up""></iconify-icon>
+
+                <span class=""sr-only"">Upload image</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </TableCell>
+    </TableRow>
+  </Table>
+</template>
+",TRUE
+Intro: Why Error Handling Matters for Developers and Users,6,61,/[...catchAll].vue,got to repo an copy from templates and paste into catchall,"<template>
+  <section class=""error"">
+    <div>
+      <iconify-icon icon=""lucide:triangle-alert"" class=""error__icon"" />
+      <h1 class=""error__code"">404</h1>
+      <p class=""error__msg"">Page not found</p>
+      <div class=""error-footer"">
+        <p class=""error-footer__text"">You'll find lots to explore on the home page.</p>
+        <RouterLink to=""/"">
+          <Button class=""max-w-36""> Back to homepage </Button>
+        </RouterLink>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.error {
+  @apply mx-auto flex justify-center items-center flex-1 p-10 text-center -mt-20 min-h-[90vh];
+}
+
+.error__icon {
+  @apply text-7xl text-destructive;
+}
+
+.error__code {
+  @apply font-extrabold text-7xl text-secondary;
+}
+
+.error__msg {
+  @apply text-3xl font-extrabold text-primary;
+}
+
+.error-footer {
+  @apply flex flex-col items-center justify-center gap-5 mt-6 font-light;
+}
+
+.error-footer__text {
+  @apply text-lg text-muted-foreground;
+}
+
+p {
+  @apply my-2;
+}
+</style>",TRUE
+Intro: Why Error Handling Matters for Developers and Users,6,61,/[...catchAll].vue,NB add in style scope if error occurs go check tailwind docs for more info. ,"@reference ""@/assets/index.css""",TRUE
+Intro: Why Error Handling Matters for Developers and Users,6,61,/[...catchAll].vue,if not centered add ,".error__content {
+  @apply flex flex-col items-center justify-center w-full;
+}",TRUE
+Intro: Why Error Handling Matters for Developers and Users,6,61,/[...catchAll].vue,then add in inner div after section,"class=""error_content""",TRUE
+Intro: Why Error Handling Matters for Developers and Users,6,61,/components/AppError/AppErrorPage.vue,create page and copy template and styles from catchall,,TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,stores/error.ts,Create new file,,TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,stores/error.ts,CREATE FUNCTION,"export const useErrorStore = defineStore('error-store', () => {
+  const activeError = ref(false)
+
+  const setError = () => {
+    activeError.value = true
+  }
+
+  return {
+    activeError,
+    setError,
+  }
+})",TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,[...catchAll].vue,use store,useErrorStore().setError(),TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,app.vue,use store ,const errorStore = useErrorStore(),TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,app.vue,use the error component ,<AppErrorPage />,TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,app.vue,only display when there is a error,"<AppErrorPage v-if=""errorStore.activeError"" />",TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,app.vue,else display normal,"<RouterView v-else v-slot=""{ Component, route }"">",TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,app.vue,destruct use error and use directly ,"const {activeError} = useErrorStore()
+</script>
+
+<template>
+  <AuthLayout>
+    <AppErrorPage v-if=""activeError"" />",TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,app.vue,to keep reactive after destruct wrap inside,const {activeError} = storeToRefs(useErrorStore()),TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,vuerouter docs,get global after hooks,https://router.vuejs.org/guide/advanced/navigation-guards.html#Global-After-Hooks,TRUE
+Create Global Error Handler in Vue.js with Pinia and Vue Router,6,62,appErrorPage.vue,set globalafter hook,"const router = useRouter()
+
+router.afterEach(() => {
+  useErrorStore().activeError = false
+})",TRUE
+Adjust the Error Page for Custom Errors,6,63,[...catchAll].vue,insert pre code for dynamic errors,"useErrorStore().setError({ error: 'page not found', customCode: 404 })",TRUE
+Adjust the Error Page for Custom Errors,6,63,error.ts,change code to ,"export const useErrorStore = defineStore('error-store', () => {
+  const activeError = ref<null | Error>(false)
+
+  const setError = ({error, customCode}: {error: string, customCode: number}) => {
+    activeError.value = Error(error)
+    activeError.value.customCode = customCode
+  }
+
+  return {
+    activeError,
+    setError
+  }
+})",TRUE
+Adjust the Error Page for Custom Errors,6,63,src/types/Error.ts,and add interface,"export interface CustomError extends Error {
+  customCode?: number
+}",TRUE
+Adjust the Error Page for Custom Errors,6,63,stores/error.ts,update error interface to CustomError,const activeError = ref<null | CustomError>(null),TRUE
+Adjust the Error Page for Custom Errors,6,63,AppError/AppErrorPage.vue,cgange false to null,useErrorStore().activeError = null,TRUE
+Adjust the Error Page for Custom Errors,6,63,AppError/AppErrorPage.vue,add const and update aftereach to errorStore,"const errorStore = useErrorStore()
+
+router.afterEach(() => {
+  errorStore.activeError = null
+})",TRUE
+Adjust the Error Page for Custom Errors,6,63,AppError/AppErrorPage.vue,create new error variable below errorStore...,const error = ref(errorStore.activeError),TRUE
+Adjust the Error Page for Custom Errors,6,63,AppError/AppErrorPage.vue,add message and custom code below error,"const message = ref('')
+const customCode = ref(0)
+",TRUE
+Adjust the Error Page for Custom Errors,6,63,AppError/AppErrorPage.vue,below message add if ,"if(error.value) {
+  message.value = error.value.message
+  customCode.value = error.value.customCode ?? 0
+}",TRUE
+Adjust the Error Page for Custom Errors,6,63,AppError/AppErrorPage.vue,update template,"template>
+  <section class=""error"">
+    <div class=""error__content"">
+      <iconify-icon icon=""lucide:triangle-alert"" class=""error__icon"" />
+      <h1 class=""error__code"">{{ customCode }}</h1>
+      <p class=""error__msg"">{{ message }}</p>
+      <div class=""error-footer"">
+        <p class=""error-footer__text"">You'll find lots to explore on the home page.</p>
+        <RouterLink to=""/"">
+          <Button class=""max-w-36""> Back to homepage </Button>
+        </RouterLink>
+      </div>
+    </div>
+  </section>
+</template>
+",FALSE
+Adjust the Error Page for Supabase Errors,6,64,pages/tasks/index.vue,chnge console log tp useerrorstore,if (error) useErrorStore().setError({error}),TRUE
+Adjust the Error Page for Supabase Errors,6,64,stores/error.ts,add | Postgresterror ,"const setError = ({ error, customCode }: { error: string | PostgrestError; customCode: number }) => {",TRUE
+Adjust the Error Page for Supabase Errors,6,64,stores/error.ts,add if for if string === error,"if (typeof error === 'string') {
+      activeError.value = Error(error)
+      activeError.value.customCode = customCode
+    }",TRUE
+Adjust the Error Page for Supabase Errors,6,64,pages/tasks/index.vue,update get task,"const getTasks = async () => {
+  const { data, error, status } = await tasksWithProjectsQuery
+
+  if (error) useErrorStore().setError({error, customCode: status})
+
+  tasks.value = data
+}",TRUE
+Adjust the Error Page for Supabase Errors,6,64,stores/error.ts,update if statement,"if (typeof error === 'string') {
+      activeError.value = Error(error)
+      activeError.value.customCode = customCode
+      return
+    }
+
+    activeError.value = error
+  }",TRUE
+Adjust the Error Page for Supabase Errors,6,64,stores/error.ts,update active Error to include Postgrest,const activeError = ref<null | CustomError | PostgrestError>(null),TRUE
+Adjust the Error Page for Supabase Errors,6,64,types/Errors.ts,ad a inteface,"export interface ExtendedPostgrestError extends PostgrestError {
+  statusCode?: number
+}",TRUE
+Adjust the Error Page for Supabase Errors,6,64,stores/error.ts,tell active error to expect ExtendeedPostgress error,const activeError = ref<null | CustomError | ExtendedPostgrestError>(null),TRUE
+Adjust the Error Page for Supabase Errors,6,64,AppError/AppErrorPage.vue,update if statement,"if (error.value && !('code' in error.value )) {
+  message.value = error.value.message
+  customCode.value = error.value.customCode ?? 0
+}",TRUE
+Adjust the Error Page for Supabase Errors,6,64,AppError/AppErrorPage.vue,add ref statemnets based on error message in console,"const message = ref('')
+const customCode = ref(0)
+const details = ref('')
+const code = ref('')
+const hint = ref('')
+const statusCode = ref(0)",TRUE
+Adjust the Error Page for Supabase Errors,6,64,AppError/AppErrorPage.vue,add new if statmenet,"if (error.value && 'code' in error.value) {
+  message.value = error.value.message
+  details.value = error.value.details
+  hint.value = error.value.hint
+  code.value = error.value.code
+  statusCode.value = error.value.statusCode ?? 0
+}",TRUE
+,6,64,AppError/AppErrorPage.vue,update template,"<template>
+  <section class=""error"">
+    <div class=""error__content"">
+      <iconify-icon icon=""lucide:triangle-alert"" class=""error__icon"" />
+      <h1 class=""error__code"">{{ customCode || code }}</h1>
+      <p class=""error__code"" v-if=""statusCode"">Status Code: {{ statusCode }}</p>
+      <p class=""error__msg"">{{ message }}</p>
+      <p v-if=""hint"">{{ hint }}</p>
+      <p v-if=""details"">{{ details }}</p>
+      <div class=""error-footer"">
+        <p class=""error-footer__text"">You'll find lots to explore on the home page.</p>
+        <RouterLink to=""/"">
+          <Button class=""max-w-36""> Back to homepage </Button>
+        </RouterLink>
+      </div>
+    </div>
+  </section>
+</template>",TRUE
+Adjust the Error Page for Supabase Errors,6,64,all index and single pages ,add this in place of console log in index of paages,"useErrorStore().setError({error, customCode: status})",TRUE
+Adjust the Error Page for Supabase Errors,6,64,all index and single pages ,also destruct status out f the query,,TRUE
+Adjust the Error Page for Native JavaScript Errors,6,65,tasks/index.vue,add after await getTask(),"useErrorStore().setError({error: Error('I am an uncaught error'), customCode: 500})",TRUE
+Adjust the Error Page for Native JavaScript Errors,6,65,stores/error.ts,add expect Error,error: string | PostgrestError | Error,TRUE
+Adjust the Error Page for Native JavaScript Errors,6,65,stores/error.ts,modify condition,"if (typeof error === 'string' || error instanceof Error) {
+      activeError.value = typeof error === 'string' ? Error(error) : error
+      activeError.value.customCode = customCode
+      return
+    }",TRUE
+Adjust the Error Page for Native JavaScript Errors,6,65,stores/error.ts,make customCode optional,customCode?: number,TRUE
+Adjust the Error Page for Native JavaScript Errors,6,65,stores/error.ts,the add ,activeError.value.customCode = customCode || 500,TRUE
+Adjust the Error Page for Native JavaScript Errors,6,65,stores/error.ts,then add ,activeError.value.statusCode = customCode || 500,TRUE
+Adjust the Error Page for Native JavaScript Errors,6,65,tasks/index.vue,remove custome code property for error function,", customCode: 500",TRUE
+Handle Uncaught JavaScript Errors in Vue.js with onErrorCaptured Hook,6,66,vuejs.org,onErrorCapture docs,https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured,TRUE
+Handle Uncaught JavaScript Errors in Vue.js with onErrorCaptured Hook,6,66,app.vue,add onErrorCapture ,"onErrorCaptured((error) => {
+
+})",TRUE
+Handle Uncaught JavaScript Errors in Vue.js with onErrorCaptured Hook,6,66,app.vue,create new store var,const errorStore = useErrorStore(),TRUE
+Handle Uncaught JavaScript Errors in Vue.js with onErrorCaptured Hook,6,66,app.vue,remove ,const { activeError } = storeToRefs(),TRUE
+Handle Uncaught JavaScript Errors in Vue.js with onErrorCaptured Hook,6,66,app.vue,in template use errorStore,"<template>
+  <AuthLayout>
+    <AppErrorPage v-if=""errorStore.activeError"" />",TRUE
+Handle Uncaught JavaScript Errors in Vue.js with onErrorCaptured Hook,6,66,app.vue,then setError to error in OnErrorCapture,"onErrorCaptured((error) => {
+  errorStore.setError({ error })
+})",TRUE
+Use Props and Vue.js Deep Pseudo-class to Create a Dev Error Component,6,67,components/AppError,Create new file AppErrorDevSection.vue,,TRUE
+Use Props and Vue.js Deep Pseudo-class to Create a Dev Error Component,6,67,appErrorPage.vue,Copy the outer div part to AppErrorDevSection.vue,"<div class=""error__content"">
+      <iconify-icon icon=""lucide:triangle-alert"" class=""error__icon"" />
+      <h1 class=""error__code"">{{ customCode || code }}</h1>
+      <p class=""error__code"" v-if=""statusCode"">Status Code: {{ statusCode }}</p>
+      <p class=""error__msg"">{{ message }}</p>
+      <p v-if=""hint"">{{ hint }}</p>
+      <p v-if=""details"">{{ details }}</p>
+      <div class=""error-footer"">
+        <p class=""error-footer__text"">You'll find lots to explore on the home page.</p>
+        <RouterLink to=""/"">
+          <Button class=""max-w-36""> Back to homepage </Button>
+        </RouterLink>
+      </div>
+    </div>",TRUE
+Use Props and Vue.js Deep Pseudo-class to Create a Dev Error Component,6,67,appErrorPage.vue,Now ref new component inside section,"<template>
+  <section class=""error"">
+   <AppErrorDevSection />
+  </section>
+</template>",TRUE
+Use Props and Vue.js Deep Pseudo-class to Create a Dev Error Component,6,67,AppErrorPage.vue,call the consts,"<section class=""error"">
+   <AppErrorDevSection :message :customCode :details :code :hint :statusCode/>",TRUE
+Use Props and Vue.js Deep Pseudo-class to Create a Dev Error Component,6,67,AppErrorDevSection.vue,define props,"defineProps<{
+  message: string
+  customCode: number
+  code: string
+  statusCode: number
+  hint: string | null
+  details: string
+}>()",TRUE
+Create an Error Page for the Production Server,6,68,AppError,create new file AppErrorProdSection,,TRUE
+Create an Error Page for the Production Server,6,68,AppErrorDevSection.vue,copy code and paste in AppErrorProdSection,"script setup lang=""ts"">
+defineProps<{
+  message: string
+  customCode: number
+  code: string
+  statusCode: number
+  hint: string | null
+  details: string
+}>()
+
+</script>
+
+<template>
+  <div class=""error__content"">
+      <iconify-icon icon=""lucide:triangle-alert"" class=""error__icon"" />
+      <h1 class=""error__code"">{{ customCode || code }}</h1>
+      <p class=""error__code"" v-if=""statusCode"">Status Code: {{ statusCode }}</p>
+      <p class=""error__msg"">{{ message }}</p>
+      <p v-if=""hint"">{{ hint }}</p>
+      <p v-if=""details"">{{ details }}</p>
+      <div class=""error-footer"">
+        <p class=""error-footer__text"">You'll find lots to explore on the home page.</p>
+        <RouterLink to=""/"">
+          <Button class=""max-w-36""> Back to homepage </Button>
+        </RouterLink>
+      </div>
+    </div>
+</template>
+",TRUE
+Create an Error Page for the Production Server,6,68,AppErrorProdSection.vue,Update template to onluy include,"<template>
+  <div class=""error__content"">
+      <iconify-icon icon=""lucide:triangle-alert"" class=""error__icon"" />
+      <h1 class=""error__code"">{{ customCode }}</h1>
+      <p class=""error__msg"">{{ message }}</p>
+      <div class=""error-footer"">
+        <p class=""error-footer__text"">You'll find lots to explore on the home page.</p>
+        <RouterLink to=""/"">
+          <Button class=""max-w-36""> Back to homepage </Button>
+        </RouterLink>
+      </div>
+    </div>
+</template>",TRUE
+Create an Error Page for the Production Server,6,68,AppErrorProdSection.vue,craete default error,"const error = ref({
+  code: 500,
+  msg: 'Oops! Something went wrong.',
+})",TRUE
+Create an Error Page for the Production Server,6,68,AppErrorProdSection.vue,Then change in template to call default error,"<h1 class=""error__code"">{{ error.code}}</h1>
+      <p class=""error__msg"">{{ error.msg }}</p>",TRUE
+Create an Error Page for the Production Server,6,68,stores/error.ts,add new state underneatth const active error,const isCustomError = ref(false),TRUE
+Create an Error Page for the Production Server,6,68,stores/error.ts,create new if statemment above other if ,if (typeof error === 'string') isCustomError.value = true,TRUE
+Create an Error Page for the Production Server,6,68,stores/error.ts,return new state ,isCustomError,TRUE
+Create an Error Page for the Production Server,6,68,AppErrorPage.vue,Add new component ,"<AppErrorProdSection
+      :message
+      :customCode
+      :details
+      :code
+      :hint
+      :statusCode
+      :isCustomError=""errorStore.isCustomError""
+    />",TRUE
+Create an Error Page for the Production Server,6,68,AppErrorProdSection.vue,add new prop,isCustomError: boolean,TRUE
+Create an Error Page for the Production Server,6,68,AppErrorProdSection.vue,make defineProps a  variable,const props = defineProps<{,TRUE
+Create an Error Page for the Production Server,6,68,AppErrorProdSection.vue,add if statement,"if (props.isCustomError) {
+  error.value.code = props.customCode
+  error.value.msg = props.message
+}",TRUE
+Create an Error Page for the Production Server,6,68,AppErrorProdSection.vue,add if statement for databse errors,"if(props.statusCode === 406) {
+  error.value.code = 404
+  error.value.msg = ""Sorry, we couldnt find this page.""
+}",TRUE
+Use defineAsyncComponent to Conditionally Render the Appropriate Error Page,6,69,AppErrorPage.vue,add ne var for async ,"const ErrorTemplate = import.meta.env.DEV
+  ? defineAsyncComponent(() => import('./AppErrorDevSection.vue'))
+  : defineAsyncComponent(() => import('./AppErrorProdSection.vue'))",TRUE
+Use defineAsyncComponent to Conditionally Render the Appropriate Error Page,6,69,AppErrorPage.vue,update section to call ErrorTemplate,"<section class=""error"">
+    <ErrorTemplate
+      :message
+      :customCode
+      :details
+      :code
+      :hint
+      :statusCode
+      :isCustomError=""errorStore.isCustomError""
+    />
+  </section>",TRUE
+Use defineAsyncComponent to Conditionally Render the Appropriate Error Page,6,69,stores/error.ts,above return add new var to clear browser,"const clearError = () => {
+    activeError.value = null
+    isCustomError.value = false
+  }",TRUE
+Use defineAsyncComponent to Conditionally Render the Appropriate Error Page,6,69,stores/error.ts,return new var,clearError,TRUE
+Use defineAsyncComponent to Conditionally Render the Appropriate Error Page,6,69,AppErrorPage.vue,update afterEach to call clearError,"router.afterEach(() => {
+  errorStore.clearError()
+})",TRUE
+Use defineAsyncComponent to Conditionally Render the Appropriate Error Page,6,69,Terminal,npm run build,,FALSE
+Use defineAsyncComponent to Conditionally Render the Appropriate Error Page,6,69,Terminal,npm run preview,,FALSE
+Use defineAsyncComponent to Conditionally Render the Appropriate Error Page,6,69,AppErrorProdSection.vue,delete unused props,"const props = defineProps<{
+  message: string
+  customCode: number
+  statusCode: number
+  isCustomError: boolean
+}>()",FALSE
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Terminal,npm run db:migrate:new profiles-schema,,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Github repo,Copy from migrate profiles-schema,"drop table if exists profiles;
+TRUNCATE auth.users cascade;
+
+create table 
+  profiles (
+    id uuid references auth.users on delete cascade not null,
+    created_at timestamptz default now() not null,
+    username text unique not null,
+    full_name text not null,
+    bio text default null,
+    mode text default 'dark' not null,
+    avatar_url text default null,
+    
+    primary key (id)
+  );",
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Terminal,npm run db:reset,,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,,npx supabase login,,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Terminal,npm run supabase:types,,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Supabase,api docs,https://supabase.com/docs/reference/javascript/auth-api,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,pages,create register.vue and copy temp from repo,"<script setup lang=""ts""></script>
+
+<template>
+  <div
+    class=""mx-auto w-full flex justify-center items-center p-10 text-center -mt-10 min-h-[90vh] h-full""
+  >
+    <Card class=""max-w-sm w-full mx-auto h-full"">
+      <CardHeader>
+        <CardTitle class=""text-2xl""> Register </CardTitle>
+        <CardDescription> Create a new account </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div class=""flex flex-col gap-4 mb-4 justify-center items-center"">
+          <Button variant=""outline"" class=""w-full""> Register with Google </Button>
+          <Separator label=""Or"" />
+        </div>
+        <form class=""grid gap-4"">
+          <div class=""grid gap-2"">
+            <Label id=""username"" class=""text-left"">Username</Label>
+            <Input id=""username"" type=""text"" placeholder=""johndoe19"" required />
+          </div>
+          <div class=""flex flex-col sm:flex-row justify-between gap-4"">
+            <div class=""grid gap-2"">
+              <Label id=""first_name"" class=""text-left"">First Name</Label>
+              <Input id=""first_name"" type=""text"" placeholder=""John"" required />
+            </div>
+            <div class=""grid gap-2"">
+              <Label id=""last_name"" class=""text-left"">Last Name</Label>
+              <Input id=""last_name"" type=""text"" placeholder=""Doe"" required />
+            </div>
+          </div>
+          <div class=""grid gap-2"">
+            <Label id=""email"" class=""text-left"">Email</Label>
+            <Input id=""email"" type=""email"" placeholder=""johndoe19@example.com"" required />
+          </div>
+
+          <div class=""grid gap-2"">
+            <Label id=""password"" class=""text-left"">Password</Label>
+            <Input id=""password"" type=""password"" placeholder=""*****"" autocomplete required />
+          </div>
+
+          <div class=""grid gap-2"">
+            <Label id=""confirm_password"" class=""text-left"">Confirm Password</Label>
+            <Input
+              id=""confirm_password""
+              type=""password""
+              placeholder=""*****""
+              autocomplete
+              required
+            />
+          </div>
+          <Button type=""submit"" class=""w-full""> Register </Button>
+          <!-- <Button variant=""outline"" class=""w-full""> Login with Google </Button> -->
+        </form>
+        <div class=""mt-4 text-sm text-center"">
+          Already have an account?
+          <RouterLink to=""/login"" class=""underline""> Login </RouterLink>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+</template>",
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,pages,create login.vue and copy temp from repo,"<script setup lang=""ts""></script>
+
+<template>
+  <div class=""mx-auto flex w-full justify-center items-center p-10 text-center -mt-20 min-h-[90vh]"">
+    <Card class=""max-w-sm w-full mx-auto"">
+      <CardHeader>
+        <CardTitle class=""text-2xl""> Login </CardTitle>
+        <CardDescription> Login to your account </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div class=""flex flex-col gap-4 mb-4 justify-center items-center"">
+          <Button variant=""outline"" class=""w-full""> Register with Google </Button>
+          <Separator label=""Or"" />
+        </div>
+
+        <form class=""grid gap-4"">
+          <div class=""grid gap-2"">
+            <Label id=""email"" class=""text-left"">Email</Label>
+            <Input type=""email"" placeholder=""johndoe19@example.com"" required />
+          </div>
+          <div class=""grid gap-2"">
+            <div class=""flex items-center"">
+              <Label id=""password"">Password</Label>
+              <a href=""#"" class=""inline-block ml-auto text-xs underline""> Forgot your password? </a>
+            </div>
+            <Input id=""password"" type=""password"" autocomplete required />
+          </div>
+          <Button type=""submit"" class=""w-full""> Login </Button>
+        </form>
+        <div class=""mt-4 text-sm text-center"">
+          Don't have an account?
+          <RouterLink to=""/register"" class=""underline""> Register </RouterLink>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+</template>",
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Terminal,add card component,npx shadcn-vue@latest add card,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Terminal,add separator component,npx shadcn-vue@latest add separator,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Terminal,add separator label,npx shadcn-vue@latest add label ,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,Terminal,npm run dev,,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,dev,http://localhost:5173/login,,
+Set Up Vue.js and Supabase for Seamless Auth Integration,7,70,dev,http://localhost:5173/register,,
+Use v-model to Collect Form Data Values,7,71,register.vue,create var form form fields,"const formData = ref({
+  username: '',
+  first_name: '',
+  last_name: '',
+  email: '',
+  password: '',
+  confirm_password: '',
+})",
+Use v-model to Collect Form Data Values,7,71,register.vue,two binding with v-model,"<Input id=""username"" type=""text"" placeholder=""johndoe19"" required v-model=""formData.username"" />",
+Use v-model to Collect Form Data Values,7,71,register.vue,two binding with v-model for all input fields,,
+Use v-model to Collect Form Data Values,7,71,Terminal,npm run dev,,
+Use v-model to Collect Form Data Values,7,71,inspect,vue dev tools check if form is working,,
+Register new Users with Supabase Auth and Vue.js,7,72,Supabase,Authentication > Providers,Turn confirm email off,
+Register new Users with Supabase Auth and Vue.js,7,72,Supabase,Api docs > Javascript > craete new user,https://supabase.com/docs/reference/javascript/auth-signup,
+Register new Users with Supabase Auth and Vue.js,7,72,Supabase,copy code for sing up with email and password code ex,"const { data, error } = await supabase.auth.signUp({
+  email: 'example@email.com',
+  password: 'example-password',
+})",
+Register new Users with Supabase Auth and Vue.js,7,72,register.vue,create new async var and add code from previous step,"const signup = async () => {
+
+  const { data, error } = await supabase.auth.signUp({
+  email: 'example@email.com',
+  password: 'example-password',
+})
+
+}",
+Register new Users with Supabase Auth and Vue.js,7,72,register.vue,add get email and password,"const signup = async () => {
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.value.email,
+    password: formData.value.password
+  })
+}",
+Register new Users with Supabase Auth and Vue.js,7,72,register.vue,add if and console log for error and data,"const signup = async () => {
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.value.email,
+    password: formData.value.password
+  })
+
+  if (error) return console.log(error)
+
+  console.log(data)
+}",
+Register new Users with Supabase Auth and Vue.js,7,72,register.vue,crate listen event in form with prevent to stop full page refresh,"<form class=""grid gap-4"" @submit.prevent=""signup"">",
+Register new Users with Supabase Auth and Vue.js,7,72,Terminal,npm run dev,,
+Register new Users with Supabase Auth and Vue.js,7,72,dev,/register and add test details and check console to see ig logged,,
+Register new Users with Supabase Auth and Vue.js,7,72,supabase,go check if user is created,,
+Automatically Generate User Profiles on Registration,7,73,register.vue,replace console.log(data) with insert profile ,"if(data.user) {
+    supabase.from('profiles').insert({
+      id:data.user.id,
+      username: formData.value.username,
+      full_name: formData.value.first_name + ' ' + formData.value.last_name
+    })
+  }",
+Automatically Generate User Profiles on Registration,7,73,register.vue,below formData add router,const router = useRouter(),
+Automatically Generate User Profiles on Registration,7,73,register.vue,destruct the error,"if(data.user) {
+    const { error } = await supabase.from('profiles').insert({
+      id:data.user.id,
+      username: formData.value.username,
+      full_name: formData.value.first_name + ' ' + formData.value.last_name
+    })
+
+    if (error) return console.log('profiles err: ', error)
+  }",
+Automatically Generate User Profiles on Registration,7,73,register.vue,redirect user to homepage, router.push('/'),
+Automatically Generate User Profiles on Registration,7,73,register.vue,rather use concat for fullname,"full_name: formData.value.first_name.concat(' ', formData.value.last_name)",
+Automatically Generate User Profiles on Registration,7,73,register.vue,final code,"<script setup lang=""ts"">
+import { supabase } from '@/lib/supabaseClient'
+
+const formData = ref({
+  username: '',
+  first_name: '',
+  last_name: '',
+  email: '',
+  password: '',
+  confirm_password: ''
+})
+
+const router = useRouter()
+
+const signup = async () => {
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.value.email,
+    password: formData.value.password
+  })
+
+  if (error) return console.log(error)
+
+  if(data.user) {
+    const { error } = await supabase.from('profiles').insert({
+      id:data.user.id,
+      username: formData.value.username,
+      full_name: formData.value.first_name.concat(' ', formData.value.last_name)
+    })
+
+    if (error) return console.log('profiles err: ', error)
+  }
+
+  router.push('/')
+
+}
+</script>",
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,craete formData var,"const formData = ref({
+  email: '',
+  password: '',
+})",
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,add v-model for input email,"<Input type=""email"" placeholder=""johndoe19@example.com"" required v-model=""formData.email"" />",
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,add v-model for input password,"<Input id=""password"" type=""password"" autocomplete required v-model=""formData.password"" />",
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,craete supbase data trigger,"const signin = async () => {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: formData.value.email,
+    password: formData.value.password
+  })
+}",
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,add error log,if (error) return console.log(error),
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,add route ,const router = useRouter(),
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,then redirect user,router.push('/'),
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,add listen event,"<form class=""grid gap-4"" @submit.prevent=""signin"">",
+Login Users with Supabase Auth and Vue.js,7,74,login.vue,Final code,"<script setup lang=""ts"">
+import { supabase } from '@/lib/supabaseClient'
+
+const formData = ref({
+  email: '',
+  password: ''
+})
+
+const router = useRouter()
+
+const signin = async () => {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: formData.value.email,
+    password: formData.value.password
+  })
+
+  if (error) return console.log(error)
+
+  router.push('/')
+}
+</script>
+
+<template>
+  <div class=""mx-auto flex w-full justify-center items-center p-10 text-center -mt-20 min-h-[90vh]"">
+    <Card class=""max-w-sm w-full mx-auto"">
+      <CardHeader>
+        <CardTitle class=""text-2xl""> Login </CardTitle>
+        <CardDescription> Login to your account </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div class=""flex flex-col gap-4 mb-4 justify-center items-center"">
+          <Button variant=""outline"" class=""w-full""> Register with Google </Button>
+          <Separator label=""Or"" />
+        </div>
+
+        <form class=""grid gap-4"" @submit.prevent=""signin"">
+          <div class=""grid gap-2"">
+            <Label id=""email"" class=""text-left"">Email</Label>
+            <Input
+              type=""email""
+              placeholder=""johndoe19@example.com""
+              required
+              v-model=""formData.email""
+            />
+          </div>
+          <div class=""grid gap-2"">
+            <div class=""flex items-center"">
+              <Label id=""password"">Password</Label>
+              <a href=""#"" class=""inline-block ml-auto text-xs underline""> Forgot your password? </a>
+            </div>
+            <Input
+              id=""password""
+              type=""password""
+              autocomplete
+              required
+              v-model=""formData.password""
+            />
+          </div>
+          <Button type=""submit"" class=""w-full""> Login </Button>
+        </form>
+        <div class=""mt-4 text-sm text-center"">
+          Don't have an account?
+          <RouterLink to=""/register"" class=""underline""> Register </RouterLink>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+</template>",
+Quick Cleanup for the Login and Register Pages,7,75,utils,create supaAuth.ts,,
+Quick Cleanup for the Login and Register Pages,7,75,supaAuth.ts,create new function,"export const register = async (formData) => {
+  
+}",
+Quick Cleanup for the Login and Register Pages,7,75,register.vue,copy signup function and inside the regsiter export,"const signup = async () => {
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.value.email,
+    password: formData.value.password
+  })
+
+  if (error) return console.log(error)
+
+  if (data.user) {
+    const { error } = await supabase.from('profiles').insert({
+      id: data.user.id,
+      username: formData.value.username,
+      full_name: formData.value.first_name.concat(' ', formData.value.last_name)
+    })
+
+    if (error) return console.log('profiles err: ', error)
+  }
+
+  router.push('/')
+}",
+Quick Cleanup for the Login and Register Pages,7,75,types,create AuthForm.ts and add inteface for login and extens to Register ,"export interface LoginForm {
+  email: string
+  password: string
+}
+
+export interface RegisterForm extends LoginForm {
+  confirmPassword: string
+  username: string
+  firstName: string
+  lastName: string
+}",
+Quick Cleanup for the Login and Register Pages,7,75,register.vue,update script,"<script setup lang=""ts"">
+import { register } from '@/utils/supaAuth'
+
+const router = useRouter()
+
+const signup = async () => {
+  await register(formData.value)
+}
+
+</script>",
+Quick Cleanup for the Login and Register Pages,7,75,supaAuth.ts,remove .value,"import { supabase } from '@/lib/supabaseClient'
+import type { RegisterForm } from '@/types/AuthForm'
+
+export const register = async (formData: RegisterForm) => {
+    const { data, error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password
+    })
+
+    if (error) return console.log(error)
+
+    if (data.user) {
+      const { error } = await supabase.from('profiles').insert({
+        id: data.user.id,
+        username: formData.username,
+        full_name: formData.firstName.concat(' ', formData.lastName)
+      })
+
+      if (error) return console.log('profiles err: ', error)
+    }
+
+    router.push('/')
+  }",
+Quick Cleanup for the Login and Register Pages,7,75,supaAuth.ts,change routre.pus to return true,"import { supabase } from '@/lib/supabaseClient'
+import type { RegisterForm } from '@/types/AuthForm'
+
+export const register = async (formData: RegisterForm) => {
+    const { data, error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password
+    })
+
+    if (error) return console.log(error)
+
+    if (data.user) {
+      const { error } = await supabase.from('profiles').insert({
+        id: data.user.id,
+        username: formData.username,
+        full_name: formData.firstName.concat(' ', formData.lastName)
+      })
+
+      if (error) return console.log('profiles err: ', error)
+    }
+
+    return true
+  }",
+Quick Cleanup for the Login and Register Pages,7,75,register.vue,change signup,"const signup = async () => {
+  const isRegistered = await register(formData.value)
+
+  if (isRegistered) router.push('/')
+}",
+Quick Cleanup for the Login and Register Pages,7,75,supaAuth.ts,creat login export ,"export const login = async (formData: LoginForm) => {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: formData.email,
+    password: formData.password
+  })
+
+  if (error) return console.log(error)
+
+    return true
+}",
+Quick Cleanup for the Login and Register Pages,7,75,login.vue,update signin function,"const signin = async () => {
+  const isLoggedIn = await login(formData.value)
+
+  if (isLoggedIn) router.push('/')
+}",
+Quick Cleanup for the Login and Register Pages,7,75,supaAuth.ts,final code,"import { supabase } from '@/lib/supabaseClient'
+import type { LoginForm, RegisterForm } from '@/types/AuthForm'
+
+export const register = async (formData: RegisterForm) => {
+    const { data, error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password
+    })
+
+    if (error) return console.log(error)
+
+    if (data.user) {
+      const { error } = await supabase.from('profiles').insert({
+        id: data.user.id,
+        username: formData.username,
+        full_name: formData.firstName.concat(' ', formData.lastName)
+      })
+
+      if (error) return console.log('profiles err: ', error)
+    }
+
+    return true
+  }
+
+export const login = async (formData: LoginForm) => {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: formData.email,
+    password: formData.password
+  })
+
+  if (error) return console.log(error)
+
+    return true
+}",
+Quick Cleanup for the Login and Register Pages,7,75,register.vue,final code,"<script setup lang=""ts"">
+import { register } from '@/utils/supaAuth'
+
+const formData = ref({
+  username: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+})
+
+const router = useRouter()
+
+const signup = async () => {
+  const isRegistered = await register(formData.value)
+
+  if (isRegistered) router.push('/')
+}
+</script>
+
+<template>
+  <div
+    class=""mx-auto w-full flex justify-center items-center p-10 text-center -mt-10 min-h-[90vh] h-full""
+  >
+    <Card class=""max-w-sm w-full mx-auto h-full"">
+      <CardHeader>
+        <CardTitle class=""text-2xl""> Register </CardTitle>
+        <CardDescription> Create a new account </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div class=""flex flex-col gap-4 mb-4 justify-center items-center"">
+          <Button variant=""outline"" class=""w-full""> Register with Google </Button>
+          <Separator label=""Or"" />
+        </div>
+        <form class=""grid gap-4"" @submit.prevent=""signup"">
+          <div class=""grid gap-2"">
+            <Label id=""username"" class=""text-left"">Username</Label>
+            <Input
+              id=""username""
+              type=""text""
+              placeholder=""johndoe19""
+              required
+              v-model=""formData.username""
+            />
+          </div>
+          <div class=""flex flex-col sm:flex-row justify-between gap-4"">
+            <div class=""grid gap-2"">
+              <Label id=""first_name"" class=""text-left"">First Name</Label>
+              <Input
+                id=""first_name""
+                type=""text""
+                placeholder=""John""
+                required
+                v-model=""formData.firstName""
+              />
+            </div>
+            <div class=""grid gap-2"">
+              <Label id=""last_name"" class=""text-left"">Last Name</Label>
+              <Input
+                id=""last_name""
+                type=""text""
+                placeholder=""Doe""
+                required
+                v-model=""formData.lastName""
+              />
+            </div>
+          </div>
+          <div class=""grid gap-2"">
+            <Label id=""email"" class=""text-left"">Email</Label>
+            <Input
+              id=""email""
+              type=""email""
+              placeholder=""johndoe19@example.com""
+              required
+              v-model=""formData.email""
+            />
+          </div>
+
+          <div class=""grid gap-2"">
+            <Label id=""password"" class=""text-left"">Password</Label>
+            <Input
+              id=""password""
+              type=""password""
+              placeholder=""*****""
+              autocomplete
+              required
+              v-model=""formData.password""
+            />
+          </div>
+
+          <div class=""grid gap-2"">
+            <Label id=""confirm_password"" class=""text-left"">Confirm Password</Label>
+            <Input
+              id=""confirm_password""
+              type=""password""
+              placeholder=""*****""
+              autocomplete
+              required
+              v-model=""formData.confirmPassword""
+            />
+          </div>
+          <Button type=""submit"" class=""w-full""> Register </Button>
+          <!-- <Button variant=""outline"" class=""w-full""> Login with Google </Button> -->
+        </form>
+        <div class=""mt-4 text-sm text-center"">
+          Already have an account?
+          <RouterLink to=""/login"" class=""underline""> Login </RouterLink>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+</template>",
+Quick Cleanup for the Login and Register Pages,7,75,AuthForm.ts,fnal code,"export interface LoginForm {
+  email: string
+  password: string
+}
+
+export interface RegisterForm extends LoginForm {
+  confirmPassword: string
+  username: string
+  firstName: string
+  lastName: string
+}",
+Quick Cleanup for the Login and Register Pages,7,75,login.vue,final code,"<script setup lang=""ts"">
+import { login } from '@/utils/supaAuth'
+
+const formData = ref({
+  email: '',
+  password: ''
+})
+
+const router = useRouter()
+
+const signin = async () => {
+  const isLoggedIn = await login(formData.value)
+
+  if (isLoggedIn) router.push('/')
+}
+</script>
+
+<template>
+  <div class=""mx-auto flex w-full justify-center items-center p-10 text-center -mt-20 min-h-[90vh]"">
+    <Card class=""max-w-sm w-full mx-auto"">
+      <CardHeader>
+        <CardTitle class=""text-2xl""> Login </CardTitle>
+        <CardDescription> Login to your account </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div class=""flex flex-col gap-4 mb-4 justify-center items-center"">
+          <Button variant=""outline"" class=""w-full""> Register with Google </Button>
+          <Separator label=""Or"" />
+        </div>
+
+        <form class=""grid gap-4"" @submit.prevent=""signin"">
+          <div class=""grid gap-2"">
+            <Label id=""email"" class=""text-left"">Email</Label>
+            <Input
+              type=""email""
+              placeholder=""johndoe19@example.com""
+              required
+              v-model=""formData.email""
+            />
+          </div>
+          <div class=""grid gap-2"">
+            <div class=""flex items-center"">
+              <Label id=""password"">Password</Label>
+              <a href=""#"" class=""inline-block ml-auto text-xs underline""> Forgot your password? </a>
+            </div>
+            <Input
+              id=""password""
+              type=""password""
+              autocomplete
+              required
+              v-model=""formData.password""
+            />
+          </div>
+          <Button type=""submit"" class=""w-full""> Login </Button>
+        </form>
+        <div class=""mt-4 text-sm text-center"">
+          Don't have an account?
+          <RouterLink to=""/register"" class=""underline""> Register </RouterLink>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+</template>
+",
+Set Up Auth Store and Integrate It with Utility Functions,7,76,stores ,create auth.ts and add store,"import type { Session, User } from '@supabase/supabase-js'
+import type { Tables } from 'database/types'
+
+export const useAuthStore = defineStore('auth-store', () => {
+  const user = ref<null | User>(null)
+  const profile = ref<null | Tables<'profiles'>>(null)
+
+  const setAuth = (userSession: null | Session = null) => {
+    if (!userSession) {
+      user.value = null
+      return
+    }
+
+    user.value = userSession.user
+  }
+
+  return {
+    user,
+    profile,
+    setAuth
+  }
+})",
+Set Up Auth Store and Integrate It with Utility Functions,7,76,supaAuth.ts,add after imports ,const authStore = useAuthStore(),
+Set Up Auth Store and Integrate It with Utility Functions,7,76,supaAuth.ts,add above return true,authStore.setAuth(data.session),
+Set Up Auth Store and Integrate It with Utility Functions,7,76,supaAuth.ts,update the login function also,"export const login = async (formData: LoginForm) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: formData.email,
+    password: formData.password
+  })
+
+  if (error) return console.log(error)
+  authStore.setAuth(data.session)
+  return true",
+Fetch the User Profile and Update the Auth Store,7,77,auth.ts,add setProfile befor setAuth,"const setProfile = async () => {
+    if (!user.value) {
+      profile.value = null
+      return
+    }
+
+    if (!profile.value || profile.value.id !== user.value.id) {
+      //.. fetch the profile
+    }
+  }",
+Fetch the User Profile and Update the Auth Store,7,77,supaQueries.ts,create new query profielQuery,"export const profileQuery = (id: string) => {
+  return supabase.from('profiles').select().eq('id', id).single()
+}",
+Fetch the User Profile and Update the Auth Store,7,77,auth.ts,add profileQuery to setProfile,"const setProfile = async () => {
+    if (!user.value) {
+      profile.value = null
+      return
+    }
+
+    if (!profile.value || profile.value.id !== user.value.id) {
+     const {data} = await profileQuery(user.value.id)
+
+     profile.value = data || null
+    }
+  }",
+Fetch the User Profile and Update the Auth Store,7,77,auth.ts,update setAuth,"const setAuth = async (userSession: null | Session = null) => {
+    if (!userSession) {
+      user.value = null
+      return
+    }
+
+    user.value = userSession.user
+    await setProfile()
+  }",
+Fetch the User Profile and Update the Auth Store,7,77,supaAuth.ts,update with await for async from setAuth,"import { supabase } from '@/lib/supabaseClient'
+import { useAuthStore } from '@/stores/auth'
+import type { LoginForm, RegisterForm } from '@/types/AuthForm'
+
+const authStore = useAuthStore()
+
+export const register = async (formData: RegisterForm) => {
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.email,
+    password: formData.password
+  })
+
+  if (error) return console.log(error)
+
+  if (data.user) {
+    const { error } = await supabase.from('profiles').insert({
+      id: data.user.id,
+      username: formData.username,
+      full_name: formData.firstName.concat(' ', formData.lastName)
+    })
+
+    if (error) return console.log('profiles err: ', error)
+  }
+  await authStore.setAuth(data.session)
+  return true
+}
+
+export const login = async (formData: LoginForm) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: formData.email,
+    password: formData.password
+  })
+
+  if (error) return console.log(error)
+
+  await authStore.setAuth(data.session)
+  return true
+}",
+Fetch the User Profile and Update the Auth Store,7,77,page.ts,copy hot module and dd to auth.ts,"if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(usePageStore, import.meta.hot))
+}",
+Fetch the User Profile and Update the Auth Store,7,77,error.ts,copy hot module and dd to error store,"if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(usePageStore, import.meta.hot))
+}",
+Retrieve the Auth Session using Supabase Client,7,78,Supbase,Api docs > Javascript > retrieve a session,https://supabase.com/docs/reference/javascript/auth-getsession,
+Retrieve the Auth Session using Supabase Client,7,78,Api docs > Javascript > retrieve a session,Api docs > Javascript > retrieve a session,"const { data, error } = await supabase.auth.getSession()",
+Retrieve the Auth Session using Supabase Client,7,78,app.vue,update script with on mounted ,"<script setup lang=""ts"">
+import { supabase } from './lib/supabaseClient'
+import { useErrorStore } from './stores/error'
+
+const errorStore = useErrorStore()
+const authStore = useAuthStore()
+
+onErrorCaptured((error) => {
+  errorStore.setError({ error })
+})
+
+onMounted(async () => {
+   const { data } = await supabase.auth.getSession()
+   if (data.session?.user) await authStore.setAuth(data.session)
+})
+</script>",
+Create a Vue Router Guard to Validate the Supabase Auth Session,7,79,auth.ts,create new function,"const getSession = async () => {
+    
+  }",
+Create a Vue Router Guard to Validate the Supabase Auth Session,7,79,app.vue,copy code inside onMounted and add inside getSessio function,"const { data } = await supabase.auth.getSession()
+   if (data.session?.user) await authStore.setAuth(data.session)",
+Create a Vue Router Guard to Validate the Supabase Auth Session,7,79,auth.ts,reach out to set auth directly,"const getSession = async () => {
+   const { data } = await supabase.auth.getSession()
+   if (data.session?.user) await setAuth(data.session)
+  }",
+Create a Vue Router Guard to Validate the Supabase Auth Session,7,79,auth.ts,return get Session method,"eturn {
+    user,
+    profile,
+    setAuth,
+    getSession
+  }",
+Create a Vue Router Guard to Validate the Supabase Auth Session,7,79,router/index.ts,add beforeEach function,"router.beforeEach(async () => {
+const {getSession} = useAuthStore()
+await getSession()
+})",
+Create a Vue Router Guard to Validate the Supabase Auth Session,7,79,app.vue,update script,"<script setup lang=""ts"">
+import { useErrorStore } from './stores/error'
+
+const errorStore = useErrorStore()
+
+
+onErrorCaptured((error) => {
+  errorStore.setError({ error })
+})
+
+onMounted(async () => {})
+</script>",
+Manage v-for loops with v-if in Vue.js Using Filters,7,80,Sidebar.vue,remove to: 'signout' form signout prop,"{
+    title: 'Sign out',
+    icon: 'lucide:log-out'
+  }",
+Manage v-for loops with v-if in Vue.js Using Filters,7,80,SidebarLinks.vue,make to optional,"interface LinkProp {
+  title: string
+  to?: string
+  icon: string
+}",
+Manage v-for loops with v-if in Vue.js Using Filters,7,80,SidebarLinks.vue,add style scoped ,"<style scoped>
+.nav-link {
+  @apply flex items-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary justify-center lg:justify-normal text-muted-foreground
+}
+</style>",
+Manage v-for loops with v-if in Vue.js Using Filters,7,80,SidebarLinks.vue,At end of template add copy span fom span in router link,"<div class=""nav-link"">
+    <span class=""hidden lg:block text-nowrap"">{{ link.title }}</span>
+  </div>",
+Manage v-for loops with v-if in Vue.js Using Filters,7,80,SidebarLinks.vue,comment iv out,"div>
+    <!--  <div class=""nav-link"">
+    <span class=""hidden lg:block text-nowrap"">{{ link.title }}</span>  -->
+  </div>",
+Manage v-for loops with v-if in Vue.js Using Filters,7,80,SidebarLinks.vue,add cursor-pointer for div," <div class=""nav-link cursor-pointer"">",
+Use the Vue.js Template Special Element with v-for Loops,7,81,SidebarLinks.vue,Update code,"<script setup lang=""ts"">
+interface LinkProp {
+  title: string
+  to?: string
+  icon: string
+}
+
+defineProps<{
+  links: LinkProp[]
+}>()
+</script>
+
+<template>
+  <template v-for=""link in links"" :key=""link.title"">
+    <RouterLink
+      v-if=""link.to""
+      exactActiveClass=""text-primary bg-[#2F80ED]""
+      :to=""link.to""
+      class=""nav-link""
+    >
+      <iconify-icon :icon=""link.icon"" />
+      <span class=""hidden lg:block text-nowrap"">{{ link.title }}</span>
+    </RouterLink>
+
+    <div v-else class=""nav-link cursor-pointer"">
+      <iconify-icon :icon=""link.icon"" />
+      <span class=""hidden lg:block text-nowrap"">{{ link.title }}</span>
+    </div>
+  </template>
+</template>
+
+<style scoped>
+@reference ""@/assets/index.css"";
+
+.nav-link {
+  @apply flex items-center justify-center gap-3 px-4 py-2 mx-2 transition-colors rounded-lg hover:text-primary lg:justify-normal text-muted-foreground;
+}
+</style>",
+Emit Custom Events from Child to Parent in Vue.js,7,82,SidebarLinks.vue,add listerenr event and emit,"<div v-else class=""nav-link cursor-pointer"" @click=""$emit('actionClicked', link.title)"">",
+Emit Custom Events from Child to Parent in Vue.js,7,82,Sidebar.vue,add action for emit ,"<SidebarLinks :links=""accountLinks"" @actionClicked=""(payload) => console.log(payload)""/>
+      </div>",
+Emit Custom Events from Child to Parent in Vue.js,7,82,SidebarLinks.vue,add define emits ,"defineEmits<{
+  actionClicked: (string)
+}>()",
+Emit Custom Events from Child to Parent in Vue.js,7,82,Sidebar.vue,add var,"const executeAction = (linkTitle: string) => {
+  if(linkTitle === 'Sign out') {
+    //
+  }
+}",
+Emit Custom Events from Child to Parent in Vue.js,7,82,Sidebar.vue,USE VAR,"<div class=""border-y text-center bg-background py-3"">
+        <SidebarLinks :links=""accountLinks"" @actionClicked=""executeAction""/>",
+Emit Custom Events from Child to Parent in Vue.js,7,82,SidebarLinks.vue,add const emits to define emits,"const emits = defineEmits<{
+  actionClicked: (string)
+}>()",
+Emit Custom Events from Child to Parent in Vue.js,7,82,SidebarLinks.vue,add var emitActionClicked,"const emitActionClicked = (linkTitle: string) => {
+  emits('actionClicked', linkTitle)
+}",
+Emit Custom Events from Child to Parent in Vue.js,7,82,SidebarLinks.vue,use emitActionClicked,"<div v-else class=""nav-link cursor-pointer"" @click=""emitActionClicked(link.title)"">",
+Overcome Challenges of Using Pinia Stores in External Files,7,83,supaAuth.ts,add export of logout function,"export const logout = async () => {
+  const { error } = await supabase.auth.signOut()
+
+  if (error) return console.log(error)
+
+  await authStore.setAuth()
+  return true
+}",
+Overcome Challenges of Using Pinia Stores in External Files,7,83,auth.ts,add profile.value= null in set auth,"const setAuth = async (userSession: null | Session = null) => {
+    if (!userSession) {
+      user.value = null
+      profile.value = null
+      return
+    }",
+Overcome Challenges of Using Pinia Stores in External Files,7,83,Sidebar.vue,add logout function to executeAction,"const executeAction = async (linkTitle: string) => {
+  if (linkTitle === 'Sign out') {
+    await logout()
+  }
+}",
+Overcome Challenges of Using Pinia Stores in External Files,7,83,Sidebar.vue,trigger import only in executeAction,"const executeAction = async (linkTitle: string) => {
+  if (linkTitle === 'Sign out') {
+    const { logout } = await import('@/utils/supaAuth')
+    await logout()
+  }
+}",
+Watch for Supabase Auth changes and Update Auth Store,7,84,router/index.ts,comment out,"// router.beforeEach(async () => {
+// const {getSession} = useAuthStore()
+// await getSession()
+// })",
+Watch for Supabase Auth changes and Update Auth Store,7,84,supaAuth.ts,get rid of all setAuth calls,,
+Watch for Supabase Auth changes and Update Auth Store,7,84,supaAuth.ts,remove set auth store,const authStore = useAuthStore(),
+Watch for Supabase Auth changes and Update Auth Store,7,84,auth.ts,beloe getSession add ,"const trackAuthChanges = () => {
+  supabase.auth.onAuthStateChange((event,session) => {
+    setTimeout(async() => {
+      await setAuth(session)
+    }, 0);
+  })
+}",
+Watch for Supabase Auth changes and Update Auth Store,7,84,auth.ts,then return trackAuthChanges,,
+Watch for Supabase Auth changes and Update Auth Store,7,84,app.vue,use AuthStore,"onMounted(() => {
+  useAuthStore().trackAuthChanges()
+})",
+Watch for Supabase Auth changes and Update Auth Store,7,84,auth.ts,update code,"import { supabase } from '@/lib/supabaseClient'
+import { profileQuery } from '@/utils/supaQueries'
+import type { Session, User } from '@supabase/supabase-js'
+import type { Tables } from 'database/types'
+
+export const useAuthStore = defineStore('auth-store', () => {
+  const user = ref<null | User>(null)
+  const profile = ref<null | Tables<'profiles'>>(null)
+  const isTrackingAuthChanges = ref(false)
+
+  const setProfile = async () => {
+    if (!user.value) {
+      profile.value = null
+      return
+    }
+
+    if (!profile.value || profile.value.id !== user.value.id) {
+      const { data } = await profileQuery(user.value.id)
+
+      profile.value = data || null
+    }
+  }
+
+  const setAuth = async (userSession: null | Session = null) => {
+    if (!userSession) {
+      user.value = null
+      profile.value = null
+      return
+    }
+
+    user.value = userSession.user
+    await setProfile()
+  }
+
+  const getSession = async () => {
+   const { data } = await supabase.auth.getSession()
+   if (data.session?.user) await setAuth(data.session)
+  }
+
+const trackAuthChanges = () => {
+
+if (isTrackingAuthChanges.value) return
+
+isTrackingAuthChanges.value = true
+  supabase.auth.onAuthStateChange((event,session) => {
+    setTimeout(async() => {
+      await setAuth(session)
+    }, 0);
+  })
+}
+
+  return {
+    user,
+    profile,
+    setAuth,
+    getSession,
+    trackAuthChanges
+  }
+})
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
+}",
+Protect Routes with Navigation Guards,7,85,index.ts,update router.beforeEach,"router.beforeEach((to, from) => {
+  const { user } = storeToRefs(useAuthStore())
+
+  if (!user.value && !['/login', '/register'].includes(to.path)) {
+    return {
+      name: '/login'
+    }
+  }
+})",
+Protect Routes with Navigation Guards,7,85,Sidebar.vue,update executeAction,"const router = useRouter()
+
+const executeAction = async (linkTitle: string) => {
+  if (linkTitle === 'Sign out') {
+    const { logout } = await import('@/utils/supaAuth')
+    const isLoggedOut = await logout()
+
+    if(isLoggedOut) router.push('login')
+  }
+}",
+Wait for Pinia Store Updates Before Navigating,7,86,router/index.ts,update beforeEach,"router.beforeEach(async (to, from) => {
+  const authStore = useAuthStore()
+  await authStore.getSession()
+  const isAuthPage = ['/login', '/register'].includes(to.path)
+
+  if (!authStore.user && !isAuthPage) {
+    return {
+      name: '/login',
+    }
+  }
+
+  if (authStore.user && isAuthPage) {
+    return {
+      name: '/',
+    }
+  }
+})",
+Changes to Default Email Provider in Supabase,7,87,seed.js,copy code from cousre repo,"/* eslint-env node */
+
+import { fakerEN_US as faker } from '@faker-js/faker'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.SERVICE_ROLE_KEY)
+
+const testingUserEmail = process.env.TESTING_USER_EMAIL
+if (!testingUserEmail) {
+  console.error('Have you forgot to add TESTING_USER_EMAIL to your .env file?')
+  process.exit()
+}
+
+const logErrorAndExit = (tableName, error) => {
+  console.error(
+    `An error occurred in table '${tableName}' with code ${error.code}: ${error.message}`
+  )
+  process.exit(1)
+}
+
+const logStep = (stepMessage) => {
+  console.log(stepMessage)
+}
+
+const PrimaryTestUserExists = async () => {
+  logStep('Checking if primary test user exists...')
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('id, username')
+    .eq('username', 'testaccount1')
+    .single()
+
+  if (error) {
+    console.log('Primary test user not found. Will create one.')
+    return false
+  }
+
+  logStep('Primary test user is found.')
+  return data?.id
+}
+
+const createPrimaryTestUser = async () => {
+  logStep('Creating primary test user...')
+  const firstName = 'Test'
+  const lastName = 'Account'
+  const userName = 'testaccount1'
+  const email = testingUserEmail
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: 'password',
+    options: {
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        full_name: firstName + ' ' + lastName,
+        username: userName
+      }
+    }
+  })
+
+  if (error) {
+    logErrorAndExit('Users', error)
+  }
+
+  if (data) {
+    const userId = data.user.id
+    await supabase.from('profiles').insert({
+      id: userId,
+      full_name: firstName + ' ' + lastName,
+      username: userName,
+      bio: 'The main testing account',
+      avatar_url: `https://i.pravatar.cc/150?u=${data.user.id}`
+    })
+
+    logStep('Primary test user created successfully.')
+    return userId
+  }
+}
+
+const seedProjects = async (numEntries, userId) => {
+  logStep('Seeding projects...')
+  const projects = []
+
+  for (let i = 0; i < numEntries; i++) {
+    const name = faker.lorem.words(3)
+
+    projects.push({
+      name: name,
+      slug: name.toLocaleLowerCase().replace(/ /g, '-'),
+      description: faker.lorem.paragraphs(2),
+      status: faker.helpers.arrayElement(['in-progress', 'completed']),
+      collaborators: faker.helpers.arrayElements([userId])
+    })
+  }
+
+  const { data, error } = await supabase.from('projects').insert(projects).select('id')
+
+  if (error) return logErrorAndExit('Projects', error)
+
+  logStep('Projects seeded successfully.')
+
+  return data
+}
+
+const seedTasks = async (numEntries, projectsIds, userId) => {
+  logStep('Seeding tasks...')
+  const tasks = []
+
+  for (let i = 0; i < numEntries; i++) {
+    tasks.push({
+      name: faker.lorem.words(3),
+      status: faker.helpers.arrayElement(['in-progress', 'completed']),
+      description: faker.lorem.paragraph(),
+      due_date: faker.date.future(),
+      profile_id: userId,
+      project_id: faker.helpers.arrayElement(projectsIds),
+      collaborators: faker.helpers.arrayElements([userId])
+    })
+  }
+
+  const { data, error } = await supabase.from('tasks').insert(tasks).select('id')
+
+  if (error) return logErrorAndExit('Tasks', error)
+
+  logStep('Tasks seeded successfully.')
+
+  return data
+}
+
+const seedDatabase = async (numEntriesPerTable) => {
+  let userId
+
+  const testUserId = await PrimaryTestUserExists()
+
+  if (!testUserId) {
+    const primaryTestUserId = await createPrimaryTestUser()
+    userId = primaryTestUserId
+  } else {
+    userId = testUserId
+  }
+
+  const projectsIds = (await seedProjects(numEntriesPerTable, userId)).map((project) => project.id)
+  await seedTasks(numEntriesPerTable, projectsIds, userId)
+}
+
+const numEntriesPerTable = 10
+
+seedDatabase(numEntriesPerTable)",
+Changes to Default Email Provider in Supabase,7,87,.env,add ,TESTING_USER_EMAIL=naviel.labs@gmail.com,
+Changes to Default Email Provider in Supabase,7,87,mgrations/taks,migrations task scheme copy code from cousre repo,"drop table if exists tasks;
+
+create table 
+  tasks (
+    id bigint primary key generated always as identity not null,
+    created_at timestamptz default now() not null,
+    name text not null,
+    status current_status default 'in-progress' not null,
+    description text not null,
+    due_date date default null,
+    profile_id uuid references profiles (id) on delete cascade not null,
+    project_id bigint references projects (id) default null,
+    collaborators text array default array[]::varchar[] not null
+  );",
+Changes to Default Email Provider in Supabase,7,87,task-schema,change date of task so that it comes after profiles,,
+Changes to Default Email Provider in Supabase,7,87,Terminal,npm run db:reset,,
+Changes to Default Email Provider in Supabase,7,87,Terminal,npm run db:seed,,
+Handle Supabase Server Auth Errors,7,88,supaAuth.ts,in login function update if error,"import { supabase } from '@/lib/supabaseClient'
+
+import type { LoginForm, RegisterForm } from '@/types/AuthForm'
+
+export const register = async (formData: RegisterForm) => {
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.email,
+    password: formData.password
+  })
+
+  if (error) return console.log(error)
+
+  if (data.user) {
+    const { error } = await supabase.from('profiles').insert({
+      id: data.user.id,
+      username: formData.username,
+      full_name: formData.firstName.concat(' ', formData.lastName)
+    })
+
+    if (error) return console.log('profiles err: ', error)
+  }
+
+  return true
+}
+
+export const login = async (formData: LoginForm) => {
+  const { error } = await supabase.auth.signInWithPassword({
+    email: formData.email,
+    password: formData.password
+  })
+
+  return { error }
+}
+
+export const logout = async () => {
+  const { error } = await supabase.auth.signOut()
+
+  if (error) return console.log(error)
+
+  return true
+}
+",
+Handle Supabase Server Auth Errors,7,88,login.vue,update code with error log,"<script setup lang=""ts"">
+import { login } from '@/utils/supaAuth'
+
+const formData = ref({
+  email: '',
+  password: ''
+})
+
+const _error = ref('')
+
+const router = useRouter()
+
+const signin = async () => {
+  const { error } = await login(formData.value)
+
+  if (!error) return router.push('/')
+
+  _error.value =
+    error.message === 'Invalid login credentials' ? 'Incorrect email or password' : error.message
+}
+</script>
+
+<template>
+  <div class=""mx-auto flex w-full justify-center items-center p-10 text-center -mt-20 min-h-[90vh]"">
+    <Card class=""max-w-sm w-full mx-auto"">
+      <CardHeader>
+        <CardTitle class=""text-2xl""> Login </CardTitle>
+        <CardDescription> Login to your account </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div class=""flex flex-col gap-4 mb-4 justify-center items-center"">
+          <Button variant=""outline"" class=""w-full""> Register with Google </Button>
+          <Separator label=""Or"" />
+        </div>
+
+        <form class=""grid gap-4"" @submit.prevent=""signin"">
+          <div class=""grid gap-2"">
+            <Label id=""email"" class=""text-left"">Email</Label>
+            <Input
+              type=""email""
+              placeholder=""johndoe19@example.com""
+              required
+              v-model=""formData.email""
+              :class=""{ 'border-red-500': _error }""
+            />
+          </div>
+          <div class=""grid gap-2"">
+            <div class=""flex items-center"">
+              <Label id=""password"">Password</Label>
+              <a href=""#"" class=""inline-block ml-auto text-xs underline""> Forgot your password? </a>
+            </div>
+            <Input
+              id=""password""
+              type=""password""
+              autocomplete
+              required
+              v-model=""formData.password""
+              :class=""{ 'border-red-500': _error }""
+            />
+          </div>
+          <ul class=""text-sm text-left text-red-500"" v-if=""_error"">
+            <li class=""list-disc"">{{ _error }}</li>
+          </ul>
+          <Button type=""submit"" class=""w-full""> Login </Button>
+        </form>
+        <div class=""mt-4 text-sm text-center"">
+          Don't have an account?
+          <RouterLink to=""/register"" class=""underline""> Register </RouterLink>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+</template>
+",
+Create a Composable for Handling Form Errors,7,89,src,create folder composables,,
+Create a Composable for Handling Form Errors,7,89,composables,create file formError.ts,,
+Create a Composable for Handling Form Errors,7,89,login.vue,"copy const _error = ref("""")",,
+Create a Composable for Handling Form Errors,7,89,formError.ts,add ref unsdie use fun and chaneg to servererror,"const useFormerrors = () => {
+  const serverError = ref('')
+
+  return {}
+}",
+Create a Composable for Handling Form Errors,7,89,formError.ts,after ref add ,const handelServerError = (error: AuthError),
+Create a Composable for Handling Form Errors,7,89,login.vue,move this handelServerError,"_error.value =
+    error.message === 'Invalid login credentials' ? 'Incorrect email or password' : error.message",
+Create a Composable for Handling Form Errors,7,89,formError.ts,add return,"return {
+    serverError,
+    handelServerError,
+  }",
+Create a Composable for Handling Form Errors,7,89,formError.ts,add export,"export const useFormerrors = () => {
+  const serverError = ref('')
+
+
+  const handelServerError = (error: AuthError) => {
+    serverError.value =
+    error.message === 'Invalid login credentials' ? 'Incorrect email or password' : error.message
+  }
+
+  return {
+    serverError,
+    handelServerError,
+  }
+}",
+Create a Composable for Handling Form Errors,7,89,vite.config.ts,add import for all in stote and composable,"dirs: ['src/stores/**', 'src/composables/**']",
+Create a Composable for Handling Form Errors,7,89,login.vue,below formData add ,"const { serverError, handelServerError } = useFormErrors()",
+Create a Composable for Handling Form Errors,7,89,login.vue,inside siginin fun add,handelServerError(error),
+Create a Composable for Handling Form Errors,7,89,login.vue,in template change all  _error to serverError,,
+Implement Realtime Form Validation,7,90,formErrors.ts,craete new const below handelrserver error,"const handelLoginForm = (formData: LoginForm) => {
+
+  }",
+Implement Realtime Form Validation,7,90,formErrors.ts,craete new ref below serverError,const realtimeErrors = ref(),
+Implement Realtime Form Validation,7,90,formErrors.ts,update handelLoginForm to include raeltime errors,"const handelLoginForm = (formData: LoginForm) => {
+    realtimeErrors.value = {
+      email: [],
+      password: []
+    }
+
+    // ...
+  }",
+Implement Realtime Form Validation,7,90,utils,crate new file formValidations.ts,,
+Implement Realtime Form Validation,7,90,formValidations.ts,add validation code for email and password,"export const validateEmail = (email: string) => {
+  const trimmedEmail = email.trim()
+  if (!trimmedEmail) return []
+
+  const errors = []
+
+  const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/
+  const isValidEmailFormat = emailRegex.test(trimmedEmail)
+
+  if (!isValidEmailFormat) errors.push('Not a valid email format')
+
+  return errors
+}
+
+export const validatePassword = (password: string) => {
+  if (!password) return []
+
+  const errors = []
+
+  if (password.length <= 6)
+    errors.push('Password must be more than 6 characters')
+
+  return errors
+}",
+Implement Realtime Form Validation,7,90,formErrors.ts,update code to call validations inside function,"const handelLoginForm = async (formData: LoginForm) => {
+    realtimeErrors.value = {
+      email: [],
+      password: []
+    }
+
+    const { validateEmail, validatePassword } = await import('@/utils/formValidations')
+
+    const emailErrors = validateEmail(formData.email)
+    if(emailErrors.length) realtimeErrors.value.email = emailErrors
+
+    const passwordErrors = validatePassword(formData.password)
+    if(passwordErrors.length) realtimeErrors.value.password = passwordErrors
+  }",
+Implement Realtime Form Validation,7,90,formErrors.ts,then return realtimeErrors and handelLoginForm,"return {
+    serverError,
+    handelServerError,
+    realtimeErrors,
+    handelLoginForm
+  }",
+Implement Realtime Form Validation,7,90,login.vue,destruct realtimeErrors. and handelloginForm,"const { serverError, handelServerError, realtimeErrors, handelLoginForm } = useFormerrors()",
+Implement Realtime Form Validation,7,90,login.vue,in template copy the error list and add beneath password input ,"<ul class=""text-sm text-left text-red-500"" v-if=""serverError"">
+            <li class=""list-disc"">{{ serverError }}</li>
+          </ul>",
+Implement Realtime Form Validation,7,90,login.vue,then update to,"<ul class=""text-sm text-left text-red-500"" v-if=""realtimeErrors?.password.length"">
+              <li v-for=""error in realtimeErrors.password"" :key=""error"" class=""list-disc"">
+                {{ error }}
+              </li>",
+Implement Realtime Form Validation,7,90,login.vue,copy and update for email,"<ul class=""text-sm text-left text-red-500"" v-if=""realtimeErrors?.password.length"">
+              <li v-for=""error in realtimeErrors.email"" :key=""error"" class=""list-disc"">
+                {{ error }}
+              </li>
+            </ul>",
+Use watchDebounced from VueUse,7,91,Terminal,npm i @vueuse/core,,
+Use watchDebounced from VueUse,7,91,login.vue,add,import { watchDebounced } from '@vueuse/core',
+Use watchDebounced from VueUse,7,91,login.vue,below useRouter() add,"watchDebounced(
+  formData,
+  () => {
+    handelLoginForm(formData.value)
+  },
+  { debounce: 500, deep: true }
+)",
+Use watchDebounced from VueUse,7,91,login.vue,from template remove @input,,
+TypeScript Mapping and Generics,7,92,formErrors.ts,add type,"type FormErrors ={
+  [Property in keyof LoginForm]: string[]
+}",
+TypeScript Mapping and Generics,7,92,formErrors.ts,now use type in ref,const realtimeErrors = ref<FormErrors>(),
+TypeScript Mapping and Generics,7,92,formErrors.ts,update type and realtime erorrs,"type FormErrors<Type> ={
+  [Property in keyof Type]: string[]
+}
+
+export const useFormerrors = () => {
+  const serverError = ref('')
+  const realtimeErrors = ref<FormErrors<LoginForm>>()",
+Create Dynamic User Profiles,8,93,pages,users/[username].vue,,
+Create Dynamic User Profiles,8,93,[username].vue,copy template from repo,"<template>
+  <div
+    class=""mx-auto mb-10 flex w-full flex-col items-center justify-center py-10 text-center""
+  >
+    <div class=""flex flex-col items-center justify-center pb-4"">
+      <Avatar size=""lg"">
+        <AvatarImage src="""" alt=""@radix-vue"" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+
+      <p class=""mt-2 text-gray-500"">@username</p>
+      <h1 class=""mt-5 text-4xl font-bold"">John Doe</h1>
+      <p class=""mt-2 text-sm"">Software developer</p>
+    </div>
+    <Button>Edit profile</Button>
+  </div>
+</template>",
+Create Dynamic User Profiles,8,93,[username].vue,add profile from store,const {profile} = storeToRefs(useAuthStore()),
+Create Dynamic User Profiles,8,93,[username].vue,update template to get logged in user data,"<template>
+  <div
+    class=""mx-auto mb-10 flex w-full flex-col items-center justify-center py-10 text-center""
+  >
+    <div class=""flex flex-col items-center justify-center pb-4"">
+      <Avatar size=""lg"">
+        <AvatarImage :src=""profile?.avatar_url || ''"" alt=""@radix-vue"" />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+
+      <p class=""mt-2 text-gray-500"">{{ profile?.username }}</p>
+      <h1 class=""mt-5 text-4xl font-bold"">{{  profile?.full_name }}</h1>
+      <p class=""mt-2 text-sm"">{{ profile?.bio }}</p>
+    </div>
+    <Button>Edit profile</Button>
+  </div>
+</template>",
+Create Dynamic User Profiles,8,93,[username].vue,update script to call profile dynamically,"const {username} = useRoute('/users/[username]').params
+",
+Create Dynamic User Profiles,8,93,supaqueries.ts,update profile query to be dynamic,"export const profileQuery = ({column, value}: {column:string, value: string}) => {
+  return supabase.from('profiles').select().eq(column, value).single()
+}",
+Create Dynamic User Profiles,8,93,auth.ts,update ref to profile query," const { data } = await profileQuery({ column: 'id', value: user.value.id })",
+Create Dynamic User Profiles,8,93,[username].vue,add new const,const profile = ref<Tables<'profiles'> | null>(null),
+Create Dynamic User Profiles,8,93,[username].vue,add getTAsks,"const getTasks = async () => {
+  const { data, error, status } = await profileQuery({ column: 'username', value: username })
+
+  if (error) useErrorStore().setError({ error, customCode: status })
+
+  profile.value = data
+}
+
+await getTasks()",
+Using Pinia for Efficient Data Loading and Caching,8,94,stores ,craete loaders/projects.ts,,
+Using Pinia for Efficient Data Loading and Caching,8,94,projects/index.vue,copy projects functions and add into projects.ts,"const projects = ref<Projects | null>(null)
+  const getProjects = async () => {
+    const { data, error, status } = await projectsQuery
+
+    if (error) useErrorStore().setError({ error, customCode: status })
+
+    projects.value = data
+  }",
+Using Pinia for Efficient Data Loading and Caching,8,94,projects.ts,must look like this add ,"import { projectsQuery } from '@/utils/supaQueries'
+import type { Projects } from '@/utils/supaQueries'
+
+export const useProjectsStore = defineStore('projects-store', () => {
+  const projects = ref<Projects | null>(null)
+  const getProjects = async () => {
+    const { data, error, status } = await projectsQuery
+
+    if (error) useErrorStore().setError({ error, customCode: status })
+
+    projects.value = data
+  }
+
+  return {}
+})
+",
+Using Pinia for Efficient Data Loading and Caching,8,94,projects.ts,return ,"return {
+    projects,
+    getProjects
+  }",
+Using Pinia for Efficient Data Loading and Caching,8,94,projects/index.vue,update code ,"<script setup lang=""ts"">
+import { columns } from '@/utils/tableColumns/projectsColumns'
+
+usePageStore().pageData.title = 'Projects'
+
+const projectsLoader = useProjectsStore()
+const { projects } = storeToRefs(projectsLoader)
+const { getProjects } = projectsLoader
+
+await getProjects()
+</script>
+<template>
+  <DataTable v-if=""projects"" :columns=""columns"" :data=""projects"" />
+</template>",
+Using Pinia for Efficient Data Loading and Caching,8,94,projects.ts,add iff statement for caching in get projects,if (projects.value?.length) return,
+Use useMemoize from VueUse to Optimize Pinia Loader Functions,8,95,projects.ts,import,import { useMemoize } from '@vueuse/core',
+Use useMemoize from VueUse to Optimize Pinia Loader Functions,8,95,projects.ts,update code with vueUse memoize,"import { projectsQuery } from '@/utils/supaQueries'
+import { useMemoize } from '@vueuse/core'
+import type { Projects } from '@/utils/supaQueries'
+
+export const useProjectsStore = defineStore('projects-store', () => {
+  const projects = ref<Projects | null>(null)
+  const loadProjects = useMemoize(async (key: string) => await projectsQuery)
+
+  const getProjects = async () => {
+    const { data, error, status } = await loadProjects('projects')
+
+    if (error) useErrorStore().setError({ error, customCode: status })
+
+    projects.value = data
+  }
+
+  return {
+    projects,
+    getProjects
+  }
+})",
+Implement Stale While Revalidate with Pinia and useMemoize,8,96,projects.ts,update get projects with matching old an ew data,"const getProjects = async () => {
+    if (projects.value?.length) {
+      projectsQuery.then(({ data }) => {
+        if (JSON.stringify(projects.value) === JSON.stringify(data)) {
+          console.log('Cached and fresh data matched!')
+        } else {
+          console.log('Something has changed!')
+        }
+      })
+    }",
+Implement Stale While Revalidate with Pinia and useMemoize,8,96,projects.ts,updated projects.ts,"import { projectsQuery } from '@/utils/supaQueries'
+import { useMemoize } from '@vueuse/core'
+import type { Projects } from '@/utils/supaQueries'
+
+
+
+export const useProjectsStore = defineStore('projects-store', () => {
+  const projects = ref<Projects | null>(null)
+  const loadProjects = useMemoize(async (key: string) => await projectsQuery)
+
+  const validateCache = () => {
+if (projects.value?.length) {
+      projectsQuery.then(({ data }) => {
+        if (JSON.stringify(projects.value) === JSON.stringify(data)) {
+          console.log('Cached and fresh data matched!')
+          return
+        } else {
+          console.log('Something has changed!')
+          loadProjects.delete('projects')
+        }
+      })
+    }
+  }
+
+  const getProjects = async () => {
+
+    const { data, error, status } = await loadProjects('projects')
+
+    if (error) useErrorStore().setError({ error, customCode: status })
+
+    projects.value = data
+
+    validateCache()
+  }
+
+  return {
+    projects,
+    getProjects
+  }
+})",
+Update Stale Data with Fresh Data,8,97,projects.ts,remove conslole logs,,
+Update Stale Data with Fresh Data,8,97,projects.ts,remove null and add empty array,const projects = ref<Projects>([]),
+Update Stale Data with Fresh Data,8,97,projects.ts,in validate cache add if in else stament ,if (!error && data) projects.value = data,
+Update Stale Data with Fresh Data,8,97,projects.ts,destruct error from projecrs query,,
+Update Stale Data with Fresh Data,8,97,projects.ts,add if (data),if (data) projects.value = data,
+Update Stale Data with Fresh Data,8,97,projects.ts,Final code,"import { projectsQuery } from '@/utils/supaQueries'
+import { useMemoize } from '@vueuse/core'
+import type { Projects } from '@/utils/supaQueries'
+
+export const useProjectsStore = defineStore('projects-store', () => {
+  const projects = ref<Projects>([])
+  const loadProjects = useMemoize(async (key: string) => await projectsQuery)
+
+  const validateCache = () => {
+    if (projects.value?.length) {
+      projectsQuery.then(({ data, error }) => {
+        if (JSON.stringify(projects.value) === JSON.stringify(data)) {
+          return
+        } else {
+          loadProjects.delete('projects')
+          if (!error && data) projects.value = data
+        }
+      })
+    }
+  }
+
+  const getProjects = async () => {
+    const { data, error, status } = await loadProjects('projects')
+
+    if (error) useErrorStore().setError({ error, customCode: status })
+
+    if (data) projects.value = data
+
+    validateCache()
+  }
+
+  return {
+    projects,
+    getProjects
+  }
+})
+",
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,Terminal,sudo npm install -g npm-check-updates,,
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,Terminal,ncu,,
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,Terminal,ncu --upgrade vue vue-tsc typescript prettier eslint-plugin-vue eslint @vue/eslint-config-typescript @vue/eslint-config-prettier @vitejs/plugin-vue,,
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,package-lock,delete the file,,
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,node modules,delet the directory,,
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,eslint.config.js,delete all inside file and copy new file from course repo,"import pluginVue from 'eslint-plugin-vue'
+import vueTsEslintConfig from '@vue/eslint-config-typescript'
+import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+
+export default [
+{ name: 'app/files-to-lint', files: ['**/*.{ts,mts,tsx,vue}'] },
+{ name: 'app/files-to-ignore', ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'] },
+...pluginVue.configs['flat/essential'],
+...vueTsEslintConfig(),
+skipFormatting,
+{ rules: { 'vue/multi-word-component-names': 0 } }
+]",
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,Terminla,npm i ,,
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,package.json,update lint,"""lint"": ""eslint . --fix"",",
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,.editorconfig,install extension then add file and code inside file,"[*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue,css,scss,sass,less,styl}]
+charset = utf-8
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+end_of_line = lf
+max_line_length = 100
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+
+[*.{json,yml,yaml}]
+indent_size = 2",
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,.vscode/settings.json,update code for file nesting,"{
+""explorer.fileNesting.enabled"": true,
+""explorer.fileNesting.patterns"": {
+""tsconfig.json"": ""tsconfig.*.json, env.d.ts"",
+""vite.config.*"": ""jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*"",
+""package.json"": ""package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig""
+},
+""editor.codeActionsOnSave"": { ""source.fixAll"": ""explicit"" },
+""editor.formatOnSave"": true,
+""editor.defaultFormatter"": ""esbenp.prettier-vscode""
+}",
+Set Up Eslint 9 with Flat Config in Vue.js,8,98,Terminal,npm run lint,,
+Create a Vue.js Composable for Projects Collaborators,8,99,projects/index.vue,add at bottom of script,//getGroupedCollabs(projects.value),
+Create a Vue.js Composable for Projects Collaborators,8,99,composables,create collabs.ts,"export const useCollabs =() => {
+
+const getProfilesByIds = async (userIds: string[]) => {
+  // ...
+}
+}",
+Create a Vue.js Composable for Projects Collaborators,8,99,supaqueries.ts,add query,"export const groupedProfilesQuery = (userIds: string[]) =>
+  supabase.from('profiles').select('username, avatar_url, id, full_name').in('id', userIds)
+
+export type Collabs = QueryData<ReturnType<typeof groupedProfilesQuery>>",
+Create a Vue.js Composable for Projects Collaborators,8,99,collabs.ts,update code ,"import { groupedProfilesQuery } from '@/utils/supaQueries'
+
+export const useCollabs = () => {
+  const getProfilesByIds = async (userIds: string[]) => {
+    const { data, error } = await groupedProfilesQuery(userIds)
+
+    if (error || !data) return []
+
+    return data
+  }
+  return {
+    getProfilesByIds
+  }
+}",
+Create a Vue.js Composable for Projects Collaborators,8,99,projects/index.vue,add,"const { getProfilesByIds } = useCollabs()
+
+const test = projects.value[0] ? await getProfilesByIds(projects.value[0].collaborators) : null
+
+console.log('TEST :: ', test)",

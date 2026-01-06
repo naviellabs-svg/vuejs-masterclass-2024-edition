@@ -9,11 +9,11 @@ const { getProjects } = projectsLoader
 
 await getProjects()
 
-const { getProfilesByIds } = useCollabs()
+const { getGroupedCollabs, groupedCollabs } = useCollabs()
 
-const test = projects.value[0] ? await getProfilesByIds(projects.value[0].collaborators) : null
+await getGroupedCollabs(projects.value)
 
-console.log('TEST :: ', test)
+console.log('TEST :: ', groupedCollabs)
 
 //getGroupedCollabs(projects.value)
 </script>
