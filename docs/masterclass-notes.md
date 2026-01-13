@@ -361,18 +361,90 @@ h('div', {}, [h('span', {}, 'First'), h('span', {}, 'Second')])
 - Make avatars clickable to navigate to user profiles
 - Consider adding a "more collaborators" indicator when there are many collaborators
 
-# Lesson — 8.102 - Load the Collaborators Without Impacting Page Loading Speed
+## Lesson 8.102 - Load Collaborators Without Blocking Page Render
 
-### <file-name>.ts
-> Purpose: What this change achieves
+> **Purpose:** Fire collaborator fetching in the background so the projects page renders immediately, while still displaying avatars once data arrives (or skeletons while loading).
+
+### Overview
+
+We stop awaiting `getGroupedCollabs` so the table renders as soon as projects load. The collaborators column now handles three states: data present (avatars), loading (skeleton avatars), and empty (nothing).
+
+---
+
+### Step 1: Trigger collaborator fetch without blocking
+
+**File:** `src/pages/projects/index.vue`
+
+> **Purpose:** Let the page render immediately; fetch collaborators asynchronously.
 
 #### Tasks
-- [ ] Step one
-- [ ] Step two
-- [ ] Step three
-- [ ] Step four
 
-#### Notes / Learnings
-- What I learned
-- Why this approach was used
-- Gotchas or things that confused me
+- [x] Remove `await` when calling `getGroupedCollabs` so it runs in the background
+- [x] Keep `columnsWithCollabs` derived from the reactive `groupedCollabs`
+
+```typescript
+await getProjects() // fetch projects first
+
+const { getGroupedCollabs, groupedCollabs } = useCollabs()
+getGroupedCollabs(projects.value) // no await → non-blocking
+
+const columnsWithCollabs = columns(groupedCollabs)
+```
+
+---
+
+### Step 2: Handle collaborators column states
+
+**File:** `src/utils/tableColumns/projectsColumns.ts`
+
+> **Purpose:** Render avatars when data exists; show skeletons while loading; stay safe when no data.
+
+#### Tasks
+
+- [x] Read collaborators from `collabs.value[row.original.id]`
+- [x] If present: render avatars linking to user profiles
+- [x] If missing (still loading): render placeholder/skeleton avatars
+- [x] Use guard to avoid calling `.map` on `undefined`
+
+```typescript
+cell: ({ row }) => {
+  const projectCollabs = collabs.value[row.original.id]
+
+  if (!projectCollabs || projectCollabs.length === 0) {
+    return h(
+      'div',
+      { class: 'text-left font-medium flex gap-2' },
+      row.original.collaborators.map(() =>
+        h(Avatar, { class: 'animate-pulse' }, () => h(AvatarFallback))
+      )
+    )
+  }
+
+  return h(
+    'div',
+    { class: 'text-left font-medium flex gap-2' },
+    projectCollabs.map((collab) =>
+      h(RouterLink, { to: `/users/${collab.username}` }, () =>
+        h(Avatar, { class: 'hover:scale-110 transition-transform' }, () =>
+          h(AvatarImage, { src: collab.avatar_url || '' })
+        )
+      )
+    )
+  )
+}
+```
+
+**Key Points**
+
+- Non-blocking fetch keeps initial render fast.
+- Guarding `projectCollabs` prevents runtime errors when data isn’t loaded yet.
+- Skeleton avatars give immediate visual feedback while loading.
+- Avatars link to user profiles when data is available.
+
+---
+
+### Notes / Learnings
+
+- Non-blocking async calls improve perceived performance.
+- Always guard optional data before mapping to avoid `undefined` errors.
+- Provide a loading state (skeletons) to avoid layout jumps while data arrives.
