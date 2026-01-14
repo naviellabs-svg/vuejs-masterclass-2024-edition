@@ -44,7 +44,7 @@ export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<Projects[0]>[] 
 
       return h(
         'div',
-        { class: 'text-left font-medium' },
+        { class: 'text-left font-medium h-20 flex items-center' },
         projectCollabs
           ? projectCollabs.map((collab) => {
               return h(RouterLink, { to: `/users/${collab.username}` }, () => {

@@ -448,3 +448,308 @@ cell: ({ row }) => {
 - Non-blocking async calls improve perceived performance.
 - Always guard optional data before mapping to avoid `undefined` errors.
 - Provide a loading state (skeletons) to avoid layout jumps while data arrives.
+
+## Lesson 8.103 - Reuse the Pinia Loader to Load Single Project
+
+> **Purpose:** Centralize single project loading logic in the Pinia store, enabling caching and preventing redundant API calls. This improves performance by reusing cached project data when users navigate back to previously visited project pages.
+
+### Overview
+
+Instead of fetching project data directly in the component, we move the `getProject` function to the shared Pinia store. This allows us to:
+
+- Cache project data using `useMemoize` (same pattern as `getProjects`)
+- Reuse cached data when navigating back to a project
+- Centralize error handling and state management
+- Provide a consistent data loading pattern across the app
+
+---
+
+### Step 1: Add getProject to Projects Store
+
+**File:** `src/stores/loaders/projects.ts`
+
+> **Purpose:** Add a function to fetch a single project by slug, using the same caching pattern as `getProjects`.
+
+#### Tasks
+
+- [x] Create `loadProject` memoized function using `useMemoize`
+- [x] Add `project` reactive state to store single project data
+- [x] Create `getProject` function that accepts a `slug` parameter
+- [x] Use `loadProject` instead of calling `projectQuery` directly
+- [x] Add error handling and data validation
+- [x] Export `getProject` and `project` from the store
+
+**Implementation:**
+
+```typescript
+import { projectQuery, projectsQuery } from '@/utils/supaQueries'
+import { useMemoize } from '@vueuse/core'
+import type { Project, Projects } from '@/utils/supaQueries'
+
+export const useProjectsStore = defineStore('projects-store', () => {
+  const projects = ref<Projects>([])
+  const project = ref<Project>()
+
+  // Memoized loader for single project (caches by slug)
+  const loadProject = useMemoize(async (slug: string) => await projectQuery(slug))
+
+  // Memoized loader for all projects (cached by key)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const loadProjects = useMemoize(async (key: string) => await projectsQuery)
+
+  // ... validateCache function ...
+
+  const getProjects = async () => {
+    const { data, error, status } = await loadProjects('projects')
+    if (error) useErrorStore().setError({ error, customCode: status })
+    if (data) projects.value = data
+    validateCache()
+  }
+
+  // New function: fetch single project by slug
+  const getProject = async (slug: string) => {
+    const { data, error, status } = await loadProject(slug)
+
+    if (error) useErrorStore().setError({ error, customCode: status })
+
+    if (data) project.value = data
+  }
+
+  return {
+    projects,
+    getProjects,
+    getProject, // Export new function
+    project // Export new state
+  }
+})
+```
+
+**Key Points:**
+
+- **`useMemoize`:** Caches the result based on the `slug` parameter, so subsequent calls with the same slug return cached data
+- **Parameter:** `getProject` accepts `slug: string` instead of reading from route (better separation of concerns)
+- **State Management:** `project` ref stores the single project, separate from the `projects` array
+- **Error Handling:** Uses the same error store pattern as `getProjects` for consistency
+
+---
+
+### Step 2: Update Component to Use Store
+
+**File:** `src/pages/projects/[slug].vue`
+
+> **Purpose:** Remove local state and use the centralized store function instead.
+
+#### Tasks
+
+- [x] Remove local `project` state declaration
+- [x] Import and use `useProjectsStore`
+- [x] Extract `project` from store using `storeToRefs`
+- [x] Extract `getProject` function from store
+- [x] Get `slug` from route params
+- [x] Call `getProject(slug)` instead of local function
+- [x] Keep the watch for updating page title
+
+**Implementation:**
+
+```typescript
+<script setup lang="ts">
+const { slug } = useRoute('/projects/[slug]').params
+
+const projectsLoader = useProjectsStore()
+const { project } = storeToRefs(projectsLoader)
+const { getProject } = projectsLoader
+
+// Watch for project name changes to update page title
+watch(
+  () => project.value?.name,
+  () => {
+    usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
+  }
+)
+
+// Fetch project using store function
+await getProject(slug)
+</script>
+```
+
+**Before (Local State):**
+
+```typescript
+const project = ref<Project | null>(null)
+
+const getProject = async () => {
+  const { data, error, status } = await projectQuery(route.params.slug)
+  if (error) useErrorStore().setError({ error, customCode: status })
+  project.value = data
+}
+```
+
+**After (Store):**
+
+```typescript
+const { project } = storeToRefs(projectsLoader)
+const { getProject } = projectsLoader
+await getProject(slug)
+```
+
+**Benefits:**
+
+- **Caching:** If user navigates away and comes back, project data is cached
+- **Consistency:** Same pattern as `getProjects` for easier maintenance
+- **Separation:** Component focuses on UI, store handles data logic
+
+---
+
+### Step 3: Prevent Layout Shift in Table Columns
+
+**File:** `src/utils/tableColumns/projectsColumns.ts`
+
+> **Purpose:** Add fixed height to collaborator column to prevent layout shift when avatars load.
+
+#### Tasks
+
+- [x] Add `h-20` class to set fixed height
+- [x] Add `flex items-center` to vertically center avatars
+- [x] Maintain existing styling for text alignment
+
+**Implementation:**
+
+```typescript
+{
+  accessorKey: 'collaborators',
+  header: () => h('div', { class: 'text-left' }, 'Collaborators'),
+  cell: ({ row }) => {
+    const projectCollabs = collabs.value[row.original.id]
+
+    return h(
+      'div',
+      { class: 'text-left font-medium h-20 flex items-center' }, // Fixed height + flex centering
+      // ... rest of the code
+    )
+  }
+}
+```
+
+**Explanation:**
+
+- **`h-20`:** Sets a fixed height (5rem/80px) preventing the row from jumping when avatars load
+- **`flex items-center`:** Vertically centers the avatars within the fixed height
+- **Why it matters:** Without fixed height, rows expand when images load, causing jarring layout shifts
+
+---
+
+### Notes / Learnings
+
+#### Why Centralize in Store?
+
+- **Caching:** `useMemoize` automatically caches results by slug, preventing redundant API calls
+- **State Persistence:** Project data persists across route navigation (until cache is cleared)
+- **Consistency:** Same pattern for both list and detail views makes code easier to understand
+- **Performance:** Users get instant page loads when revisiting projects they've already viewed
+
+#### How useMemoize Works
+
+```typescript
+const loadProject = useMemoize(async (slug: string) => await projectQuery(slug))
+```
+
+- **First call:** `getProject('my-project')` → Fetches from API, caches result
+- **Second call:** `getProject('my-project')` → Returns cached result immediately
+- **Different slug:** `getProject('other-project')` → Fetches new data, caches separately
+- **Cache key:** The `slug` parameter acts as the cache key
+
+#### Gotchas & Solutions
+
+1. **Route Params:** Extract `slug` from route params in component, don't access `route` in store (better separation)
+2. **Type Safety:** `project` is `ref<Project>()` (not nullable) because we only set it when data exists
+3. **Cache Invalidation:** Currently cache persists indefinitely; could add manual invalidation if needed
+4. **Layout Shift:** Fixed height (`h-20`) prevents rows jumping when images load asynchronously
+
+#### When to Use This Pattern
+
+- ✅ **Use store loading for:**
+  - Data that might be accessed multiple times
+  - Data that benefits from caching
+  - Data shared across multiple components
+  - When you want consistent error handling
+
+- ❌ **Keep local state for:**
+  - Truly one-time, component-specific data
+  - Form data that shouldn't persist
+  - UI-only state (modals, dropdowns, etc.)
+
+#### Next Steps
+
+- Add cache invalidation when project is updated
+- Consider adding loading states for better UX
+- Could add optimistic updates for faster perceived performance
+- Might want to add cache expiration/TTL for stale data
+
+
+## Lesson — 8.104 - Make the Pinia Loader Cache Invalidation Logic Reusable
+We’re refining the cache invalidation logic here to make it dynamic and versatile, so it handles both multiple projects and single project requests. By updating the validateCache function to accept parameters, the function now adapts to different data queries and loaders, enabling smooth, automatic data refreshes without redundant fetching. This reusable approach means faster navigation, real-time updates from the database, and a more responsive user experience.
+
+### projects.ts
+> Purpose: Add parameters to make everthing dynmaic
+
+#### Tasks
+- [ ] add ???
+```
+const validateCache = ({
+    ref,
+    query,
+    key,
+    loaderfn
+  } : {
+    ref: typeof projects | typeof project
+    query: typeof projectsQuery | typeof projectQuery
+    key: string
+    loaderfn: typeof loadProjects | typeof loadProject```
+- [ ] make both objects initial value null ` const projects = ref<Projects | null>(null)
+  const project = ref<Project | null>(null)`
+- [ ] check if value is truthy  ` if (ref.value) {`
+
+### projects/index.vue
+- [ ] getGroupedCollabs(projects.value ?? [])
+
+### projects.ts
+- [ ] addref in projects place `if (!error && data) ref.value = data`
+- [ ] check for query `if (ref.value) {
+const finalQuery = typeof query === 'function' ? query(key): query
+
+      finalQuery.then(({ data, error }) => {`
+- [ ] `} else {
+          loaderFn.delete(key)
+          if (!error && data) ref.value = data
+- [ ] create inteface ```interface ValidateCacheParams {
+    ref: typeof projects | typeof project
+    query: typeof projectsQuery | typeof projectQuery
+    key: string
+    loaderfn: typeof loadProjects | typeof loadProject
+  }
+
+  const validateCache = ({
+    ref,
+    query,
+    key,
+    loaderFn
+  } : ValidateCacheParams) => {```
+
+- [ ] update validate cache `validateCache({
+      ref: projects,
+      query: projectsQuery,
+      key: 'projects',
+      loaderFn: loadProjects
+    })`
+
+- [ ] also for project but change values to ` alidateCache({
+      ref: project,
+      query: projectQuery,
+      key: slug,
+      loaderFn: loadProject
+    })`
+
+#### Notes / Learnings
+- What I learned
+- Why this approach was used
+- Gotchas or things that confused me
