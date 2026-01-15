@@ -973,37 +973,225 @@ The reset approach is simplest and ensures watchers always fire correctly.
 - Could add a transition effect when project data changes
 - Might want to preserve some data (like tasks) during navigation for smoother UX
 
+## Lesson 8.106 - Create Text Field Component with defineModel
 
-# Lesson — 8.106 - Create Text Field Component with defineModel
+> **Purpose:** Create a reusable in-place editing component using Vue 3's `defineModel` macro. This simplifies two-way data binding by automatically handling props and emits, making it easier to create editable text fields that can be used throughout the application.
 
-### projects/slug.vue
-> Purpose: What this change achieves
+### Overview
 
-#### Tasks 1
-- [ ] create new component to edit text `<TableHead> Name </TableHead>
-      <TableCell>
-        <AppInPlaceEditText />
-      </TableCell>`
+Vue 3.3+ introduced the `defineModel` macro, which simplifies creating components with two-way data binding. Instead of manually defining `modelValue` prop and `update:modelValue` emit, `defineModel` handles both automatically. This lesson creates an `AppInPlaceEditText` component that provides a clean, editable input field with custom styling for in-place editing.
 
-### AppInPlaceEditText.vue
-### tasks 2 
-- [ ] create component `<script setup lang="ts">
+**Benefits of `defineModel`:**
 
-  const value = defineModel()
+- **Simpler syntax:** No need to manually define props and emits
+- **Less boilerplate:** Automatically handles `v-model` binding
+- **Type-safe:** Works seamlessly with TypeScript
+- **Reusable:** Can be used anywhere you need editable text
+
+---
+
+### Step 1: Create the In-Place Edit Component
+
+**File:** `src/components/AppInPlaceEdit/AppInPlaceEditText.vue`
+
+> **Purpose:** Create a reusable text input component that supports two-way data binding using `defineModel`.
+
+#### Tasks
+
+- [x] Create new component file `AppInPlaceEditText.vue`
+- [x] Use `defineModel()` to create a reactive model value
+- [x] Create an input element with `v-model` bound to the model
+- [x] Add styling classes for in-place editing appearance
+
+**Implementation:**
+
+```vue
+<script setup lang="ts">
+const value = defineModel<string>()
 </script>
+
 <template>
   <input
+    v-model="value"
     class="w-full p-1 bg-transparent focus:outline-none focus:border-none focus:bg-gray-800 focus:rounded-md"
     type="text"
-    v-model="value"
   />
-</template>`
+</template>
+```
 
-### projects/slug.vue
-- [ ] bind two ways with v-model `<AppInPlaceEditText v-model="project.name" />`
-- [ ] Step four
+**Key Points:**
 
-#### Notes / Learnings
-- What I learned
-- Why this approach was used
-- Gotchas or things that confused me
+- **`defineModel<string>()`:** Creates a reactive ref that automatically handles `modelValue` prop and `update:modelValue` emit
+- **Type parameter:** `<string>` specifies the type of the model value
+- **Styling:** Classes provide a clean, minimal appearance that highlights on focus
+- **No manual emits:** `defineModel` automatically emits updates when the value changes
+
+**What `defineModel` does under the hood:**
+
+```typescript
+// defineModel() is equivalent to:
+const props = defineProps<{ modelValue: string }>()
+const emits = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
+
+const value = computed({
+  get: () => props.modelValue,
+  set: (val) => emits('update:modelValue', val)
+})
+```
+
+---
+
+### Step 2: Use Component in Project Page
+
+**File:** `src/pages/projects/[slug].vue`
+
+> **Purpose:** Replace static text display with the editable component, allowing users to edit project names in place.
+
+#### Tasks
+
+- [x] Import or use `AppInPlaceEditText` component (auto-imported if configured)
+- [x] Replace static `{{ project.name }}` with `<AppInPlaceEditText />`
+- [x] Bind `v-model` to `project.name` for two-way data binding
+
+**Implementation:**
+
+```vue
+<template>
+  <Table v-if="project">
+    <TableRow>
+      <TableHead> Name </TableHead>
+      <TableCell>
+        <AppInPlaceEditText v-model="project.name" />
+      </TableCell>
+    </TableRow>
+    <!-- ... rest of table ... -->
+  </Table>
+</template>
+```
+
+**Before (Static):**
+
+```vue
+<TableCell>
+  {{ project.name }}
+</TableCell>
+```
+
+**After (Editable):**
+
+```vue
+<TableCell>
+  <AppInPlaceEditText v-model="project.name" />
+</TableCell>
+```
+
+**Benefits:**
+
+- **Immediate editing:** Users can click and edit directly in the table
+- **Reactive updates:** Changes to `project.name` are immediately reflected
+- **Clean UI:** Styling provides visual feedback on focus without cluttering the interface
+
+---
+
+### Notes / Learnings
+
+#### Why Use `defineModel`?
+
+- **Less Code:** Eliminates the need for manual prop/emit definitions
+- **Type Safety:** TypeScript support is built-in and automatic
+- **Convention:** Follows Vue 3.3+ best practices for two-way binding
+- **Readability:** Makes component code cleaner and easier to understand
+
+#### How `defineModel` Works
+
+```typescript
+// Simple usage
+const value = defineModel<string>()
+
+// With default value
+const value = defineModel<string>({ default: '' })
+
+// With modifiers (like .trim, .number)
+const value = defineModel<string>('value', { trim: true })
+```
+
+**What it provides:**
+
+- A reactive ref that can be used with `v-model`
+- Automatic prop definition (`modelValue`)
+- Automatic emit definition (`update:modelValue`)
+- Full TypeScript support
+
+#### Gotchas & Solutions
+
+1. **Type Required:** Always specify the type parameter: `defineModel<string>()` not just `defineModel()`
+2. **Default Values:** Use the options object for defaults: `defineModel<string>({ default: '' })`
+3. **Multiple Models:** You can use `defineModel` multiple times with different names:
+   ```typescript
+   const title = defineModel<string>('title')
+   const description = defineModel<string>('description')
+   ```
+4. **Reactivity:** The model value is automatically reactive - no need for `ref()` or `computed()`
+
+#### When to Use `defineModel` vs Manual Props/Emits
+
+- ✅ **Use `defineModel` when:**
+  - Creating components that need simple two-way binding
+  - Building reusable form components
+  - You want cleaner, more maintainable code
+  - Working with Vue 3.3+
+
+- ❌ **Use manual props/emits when:**
+  - You need complex validation logic
+  - You need to transform values before emitting
+  - Working with Vue 3.2 or earlier (no `defineModel` support)
+  - You need multiple v-model bindings with custom names
+
+#### Component Styling Explained
+
+```css
+w-full                    /* Full width */
+p-1                       /* Small padding */
+bg-transparent            /* Transparent background */
+focus:outline-none        /* Remove default focus outline */
+focus:border-none         /* Remove border on focus */
+focus:bg-gray-800         /* Dark background on focus */
+focus:rounded-md         /* Rounded corners on focus */
+```
+
+This creates a "ghost" input that only shows styling when focused, perfect for in-place editing.
+
+#### Next Steps
+
+- Add validation to prevent empty values
+- Add save/cancel buttons for explicit save actions
+- Add loading states when saving to database
+- Create similar components for other input types (textarea, number, etc.)
+- Add keyboard shortcuts (Enter to save, Escape to cancel)
+
+## lesson 8.107
+
+### AppInPlaceEditText.vue
+
+craete emit to parent when user focus away to store project name in databse.
+
+- [ ] crate emit when blur `<script setup lang="ts">
+
+  const value = defineModel()
+
+  defineEmits(['commit'])
+  </script>
+  <template>
+  <input
+  class="w-full p-1 bg-transparent focus:outline-none focus:border-none focus:bg-gray-800 focus:rounded-md"
+  type="text"
+  v-model="value"
+  @blur="$emit('commit')"
+  @keypress.enter="($event.target as HTMLInputElement).blur()"
+  />
+  </template>`
+
+### projecrs/slug.vue
+- [ ] add @commiy in parent `<AppInPlaceEditText
+        v-model="project.name"
+        @commit="console.log('changed')"`
