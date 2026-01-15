@@ -685,69 +685,323 @@ const loadProject = useMemoize(async (slug: string) => await projectQuery(slug))
 - Could add optimistic updates for faster perceived performance
 - Might want to add cache expiration/TTL for stale data
 
+## Lesson 8.104 - Make Pinia Loader Cache Invalidation Reusable
 
-## Lesson — 8.104 - Make the Pinia Loader Cache Invalidation Logic Reusable
-We’re refining the cache invalidation logic here to make it dynamic and versatile, so it handles both multiple projects and single project requests. By updating the validateCache function to accept parameters, the function now adapts to different data queries and loaders, enabling smooth, automatic data refreshes without redundant fetching. This reusable approach means faster navigation, real-time updates from the database, and a more responsive user experience.
+> **Purpose:** Extract the “stale-while-revalidate” cache validation into a reusable function that works for both **list queries** (projects) and **single-item queries** (project by slug).
 
-### projects.ts
-> Purpose: Add parameters to make everthing dynmaic
+### Overview
+
+We already use `useMemoize` to cache loader calls. In this lesson we make the **cache invalidation / revalidation** logic reusable by parameterizing `validateCache` with:
+
+- The reactive ref that holds cached data (`projects` or `project`)
+- The underlying query (`projectsQuery` or `projectQuery(slug)`)
+- The cache key used by the memoized loader
+- The memoized loader function so we can delete the key when data changes
+
+This gives us a simple SWR flow:
+
+- **Return cached data immediately** (fast UI)
+- **Revalidate in the background**
+- **If fresh data differs**, clear memoize cache and update the ref
+
+---
+
+### Step 1: Make store state nullable
+
+**File:** `src/stores/loaders/projects.ts`
+
+> **Purpose:** Support “not loaded yet” state and allow truthy checks inside `validateCache`.
 
 #### Tasks
-- [ ] add ???
+
+- [x] Set initial values to `null`
+
+```typescript
+const projects = ref<Projects | null>(null)
+const project = ref<Project | null>(null)
 ```
-const validateCache = ({
-    ref,
-    query,
-    key,
-    loaderfn
-  } : {
-    ref: typeof projects | typeof project
-    query: typeof projectsQuery | typeof projectQuery
-    key: string
-    loaderfn: typeof loadProjects | typeof loadProject```
-- [ ] make both objects initial value null ` const projects = ref<Projects | null>(null)
-  const project = ref<Project | null>(null)`
-- [ ] check if value is truthy  ` if (ref.value) {`
 
-### projects/index.vue
-- [ ] getGroupedCollabs(projects.value ?? [])
+---
 
-### projects.ts
-- [ ] addref in projects place `if (!error && data) ref.value = data`
-- [ ] check for query `if (ref.value) {
-const finalQuery = typeof query === 'function' ? query(key): query
+### Step 2: Create a reusable `validateCache` helper
 
-      finalQuery.then(({ data, error }) => {`
-- [ ] `} else {
-          loaderFn.delete(key)
-          if (!error && data) ref.value = data
-- [ ] create inteface ```interface ValidateCacheParams {
-    ref: typeof projects | typeof project
-    query: typeof projectsQuery | typeof projectQuery
-    key: string
-    loaderfn: typeof loadProjects | typeof loadProject
+**File:** `src/stores/loaders/projects.ts`
+
+> **Purpose:** One function that can validate and invalidate cache for both projects list and single project.
+
+#### Tasks
+
+- [x] Create `ValidateCacheParams` interface
+- [x] Accept `ref`, `query`, `key`, and `loaderFn`
+- [x] If we have cached data (`ref.value`), run the “fresh” query in the background
+- [x] If cached vs fresh differs, delete memoized cache key and update the ref
+
+```typescript
+interface ValidateCacheParams {
+  ref: typeof projects | typeof project
+  query: typeof projectsQuery | typeof projectQuery
+  key: string
+  loaderFn: typeof loadProjects | typeof loadProject
+}
+
+const validateCache = ({ ref, query, key, loaderFn }: ValidateCacheParams) => {
+  if (!ref.value) return
+
+  const finalQuery = typeof query === 'function' ? query(key) : query
+
+  finalQuery.then(({ data, error }) => {
+    // If data matches what we already have, do nothing
+    if (JSON.stringify(ref.value) === JSON.stringify(data)) return
+
+    // If data changed, invalidate memoized cache and update state
+    loaderFn.delete(key)
+    if (!error && data) ref.value = data
+  })
+}
+```
+
+**Note:** The important comparison is **`ref.value` vs fresh `data`** (so it works for both list + single item).
+
+---
+
+### Step 3: Call validateCache for both list + detail loaders
+
+**File:** `src/stores/loaders/projects.ts`
+
+> **Purpose:** Apply the same cache validation pattern in `getProjects` and `getProject`.
+
+#### Tasks
+
+- [x] After `getProjects`, validate projects cache
+- [x] After `getProject(slug)`, validate that slug’s project cache
+
+```typescript
+validateCache({
+  ref: projects,
+  query: projectsQuery,
+  key: 'projects',
+  loaderFn: loadProjects
+})
+
+validateCache({
+  ref: project,
+  query: projectQuery,
+  key: slug,
+  loaderFn: loadProject
+})
+```
+
+---
+
+### Step 4: Make callers safe when data is nullable
+
+**File:** `src/pages/projects/index.vue`
+
+> **Purpose:** Avoid passing `null` into logic that expects an array.
+
+#### Tasks
+
+- [x] Use nullish coalescing when calling collaborators loader
+
+```typescript
+getGroupedCollabs(projects.value ?? [])
+```
+
+---
+
+### Notes / Learnings
+
+- **Why this approach:** You get “fast from cache” + “fresh from server” without duplicating logic for every loader.
+- **Gotcha (types):** Once state is nullable, callers must handle `null` (`projects.value ?? []`).
+- **Gotcha (comparison):** Compare `ref.value` to `data` (not `projects.value`), otherwise the helper won’t work for single project.
+- **Potential improvement:** `JSON.stringify` comparisons can be expensive on large payloads; consider comparing a `updated_at` field or using a hash/version.
+
+## Lesson 8.105 - Fix a Little Bug with the Project Title Watcher
+
+> **Purpose:** Fix a bug where the page title watcher doesn't update when navigating between projects. By resetting the ref to `null` before fetching new data, we ensure the watcher detects the change and updates the title correctly.
+
+### Overview
+
+When navigating from one project to another, the watcher in `projects/[slug].vue` watches `project.value?.name` to update the page title. However, if the old project data persists in the ref, the watcher might not fire because the value hasn't changed (it's still the previous project's name). By resetting `project.value = null` at the start of `getProject()`, we ensure the watcher detects the transition from `null` → new project name.
+
+**The Bug:**
+
+- User navigates from Project A → Project B
+- Old Project A data remains in `project.value`
+- Watcher doesn't fire because `project.value?.name` hasn't changed
+- Page title shows "Project: Project A" instead of "Project: Project B"
+
+**The Fix:**
+
+- Reset `project.value = null` before fetching
+- Watcher detects change: `null` → `"Project B"`
+- Page title updates correctly
+
+---
+
+### Step 1: Reset Project Ref Before Fetching
+
+**File:** `src/stores/loaders/projects.ts`
+
+> **Purpose:** Clear the project ref at the start of `getProject()` to ensure watchers detect the change when new data loads.
+
+#### Tasks
+
+- [x] Set `project.value = null` at the start of `getProject()` function
+- [x] Also set `projects.value = null` at the start of `getProjects()` for consistency
+
+**Implementation:**
+
+```typescript
+const getProjects = async () => {
+  projects.value = null // Reset before fetching
+
+  const { data, error, status } = await loadProjects('projects')
+
+  if (error) useErrorStore().setError({ error, customCode: status })
+
+  if (data) projects.value = data
+
+  validateCache({
+    ref: projects,
+    query: projectsQuery,
+    key: 'projects',
+    loaderFn: loadProjects
+  })
+}
+
+const getProject = async (slug: string) => {
+  project.value = null // Reset before fetching - fixes watcher bug
+
+  const { data, error, status } = await loadProject(slug)
+
+  if (error) useErrorStore().setError({ error, customCode: status })
+
+  if (data) project.value = data
+
+  validateCache({
+    ref: project,
+    query: projectQuery,
+    key: slug,
+    loaderFn: loadProject
+  })
+}
+```
+
+**Key Points:**
+
+- **Why reset to `null`?** Ensures watchers detect a change when new data loads
+- **When does it happen?** At the very start of the function, before any async operations
+- **What about caching?** The `useMemoize` cache still works - this just clears the reactive ref temporarily
+- **Why both functions?** Consistency - both `getProjects` and `getProject` follow the same pattern
+
+---
+
+### How the Watcher Works
+
+**File:** `src/pages/projects/[slug].vue`
+
+The watcher in the component watches for changes to `project.value?.name`:
+
+```typescript
+watch(
+  () => project.value?.name,
+  () => {
+    usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
   }
+)
+```
 
-  const validateCache = ({
-    ref,
-    query,
-    key,
-    loaderFn
-  } : ValidateCacheParams) => {```
+**Without the fix:**
 
-- [ ] update validate cache `validateCache({
-      ref: projects,
-      query: projectsQuery,
-      key: 'projects',
-      loaderFn: loadProjects
-    })`
+1. User on Project A: `project.value.name = "Project A"` ✅
+2. Navigate to Project B: `getProject('project-b')` called
+3. Old data persists: `project.value.name` still `"Project A"` ❌
+4. New data loads: `project.value.name = "Project B"`
+5. **Problem:** If Project A and B have similar names or the ref doesn't fully clear, watcher might not fire
 
-- [ ] also for project but change values to ` alidateCache({
-      ref: project,
-      query: projectQuery,
-      key: slug,
-      loaderFn: loadProject
-    })`
+**With the fix:**
+
+1. User on Project A: `project.value.name = "Project A"` ✅
+2. Navigate to Project B: `getProject('project-b')` called
+3. **Reset:** `project.value = null` → watcher fires with `undefined` ✅
+4. New data loads: `project.value.name = "Project B"` → watcher fires again ✅
+5. **Result:** Page title updates correctly every time
+
+---
+
+### Notes / Learnings
+
+#### Why This Pattern Works
+
+- **Reactive Detection:** Vue's reactivity system detects the change from `null` → data
+- **Watcher Fires:** The watcher callback runs when `project.value?.name` changes from `undefined` → new name
+- **Clean State:** Resetting ensures we start with a clean slate, avoiding stale data issues
+- **User Experience:** Page title updates immediately when new project loads
+
+#### Gotchas & Solutions
+
+1. **Timing:** Reset happens **before** the async fetch, not after - this ensures watchers fire correctly
+2. **Null Safety:** Components using `project.value` should check for `null` (e.g., `v-if="project"`)
+3. **Cache vs Ref:** The `useMemoize` cache is separate from the ref - cache persists, ref is cleared
+4. **Multiple Watchers:** Any watcher watching `project.value` or its properties will fire when reset
+
+#### When to Use This Pattern
+
+- ✅ **Use reset pattern when:**
+  - You have watchers that depend on the data
+  - You want to ensure clean state transitions
+  - You're navigating between similar items (projects, users, etc.)
+  - You need to trigger side effects on data changes
+
+- ❌ **Don't reset when:**
+  - You want to show loading states (keep old data visible)
+  - The data is expensive to re-render
+  - You're doing optimistic updates
+
+#### Alternative Approaches
+
+1. **Watch with `immediate: true`:** Could watch the route param instead of the data
+2. **Manual title update:** Set title directly in `getProject()` instead of using watcher
+3. **Computed property:** Use computed for title instead of watcher
+
+The reset approach is simplest and ensures watchers always fire correctly.
+
+#### Next Steps
+
+- Consider adding loading states while `project.value === null`
+- Could add a transition effect when project data changes
+- Might want to preserve some data (like tasks) during navigation for smoother UX
+
+
+# Lesson — 8.106 - Create Text Field Component with defineModel
+
+### projects/slug.vue
+> Purpose: What this change achieves
+
+#### Tasks 1
+- [ ] create new component to edit text `<TableHead> Name </TableHead>
+      <TableCell>
+        <AppInPlaceEditText />
+      </TableCell>`
+
+### AppInPlaceEditText.vue
+### tasks 2 
+- [ ] create component `<script setup lang="ts">
+
+  const value = defineModel()
+</script>
+<template>
+  <input
+    class="w-full p-1 bg-transparent focus:outline-none focus:border-none focus:bg-gray-800 focus:rounded-md"
+    type="text"
+    v-model="value"
+  />
+</template>`
+
+### projects/slug.vue
+- [ ] bind two ways with v-model `<AppInPlaceEditText v-model="project.name" />`
+- [ ] Step four
 
 #### Notes / Learnings
 - What I learned

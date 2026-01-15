@@ -32,6 +32,8 @@ export const useProjectsStore = defineStore('projects-store', () => {
   }
 
   const getProjects = async () => {
+    projects.value = null
+
     const { data, error, status } = await loadProjects('projects')
 
     if (error) useErrorStore().setError({ error, customCode: status })
@@ -47,6 +49,8 @@ export const useProjectsStore = defineStore('projects-store', () => {
   }
 
   const getProject = async (slug: string) => {
+    project.value = null
+
     const { data, error, status } = await loadProject(slug)
 
     if (error) useErrorStore().setError({ error, customCode: status })
