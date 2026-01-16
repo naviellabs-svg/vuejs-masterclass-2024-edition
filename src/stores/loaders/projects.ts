@@ -1,4 +1,4 @@
-import { projectQuery, projectsQuery } from '@/utils/supaQueries'
+import { projectQuery, projectsQuery, updateProjectQuery } from '@/utils/supaQueries'
 import { useMemoize } from '@vueuse/core'
 import type { Project, Projects } from '@/utils/supaQueries'
 
@@ -63,12 +63,23 @@ export const useProjectsStore = defineStore('projects-store', () => {
       key: slug,
       loaderFn: loadProject
     })
+}
+
+const updateProject = async() => {
+  if(!project.value) return
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {tasks, id, ...projectProperties} = project.value
+
+  await updateProjectQuery(projectProperties, project.value.id)
+
   }
 
   return {
     projects,
     getProjects,
     getProject,
-    project
+    project,
+    updateProject
   }
 })

@@ -1192,6 +1192,50 @@ craete emit to parent when user focus away to store project name in databse.
   </template>`
 
 ### projecrs/slug.vue
+
 - [ ] add @commiy in parent `<AppInPlaceEditText
+      v-model="project.name"
+      @commit="console.log('changed')"`
+
+## Lesson - 8.108 - Update Project Title in the Database
+
+### projects.ts
+
+- [ ] crate new function and return `const updateProject = async() => {
+
+
+  }
+
+  return {
+    projects,
+    getProjects,
+    getProject,
+    project,
+    updateProject
+  }
+})`
+
+### projects/slug.vue
+
+- [ ]  destruct updateproject from projesctloader `const { getProject, upadteProject } = projectsLoader`
+- [ ] use it instead of console.log `<TableCell>
+        <AppInPlaceEditText
         v-model="project.name"
-        @commit="console.log('changed')"`
+        @commit="updateProject"
+        />
+      </TableCell>`
+
+### supaqueries.ts 
+- [ ] add new query `export const updateProjectQuery = (updatedProject = {}, id: number) => {
+  return supabase.from('projects').update(updatedProject).eq('id', id)
+}`
+
+### projects.ts
+- [ ] `const updateProject = async() => {
+  if(!project.value) return
+
+  const {tasks, id,   ...projectProperties} = project.value
+
+  await updateProjectQuery(projectProperties, project.value.id)
+
+  }`
