@@ -1239,3 +1239,62 @@ craete emit to parent when user focus away to store project name in databse.
   await updateProjectQuery(projectProperties, project.value.id)
 
   }`
+
+  ## Lesson - 8.109 
+
+  ### projects/slug.vue
+  - [ ] use component to update description `<TableHead> Description </TableHead>
+      <TableCell>
+        <AppInPlaceEditText v-model="project.description" @commit="updateproject" />
+      </TableCell>`
+
+  ### AppInPlaceEditStatus.vue
+
+  - [ ]  Create the new component in AppInPlaceEdit 
+  - [ ]  ```<script setup lang="ts"></script>
+
+<template>
+  <div class="text-2xl cursor-pointer">
+     <iconify-icon icon="lucide:circle-check" class="text-green-500" />
+     <iconify-icon icon="lucide:circle-dot" class="text-gray-500"/>
+  </div>
+</template>```
+
+  ### projects/slug.vue
+
+  - [ ] use staujtus edit component `<TableHead>
+        Status
+      </TableHead>
+      <TableCell><AppInPlaceEditStatus /></TableCell>`
+
+  ### AppInPlaceStatus.vue
+
+  - [ ]  update template to be reactive based on conditions `<template>
+  <div class="text-2xl cursor-pointer">
+     <iconify-icon
+     v-if="value === 'completed'"
+     icon="lucide:circle-check"
+     class="text-green-500" />
+     <iconify-icon
+     v-else
+     icon="lucide:circle-dot"
+     class="text-gray-500"/>
+  </div>
+</template>`
+
+### projects/slug.vue
+
+- [ ] add v-model to bind status ` <TableCell><AppInPlaceEditStatus v-model="project.status"/></TableCell>`
+
+### projectsColumns.ts 
+- [ ] update stusts with ```{
+    accessorKey: 'status',
+    header: () => h('div', { class: 'text-left' }, 'Status'),
+    cell: ({ row }) => {
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        h(AppInPlaceEditStatus, { modelValue: row.original.status })
+      )
+    }
+  }```

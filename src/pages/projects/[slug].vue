@@ -19,21 +19,20 @@ await getProject(slug)
     <TableRow>
       <TableHead> Name </TableHead>
       <TableCell>
-        <AppInPlaceEditText
-        v-model="project.name"
-        @commit="updateProject"
-        />
+        <AppInPlaceEditText v-model="project.name" @commit="updateProject" />
       </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Description </TableHead>
       <TableCell>
-        {{ project.description }}
+        <AppInPlaceEditText v-model="project.description" @commit="updateProject" />
       </TableCell>
     </TableRow>
     <TableRow>
-      <TableHead> {{ project.status }}</TableHead>
-      <TableCell>In progress</TableCell>
+      <TableHead>
+        Status
+      </TableHead>
+      <TableCell><AppInPlaceEditStatus v-model="project.status"/></TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Collaborators </TableHead>
